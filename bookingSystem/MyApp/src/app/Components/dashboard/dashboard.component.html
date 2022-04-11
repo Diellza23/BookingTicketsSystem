@@ -1,0 +1,99 @@
+<div class="container-fluid p-0 m-0">
+
+    <!-- navbar section -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Blogs</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="d-flex ms-auto me-3">
+            <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#createPostModal">Create post</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- list of posts -->
+    <div class="row mt-5 p-3">
+      <div class="col-sm-12 col-md-3 mt-3" *ngFor="let post of allPosts">
+  
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{post.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{post.username}}</h6>
+            <p class="card-text">{{post.content}}</p>
+          </div>
+          <div class="card-footer">
+            <div class="btn btn-outline-primary ms-2" (click)="editPost(post)" data-bs-toggle="modal" data-bs-target="#editPostModal">Edit </div>
+            <div class="btn btn-outline-danger ms-2" (click)="deletePostById(post)">Delete </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+    <!-- create post modal -->
+  <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" name="title" [(ngModel)]="title">
+            <label for="floatingInput">Title</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" name="content" [(ngModel)]="content">
+            <label for="floatingInput">Content</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" name="username" [(ngModel)]="username">
+            <label for="floatingInput">Username</label>
+          </div>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="createPost(post)">Create post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <!-- edit post modal -->
+  <div class="modal fade" id="editPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" name="title" [(ngModel)]="title">
+            <label for="floatingInput">Title</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" name="content" [(ngModel)]="content">
+            <label for="floatingInput">Content</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" name="username" [(ngModel)]="username">
+            <label for="floatingInput">Username</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updatePost()">Update Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </div>
