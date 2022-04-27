@@ -4,13 +4,16 @@ import { AllUserManagementComponent } from './all-user-management/all-user-manag
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { AuthGuardService } from './guards/auth.service';
 import { LoginComponent } from './login/login.component';
+import { PropertyCardComponent } from './property/property-card/property-card.component';
 import { RegisterComponent } from './register/register.component';
 import { UserManagementComponent } from './user-management/user-management.component';
-
+import {PropertyListComponent} from './property/property-list/property-list.component'
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
 
+  { path: 'propertyCard', component: PropertyCardComponent },
+  { path: 'propertyList', component: PropertyListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {

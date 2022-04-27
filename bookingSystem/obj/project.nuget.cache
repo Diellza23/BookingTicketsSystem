@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hf0Fz7sAiQ83as40zJTF0hvL/dTBrUQsLE8Q4rFex8cy88zKUFnkZsn0EM+qTYCsg382gXUwZYxNOMZtBjIipg==",
+  "dgSpecHash": "v/eqhbObnp3/zBh3TQWvufR+cdIVtNgIt9ZWxtFOA0V5j0CN7uXR7XPvJh1sjvOzQquGorzRMjiCGFX/Pi738Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DeZzeRt\\Desktop\\LabCourse2\\bookingSystem\\bookingSystem.csproj",
+  "projectFilePath": "C:\\Users\\DeZzeRt\\Desktop\\Lab2\\bookingticketssystem\\bookingsystem\\bookingSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DeZzeRt\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\DeZzeRt\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.7\\microsoft.aspnetcore.authentication.jwtbearer.5.0.7.nupkg.sha512",

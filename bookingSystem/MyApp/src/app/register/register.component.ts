@@ -57,11 +57,18 @@ export class RegisterComponent implements OnInit {
     });
   }
   onRoleChange(role: string) {
-    this.roles.forEach((x) => {
-      if (x.role == role) {
-        x.isSelected = !x.isSelected;
+    // this.roles.forEach((x) => {
+    //   if (x.role == role) {
+    //     x.isSelected = !x.isSelected;
+    //   }
+    // });
+    this.roles.forEach(x=>{
+      if(x.role==role){
+        x.isSelected=true;
+      }else{
+        x.isSelected=false;
       }
-    });
+    })
   }
   get isRoleSelected() {
     return this.roles.filter((x) => x.isSelected).length > 0;
