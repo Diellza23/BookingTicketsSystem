@@ -1,16 +1,8 @@
 .ng-invalid.ng-touched{
-  border-color:#ff0000
+  border-color:red;
 }
 .error-block{
   color:red
-}
-
-.photo-control{
-  min-height: 300px;
-  vertical-align:middle;
-  text-align:center;
-  border:1px dashed blue;
-  margin:5px;
 }
 
 .btn-group > label[ng-reflect-btn-radio] {

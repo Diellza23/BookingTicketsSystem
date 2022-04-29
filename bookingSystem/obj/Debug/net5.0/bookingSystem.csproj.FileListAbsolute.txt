@@ -150,3 +150,4 @@ C:\Users\DeZzeRt\Desktop\Lab2\bookingticketssystem\bookingsystem\obj\Debug\net5.
 C:\Users\DeZzeRt\Desktop\Lab2\bookingticketssystem\bookingsystem\obj\Debug\net5.0\ref\bookingSystem.dll
 C:\Users\DeZzeRt\Desktop\Lab2\bookingticketssystem\bookingsystem\obj\Debug\net5.0\bookingSystem.pdb
 C:\Users\DeZzeRt\Desktop\Lab2\bookingticketssystem\bookingsystem\obj\Debug\net5.0\bookingSystem.genruntimeconfig.cache
+C:\Users\DeZzeRt\Desktop\Lab2\bookingticketssystem\bookingsystem\bin\Debug\net5.0\MyApp\src\data\properties.json
