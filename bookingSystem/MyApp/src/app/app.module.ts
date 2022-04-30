@@ -20,6 +20,8 @@ import {BsDropdownModule} from 'ngx-bootstrap/dropdown'
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import {ButtonsModule} from 'ngx-bootstrap/buttons'
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import { AlertifyService } from './services/alertify.service';
+// import { AddPropertyComponent } from './property/add-property/add-property.component';
 
 
 
@@ -59,7 +61,8 @@ const appRoutes: Routes = [
     BsDatepickerModule.forRoot()
   ],
   providers: [
-    HousingService
+    HousingService,
+    AlertifyService
   ],
   bootstrap: [AppComponent],
 })
