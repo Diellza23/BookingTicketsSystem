@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
 
   { path: 'propertyCard', component: PropertyCardComponent },
-  { path: 'propertyList', component: PropertyListComponent },
+  // { path: 'propertyList', component: PropertyListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {

@@ -56,7 +56,7 @@
   },
   {
     "Id":3,
-    "SellRent":1,
+    "SellRent":2,
     "Name":"Gun Hill",
     "PType":"House",
     "BHK":3,
@@ -110,7 +110,7 @@
     "PostedOn":"01-Jan-2019"
   },
   {
-    "Id":5,
+    "Id":2,
     "SellRent":1,
     "Name":"Saint Church Villa",
     "PType":"House",

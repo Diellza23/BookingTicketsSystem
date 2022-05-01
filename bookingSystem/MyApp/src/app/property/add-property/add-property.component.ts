@@ -28,7 +28,7 @@ export class AddPropertyComponent implements OnInit {
 
   propertyTypes: Array<string> = ['House', 'Apartment', 'Duplex'];
   furnishTypes: Array<string> = ['Fully', 'Semi', 'Unfurnished'];
-  cityList: any[];
+  cityList: string[];
 
   propertyView: IPropertyBase = {
     Id: null,
@@ -53,6 +53,10 @@ export class AddPropertyComponent implements OnInit {
 
   ngOnInit() {
     this.CreateAddPropertyForm();
+    this.housingService.getAllCities().subscribe(data => {
+      this.cityList=data;
+      console.log(data);
+    })
   }
 
   CreateAddPropertyForm() {
@@ -83,7 +87,7 @@ export class AddPropertyComponent implements OnInit {
 
         OtherInfo: this.fb.group({
             RTM: [null, Validators.required],
-            PossessionOn: [null, Validators.required],
+            Possession: [null, Validators.required],
             AOP: [null],
             Gated: [null],
             MainEntrance: [null],
@@ -137,7 +141,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
   get BuiltArea() {
-    return this.BasicInfo.controls.BuiltArea as FormControl;
+    return this.PriceInfo.controls.BuiltArea as FormControl;
   }
 
   get CarpetArea() {
@@ -172,8 +176,8 @@ get RTM() {
     return this.OtherInfo.controls.RTM as FormControl;
 }
 
-get PossessionOn() {
-    return this.OtherInfo.controls.PossessionOn as FormControl;
+get Possession() {
+    return this.OtherInfo.controls.Possession as FormControl;
 }
 
 get AOP() {
@@ -204,7 +208,6 @@ get Description() {
       this.alertify.success('Congrats your property listed successfully');
       console.log(this.addPropertyForm);
 
-
         if(this.SellRent.value === '2'){
           this.router.navigate(['/rent-property'])
         }
@@ -214,33 +217,35 @@ get Description() {
 
     } else{
       this.alertify.error('Please provide valid entries!',);
+      console.log(console.error())
+
     }
 
   }
 
   mapProperty():void {
-    // this.property.id = this.housingService.newPropID();
-        this.property.sellRent = +this.SellRent.value;
-        this.property.bhk = this.BHK.value;
-        this.property.propertyTypeId = this.PType.value;
-        this.property.name = this.Name.value;
-        this.property.CityId = this.City.value;
-        this.property.furnishingTypeId = this.FType.value;
-        this.property.price = this.Price.value;
-        this.property.security = this.Security.value;
-        this.property.maintenance = this.Maintenance.value;
-        this.property.builtArea = this.BuiltArea.value;
-        this.property.carpetArea = this.CarpetArea.value;
-        this.property.floorNo = this.FloorNo.value;
-        this.property.totalFloors = this.TotalFloor.value;
-        this.property.address = this.Address.value;
-        this.property.address2 = this.LandMark.value;
-        this.property.readyToMove = this.RTM.value;
-        this.property.gated = this.Gated.value;
-        this.property.mainEntrance = this.MainEntrance.value;
+       this.property.Id = this.housingService.newPropID();
+        this.property.SellRent = +this.SellRent.value;
+        this.property.BHK = this.BHK.value;
+        // this.property.propertyTypeId = this.PType.value;
+        this.property.Name = this.Name.value;
+        this.property.City = this.City.value;
+        // this.property.furnishingTypeId = this.FType.value;
+        this.property.Price = this.Price.value;
+        this.property.Security = this.Security.value;
+        this.property.Maintenance = this.Maintenance.value;
+        this.property.BuiltArea = this.BuiltArea.value;
+        this.property.CarpetArea = this.CarpetArea.value;
+        this.property.FloorNo = this.FloorNo.value;
+        this.property.TotalFloor = this.TotalFloor.value;
+        this.property.Address = this.Address.value;
+        // this.property.Address2 = this.LandMark.value;
+        // this.property.readyToMove = this.RTM.value;
+        this.property.Gated = this.Gated.value;
+        this.property.MainEntrance = this.MainEntrance.value;
         // this.property.estPossessionOn =
         //     this.datePipe.transform(this.PossessionOn.value,'MM/dd/yyyy');
-        this.property.description = this.Description.value;
+        this.property.Description = this.Description.value;
   }
 
   allTabsValid(): boolean{
