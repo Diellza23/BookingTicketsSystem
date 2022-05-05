@@ -1,13 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using bookingSystem.Data;
+using bookingSystem.Data.Repo;
+using bookingSystem.Extensions;
+using bookingSystem.Helpers;
+using bookingSystem.Interfaces;
+using bookingSystem.Middlewares;
 using Claim.Data;
 using Claim.Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -70,8 +79,10 @@ namespace bookingSystem
                     builder.AllowAnyMethod();
                 });
             });
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "bookingSystem", Version = "v1" });
@@ -81,13 +92,16 @@ namespace bookingSystem
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "bookingSystem v1"));
-            }
-
+            
+            // if (env.IsDevelopment())
+            // {
+            //     // app.UseDeveloperExceptionPage();
+            //     app.UseSwagger();
+            //     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "bookingSystem v1"));
+            // }
+   
+            app.ConfigureExceptionHandler(env);
+            // app.ConfigureBuiltinExceptionHandler();
             app.UseHttpsRedirection();
             app.UseCors(_loginOrigin);
             app.UseRouting();

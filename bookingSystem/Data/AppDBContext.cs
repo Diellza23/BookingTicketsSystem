@@ -5,6 +5,7 @@
 
 // using Microsoft.AspNetCore.Identity;
 
+using bookingSystem.Models;
 using Claim.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -18,5 +19,6 @@ namespace Claim.Data
         public AppDBContext(DbContextOptions options) : base(options)
         {
         }
+        public DbSet<City> Cities {get;set;}
     }
 }

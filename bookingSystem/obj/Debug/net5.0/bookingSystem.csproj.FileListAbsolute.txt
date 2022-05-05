@@ -151,3 +151,13 @@ C:\Users\DeZzeRt\Desktop\Lab2\bookingticketssystem\bookingsystem\obj\Debug\net5.
 C:\Users\DeZzeRt\Desktop\Lab2\bookingticketssystem\bookingsystem\obj\Debug\net5.0\bookingSystem.pdb
 C:\Users\DeZzeRt\Desktop\Lab2\bookingticketssystem\bookingsystem\obj\Debug\net5.0\bookingSystem.genruntimeconfig.cache
 C:\Users\DeZzeRt\Desktop\Lab2\bookingticketssystem\bookingsystem\bin\Debug\net5.0\MyApp\src\data\properties.json
+C:\Users\DeZzeRt\Desktop\Lab2\BookingTicketsSystem\bookingsystem\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\DeZzeRt\Desktop\Lab2\BookingTicketsSystem\bookingsystem\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\DeZzeRt\Desktop\Lab2\BookingTicketsSystem\bookingsystem\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\DeZzeRt\Desktop\Lab2\BookingTicketsSystem\bookingsystem\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\DeZzeRt\Desktop\Lab2\BookingTicketsSystem\bookingsystem\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\DeZzeRt\Desktop\Lab2\BookingTicketsSystem\bookingsystem\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\DeZzeRt\Desktop\Lab2\BookingTicketsSystem\bookingsystem\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\DeZzeRt\Desktop\Lab2\BookingTicketsSystem\bookingsystem\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\DeZzeRt\Desktop\Lab2\BookingTicketsSystem\bookingsystem\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\DeZzeRt\Desktop\Lab2\BookingTicketsSystem\bookingsystem\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
