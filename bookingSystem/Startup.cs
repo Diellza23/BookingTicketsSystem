@@ -5,13 +5,12 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using bookingSystem.Data;
-using bookingSystem.Data.Repo;
 using bookingSystem.Extensions;
 using bookingSystem.Helpers;
 using bookingSystem.Interfaces;
 using bookingSystem.Middlewares;
 using Claim.Data;
-using Claim.Data.Entities;
+using Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -95,9 +94,9 @@ namespace bookingSystem
             
             // if (env.IsDevelopment())
             // {
-            //     // app.UseDeveloperExceptionPage();
-            //     app.UseSwagger();
-            //     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "bookingSystem v1"));
+                //  app.UseDeveloperExceptionPage();
+                //  app.UseSwagger();
+                //  app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "bookingSystem v1"));
             // }
    
             app.ConfigureExceptionHandler(env);
