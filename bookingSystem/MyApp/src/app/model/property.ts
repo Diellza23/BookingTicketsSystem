@@ -1,36 +1,29 @@
-import { IPropertyBase } from "./ipropertybase";
+import { IPropertyBase } from './ipropertybase';
 
-export class Property implements IPropertyBase{
-  Id: number;
-  SellRent: number;
-  Name: string;
-  FType: string;
-  PType: string;
-  BHK: number;
-  BuiltArea: number;
-  RTM: boolean;
-  Image?: string;
+export class Property implements IPropertyBase {
+  id: number;
+  sellRent: number;
+  name: string;
+  price: number;
+  bhk: number;
+  builtArea: number;
+  city: string;
+  image?: string;
   propertyTypeId: number;
   propertyType: string;
   furnishingTypeId: number;
   furnishingType: string;
-  Price: number;
-  CarpetArea?: number;
-  Address: string;
-  Address2?: string;
-  // CityId: number;
-  City: string;
-  FloorNo?: string;
-  TotalFloor?: string;
+  carpetArea?: number;
+  address: string;
+  address2?: string;
+  floorNo?: string;
+  totalFloors?: string;
   readyToMove: boolean;
-  Age?: string;
-  MainEntrance?: string;
-  Security?: number;
-  Gated?: boolean;
-  Maintenance?: number;
-  Possession?:string;
-  // estPossessionOn?: string;
-  // photo?: string;
-  Description?: string;
-  // photos?: Photo[];
+  age?: string;
+  mainEntrance?: string;
+  security?: number;
+  gated?: boolean;
+  maintenance?: number;
+  estPossessionOn?: string;
+  description?: string;
 }

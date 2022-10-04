@@ -19,6 +19,9 @@ namespace Claim.Data
         public AppDBContext(DbContextOptions options) : base(options)
         {
         }
-        public DbSet<City> Cities {get;set;}
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Propperty> Propperties { get; set; }
+        public DbSet<PropertyType> PropertyTypes { get; set; }
+        public DbSet<FurnishingType> FurnishingTypes { get; set; }
     }
 }

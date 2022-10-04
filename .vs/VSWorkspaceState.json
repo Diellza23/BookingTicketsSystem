@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\bookingSystem",
+    "\\bookingSystem\\Data",
+    "\\bookingSystem\\Data\\Entities"
+  ],
+  "SelectedNode": "\\bookingSystem\\Data\\AppDBContext.cs",
+  "PreviewInSolutionExplorer": false
+}

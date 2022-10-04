@@ -11,11 +11,11 @@ import { HousingService } from 'src/app/services/housing.service';
 export class PropertyListComponent implements OnInit {
   SellRent = 1;
   properties: IPropertyBase[];
-  Today = new Date()
+  Today = new Date();
   City = '';
-  SearchCity= '';
-  SortbyParam ='';
-  SortDirection='asc';
+  SearchCity = '';
+  SortbyParam = '';
+  SortDirection = 'asc';
 
   constructor(
     private route: ActivatedRoute,
@@ -23,8 +23,8 @@ export class PropertyListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(this.route.snapshot.url.toString()){
-      this.SellRent=2;
+    if (this.route.snapshot.url.toString()) {
+      this.SellRent = 12;
     }
     this.housingService.getAllProperties(this.SellRent).subscribe(
       (data) => {
@@ -37,20 +37,20 @@ export class PropertyListComponent implements OnInit {
       }
     );
   }
-  onCityFilter(){
+  onCityFilter() {
     this.SearchCity = this.City;
   }
 
-  onCityFilterClear(){
+  onCityFilterClear() {
     this.SearchCity = '';
     this.City = '';
   }
 
-  onSortDirection(){
-    if(this.SortDirection==='desc'){
-      this.SortDirection='asc';
-    }else{
-      this.SortDirection='desc'
+  onSortDirection() {
+    if (this.SortDirection === 'desc') {
+      this.SortDirection = 'asc';
+    } else {
+      this.SortDirection = 'desc';
     }
   }
 }

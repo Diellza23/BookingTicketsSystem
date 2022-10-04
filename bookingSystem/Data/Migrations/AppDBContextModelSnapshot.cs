@@ -232,6 +232,7 @@ namespace bookingSystem.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LastUpdatedBy")
@@ -246,6 +247,173 @@ namespace bookingSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("bookingSystem.Models.FurnishingType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("LastUpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FurnishingTypes");
+                });
+
+            modelBuilder.Entity("bookingSystem.Models.Photo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPrimary")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProppertyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProppertyId");
+
+                    b.ToTable("Photos");
+                });
+
+            modelBuilder.Entity("bookingSystem.Models.PropertyType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("LastUpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PropertyTypes");
+                });
+
+            modelBuilder.Entity("bookingSystem.Models.Propperty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BHK")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BuiltArea")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarpetArea")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EstPossessionOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FloorNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FurnishingTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Gated")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MainEntrance")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Maintenance")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PostedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PostedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PropertyTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ReadyToMove")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Security")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SellRent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalFloors")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("FurnishingTypeId");
+
+                    b.HasIndex("PropertyTypeId");
+
+                    b.ToTable("Propperties");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -297,6 +465,49 @@ namespace bookingSystem.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("bookingSystem.Models.Photo", b =>
+                {
+                    b.HasOne("bookingSystem.Models.Propperty", "Propperty")
+                        .WithMany("Photos")
+                        .HasForeignKey("ProppertyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Propperty");
+                });
+
+            modelBuilder.Entity("bookingSystem.Models.Propperty", b =>
+                {
+                    b.HasOne("bookingSystem.Models.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bookingSystem.Models.FurnishingType", "FurnishingType")
+                        .WithMany()
+                        .HasForeignKey("FurnishingTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bookingSystem.Models.PropertyType", "PropertyType")
+                        .WithMany()
+                        .HasForeignKey("PropertyTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+
+                    b.Navigation("FurnishingType");
+
+                    b.Navigation("PropertyType");
+                });
+
+            modelBuilder.Entity("bookingSystem.Models.Propperty", b =>
+                {
+                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }

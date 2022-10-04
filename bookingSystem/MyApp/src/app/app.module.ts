@@ -13,29 +13,33 @@ import { PropertyCardComponent } from './property/property-card/property-card.co
 import { PropertyListComponent } from './property/property-list/property-list.component';
 import { HousingService } from './services/housing.service';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
-import {Routes,RouterModule} from '@angular/router'
+import { Routes, RouterModule } from '@angular/router';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
-import {BsDropdownModule} from 'ngx-bootstrap/dropdown'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import {ButtonsModule} from 'ngx-bootstrap/buttons'
-import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AlertifyService } from './services/alertify.service';
 import { PropertyDetailsResolverService } from './property/property-detail/property-details-resolver.service';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SortPipe } from './Pipes/sort.pipe';
-
+import { DatePipe } from '@angular/common';
 
 
 const appRoutes: Routes = [
   // {path: 'add-property', component: AddPropertyComponent},
-  {path: '', component: PropertyListComponent},
-  {path: 'add-property', component: AddPropertyComponent},
-  {path: 'rent-property', component: PropertyListComponent},
-  {path: 'property-detail/:id', component: PropertyDetailComponent, resolve:{prp:PropertyDetailsResolverService}},
-  {path: '**', component: PropertyListComponent}
-]
+  { path: '', component: PropertyListComponent },
+  { path: 'add-property', component: AddPropertyComponent },
+  { path: 'rent-property', component: PropertyListComponent },
+  {
+    path: 'property-detail/:id',
+    component: PropertyDetailComponent,
+    resolve: { prp: PropertyDetailsResolverService },
+  },
+  { path: '**', component: PropertyListComponent },
+];
 
 @NgModule({
   declarations: [
@@ -50,8 +54,7 @@ const appRoutes: Routes = [
     AddPropertyComponent,
     PropertyDetailComponent,
     FilterPipe,
-    SortPipe
-
+    SortPipe,
   ],
   imports: [
     BrowserModule,
@@ -66,12 +69,13 @@ const appRoutes: Routes = [
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    NgxGalleryModule
+    NgxGalleryModule,
   ],
   providers: [
     HousingService,
     AlertifyService,
-    PropertyDetailsResolverService
+    PropertyDetailsResolverService,
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingSystem\\bookingSystem.csproj": {}
+    "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingsystem\\bookingSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingSystem\\bookingSystem.csproj": {
+    "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingsystem\\bookingSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingSystem\\bookingSystem.csproj",
+        "projectUniqueName": "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingsystem\\bookingSystem.csproj",
         "projectName": "bookingSystem",
-        "projectPath": "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingSystem\\bookingSystem.csproj",
+        "projectPath": "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingsystem\\bookingSystem.csproj",
         "packagesPath": "C:\\Users\\DeZzeRt\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingSystem\\obj\\",
+        "outputPath": "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingsystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DeZzeRt\\AppData\\Roaming\\NuGet\\NuGet.Config"
