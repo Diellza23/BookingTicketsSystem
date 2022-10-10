@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using Claim.Data.Entities;
+using Data.Entities;
 
 namespace bookingSystem.Models
 {

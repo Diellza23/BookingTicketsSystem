@@ -43,11 +43,21 @@ export class HousingService {
     // );
   }
 
-  getAllProperties(SellRent?: number): Observable<Property[]> {
-    // alert(SellRent + ' ' + typeof SellRent + '');
-
+  getAllProperties(): Observable<Property[]> {
     return this.http.get<Property[]>(
-      `https://localhost:5001/api/propperty/list/${SellRent}`
+      `https://localhost:5001/api/propperty/allProperties/`
+    );
+  }
+
+  // deleteUser(id: string) {
+  //   return this.httpClient.delete(
+  //     'https://localhost:5001/api/User/DeleteUser/id?id=' + id
+  //   );
+  // }
+
+  deleteProperty(id: number) {
+    return this.http.delete(
+      `https://localhost:5001/api/propperty/deleteProperty/id?id=` + id
     );
   }
 
@@ -58,13 +68,7 @@ export class HousingService {
   // }
 
   addProperty(property: Property) {
-    let newProp = [property];
-
-    //Add new property ne array nese newProp veqse ekziston ne local storage
-    if (localStorage.getItem('newProp')) {
-      newProp = [property, ...JSON.parse(localStorage.getItem('newProp'))];
-    }
-    localStorage.setItem('newProp', JSON.stringify(newProp));
+    return this.http.post(`https://localhost:5001/api/propperty/add`, property);
   }
 
   newPropID() {

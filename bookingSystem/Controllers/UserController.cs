@@ -91,7 +91,7 @@ namespace bookingSystem.Controllers
                 {
                     var roles = (await _userManager.GetRolesAsync(user)).ToList();
 
-                    allUserDTO.Add(new UserDTO(user.FullName, user.Email, user.UserName, user.DateCreated, roles));
+                    allUserDTO.Add(new UserDTO(user.Id, user.FullName, user.Email, user.UserName, user.DateCreated, roles));
                 }
                 return await Task.FromResult(new ResponseModel(ResponseCode.OK, "", allUserDTO));
             }
@@ -115,7 +115,7 @@ namespace bookingSystem.Controllers
                     var role = (await _userManager.GetRolesAsync(user)).ToList();
                     if (role.Any(x => x == "User"))
                     {
-                        allUserDTO.Add(new UserDTO(user.FullName, user.Email, user.UserName, user.DateCreated, role));
+                        allUserDTO.Add(new UserDTO(user.Id, user.FullName, user.Email, user.UserName, user.DateCreated, role));
 
                     }
                 }
@@ -142,7 +142,7 @@ namespace bookingSystem.Controllers
                     {
                         var appUser = await _userManager.FindByEmailAsync(model.Email);
                         var roles = (await _userManager.GetRolesAsync(appUser)).ToList();
-                        var user = new UserDTO(appUser.FullName, appUser.Email, appUser.UserName, appUser.DateCreated, roles);
+                        var user = new UserDTO(appUser.Id, appUser.FullName, appUser.Email, appUser.UserName, appUser.DateCreated, roles);
                         user.Token = GenerateToken(appUser, roles);
                         return await Task.FromResult(new ResponseModel(ResponseCode.OK, "", user));
                     }
@@ -228,6 +228,40 @@ namespace bookingSystem.Controllers
             var token = jwtTokenHandler.CreateToken(tokenDescriptor);
             return jwtTokenHandler.WriteToken(token);
         }
+
+        [HttpDelete("DeleteUser/id")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            AppUser user = await _userManager.FindByIdAsync(id);
+            if (user is null)
+            {
+                return new JsonResult("User with id can not be found: ", id);
+
+            }
+            IdentityResult res = await _userManager.DeleteAsync(user);
+
+            if (res.Succeeded)
+            {
+                foreach (var error in res.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+            return new JsonResult("User deleted successfully");
+        }
+
+        [HttpGet("GetUserById/id")]
+        public async Task<IActionResult> GetUserById(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            return NotFound();
+        }
+
 
     }
 }

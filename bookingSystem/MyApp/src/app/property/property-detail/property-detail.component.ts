@@ -74,4 +74,17 @@ export class PropertyDetailComponent implements OnInit {
       },
     ];
   }
+  deleteProperty(id) {
+    if (confirm('Do you want to delete this user with this id?' + id)) {
+      // return this.http
+      //   .delete(`https://localhost:5001/api/user/deleteUser/` + id)
+      //   .subscribe();
+      // }
+
+      this.housingService.deleteProperty(id).subscribe((result) => {
+        console.warn('deleted?', result);
+      });
+      window.location.reload();
+    }
+  }
 }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using bookingSystem.Dtos;
 using bookingSystem.Interfaces;
+using bookingSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,5 +39,40 @@ namespace bookingSystem.Controllers
             var propertyDTO = mapper.Map<PropertyDetailDto>(property);
             return new JsonResult(propertyDTO);
         }
+
+
+        // propperty/add
+        [HttpPost("add")]
+        [AllowAnonymous]
+        public async Task<IActionResult> AddProperty(PropertyDto propertyDto)
+        {
+            var property = mapper.Map<Propperty>(propertyDto);
+            property.PostedBy = 1;
+            property.LastUpdatedBy = 1;
+            uow.PropertyRepository.AddProperty(property);
+            await uow.SaveAsync();
+            return new JsonResult("Added");
+        }
+
+        [HttpDelete("deleteProperty/id")]
+        public async Task<IActionResult> DeleteProperty(int id)
+        {
+            uow.PropertyRepository.DeleteProperty(id);
+            await uow.SaveAsync();
+            return new JsonResult("Deleted", id);
+        }
+
+        [HttpGet("allProperties")]
+        public async Task<IActionResult> GetProperties()
+        {
+            // throw new UnauthorizedAccessException();
+            var properties = await uow.PropertyRepository.GetProperties();
+            var propertiesDto = mapper.Map<IEnumerable<PropertyDto>>(properties);
+            return new JsonResult(propertiesDto);
+        }
+
+
+
+
     }
 }

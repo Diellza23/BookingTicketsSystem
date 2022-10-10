@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IPropertyBase } from 'src/app/model/ipropertybase';
 import { HousingService } from 'src/app/services/housing.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Property } from 'src/app/model/property';
 
 @Component({
   selector: 'app-property-list',
@@ -17,16 +21,16 @@ export class PropertyListComponent implements OnInit {
   SortbyParam = '';
   SortDirection = 'asc';
 
+  public propertyList: Property[] = [];
+
   constructor(
     private route: ActivatedRoute,
-    private housingService: HousingService
+    private housingService: HousingService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
-    if (this.route.snapshot.url.toString()) {
-      this.SellRent = 12;
-    }
-    this.housingService.getAllProperties(this.SellRent).subscribe(
+    this.housingService.getAllProperties().subscribe(
       (data) => {
         this.properties = data;
         console.log(data);
@@ -52,5 +56,36 @@ export class PropertyListComponent implements OnInit {
     } else {
       this.SortDirection = 'desc';
     }
+  }
+
+  // deleteProperty(id: number) {
+  //   if (confirm('Do you want to delete this property?')) {
+  //     this.housingService.deleteProperty(id).subscribe((res) => {
+  //       alert('deleted');
+  //     });
+  //   }
+  //   return this.http.delete<Property[]>(
+  //     `https://localhost:5001/api/propperty/deleteProperty/` + id
+  //   );
+  // }
+
+  deleteProperty(id) {
+    if (confirm('Do you want to delete this property with this id?' + id)) {
+      // return this.http
+      //   .delete(`https://localhost:5001/api/user/deleteUser/` + id)
+      //   .subscribe();
+      // }
+
+      this.housingService.deleteProperty(id).subscribe((result) => {
+        console.warn('deleted?', result);
+      });
+      window.location.reload();
+    }
+    // this.userService.deleteUser(id).subscribe((user) => {
+    //   this.getAllUser();
+    // });
+
+    // if (window.confirm('Are you sure you want to delete user with id: ' + id)) {
+    //   this.userService.deleteUser(id);
   }
 }

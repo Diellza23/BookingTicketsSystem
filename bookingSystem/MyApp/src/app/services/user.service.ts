@@ -6,6 +6,7 @@ import { ResponseCode } from '../enums/responseCode';
 import { User } from '../Models/user';
 import { Constants } from '../Helper/constants';
 import { Role } from '../Models/role';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -55,7 +56,7 @@ export class UserService {
             if (res.dateSet) {
               res.dateSet.map((x: User) => {
                 userList.push(
-                  new User(x.fullName, x.email, x.userName, x.roles)
+                  new User(x.id, x.fullName, x.email, x.userName, x.roles)
                 );
               });
             }
@@ -81,7 +82,7 @@ export class UserService {
             if (res.dateSet) {
               res.dateSet.map((x: User) => {
                 userList.push(
-                  new User(x.fullName, x.email, x.userName, x.roles)
+                  new User(x.id, x.fullName, x.email, x.userName, x.roles)
                 );
               });
             }
@@ -114,4 +115,25 @@ export class UserService {
         })
       );
   }
+
+  public getUserById(id: String) {
+    return this.httpClient.get(
+      `https://localhost:5001/api/User/GetUserById/` + id
+    );
+  }
+
+  deleteUser(id: string) {
+    return this.httpClient.delete(
+      'https://localhost:5001/api/User/DeleteUser/id?id=' + id
+    );
+  }
+
+  // this.housingService.addProperty(this.property).subscribe(() => {
+  //   this.alertify.success(
+  //     'Congrats, your property listed successfully on our website'
+  //   );
+
+
+
+
 }

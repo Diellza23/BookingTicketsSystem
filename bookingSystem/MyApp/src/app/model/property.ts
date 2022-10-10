@@ -7,6 +7,7 @@ export class Property implements IPropertyBase {
   price: number;
   bhk: number;
   builtArea: number;
+  CityId: number;
   city: string;
   image?: string;
   propertyTypeId: number;

@@ -6,7 +6,7 @@
 // using Microsoft.AspNetCore.Identity;
 
 using bookingSystem.Models;
-using Claim.Data.Entities;
+using Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

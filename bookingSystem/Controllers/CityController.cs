@@ -68,22 +68,22 @@ namespace bookingSystem.Controllers
         public async Task<IActionResult> UpdateCity(int id, CityDto cityDto)
         {
 
-            
-                if (id != cityDto.Id)
-                    return BadRequest("Update is not allowed");
+
+            if (id != cityDto.Id)
+                return BadRequest("Update is not allowed");
 
 
-                var cityFromDb = await uow.CityRepository.FindCity(id);
-                if (cityFromDb == null)
-                    return BadRequest("Update not allowed");
+            var cityFromDb = await uow.CityRepository.FindCity(id);
+            if (cityFromDb == null)
+                return BadRequest("Update not allowed");
 
-                cityFromDb.LastUpdatedBy = 1;
-                cityFromDb.LastUpdatedOn = DateTime.Now;
-                mapper.Map(cityDto, cityFromDb);
-                // throw new Exception("Some unknown error occurred");
-                await uow.SaveAsync();
-                return StatusCode(200);
-            
+            cityFromDb.LastUpdatedBy = 1;
+            cityFromDb.LastUpdatedOn = DateTime.Now;
+            mapper.Map(cityDto, cityFromDb);
+            // throw new Exception("Some unknown error occurred");
+            await uow.SaveAsync();
+            return StatusCode(200);
+
         }
 
         [HttpPut("updateCityName/{id}")]

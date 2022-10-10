@@ -5,14 +5,16 @@ namespace Models.DTO
 {
     public class UserDTO
     {
-        public UserDTO(string fullName, string email, string userName, DateTime dateCreated, List<string> roles)
+        public UserDTO(string id,string fullName, string email, string userName, DateTime dateCreated, List<string> roles)
         {
+            Id=id;
             FullName = fullName;
             Email = email;
             UserName = userName;
             DateCreated = dateCreated;
             Roles = roles;
         }
+        public string Id{get;set;}
         public string FullName { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }

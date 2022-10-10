@@ -16,14 +16,15 @@ namespace bookingSystem.Data.Repo
         {
             this.dc = dc;
         }
-        public void AddProperty(PropertyType property)
+        public void AddProperty(Propperty property)
         {
-            throw new System.NotImplementedException();
+            dc.Propperties.Add(property);
         }
 
         public void DeleteProperty(int id)
         {
-            throw new System.NotImplementedException();
+            var property = dc.Propperties.Find(id);
+            dc.Propperties.Remove(property);
         }
 
         public async Task<IEnumerable<Propperty>> GetPropertiesAsync(int sellRent)
@@ -53,6 +54,16 @@ namespace bookingSystem.Data.Repo
             .FirstAsync();
             return properties;
 
+        }
+
+        public async Task<IEnumerable<Propperty>> GetProperties()
+        {
+            return await dc.Propperties.ToListAsync();
+        }
+
+        public Task<IEnumerable<Propperty>> GetPropperties()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

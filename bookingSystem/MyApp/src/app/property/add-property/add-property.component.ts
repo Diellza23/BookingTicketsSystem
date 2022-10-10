@@ -1,20 +1,19 @@
-// import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  NgForm,
-  Validators,
-} from '@angular/forms';
 import { Router } from '@angular/router';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
 import { IPropertyBase } from 'src/app/model/ipropertybase';
 import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { DatePipe } from '@angular/common';
 import { Ikeyvaluepair } from 'src/app/model/ikeyvaluepair';
+import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-add-property',
   templateUrl: './add-property.component.html',
@@ -23,11 +22,11 @@ import { Ikeyvaluepair } from 'src/app/model/ikeyvaluepair';
 export class AddPropertyComponent implements OnInit {
   // @ViewChild('Form') addPropertyForm: NgForm;
   @ViewChild('formTabs') formTabs: TabsetComponent;
-
   addPropertyForm: FormGroup;
   nextClicked: boolean;
   property = new Property();
 
+  // Will come from masters
   propertyTypes: Ikeyvaluepair[];
   furnishTypes: Ikeyvaluepair[];
   cityList: any[];
@@ -41,19 +40,24 @@ export class AddPropertyComponent implements OnInit {
     furnishingType: null,
     bhk: null,
     builtArea: null,
-    city: '',
+    city: ' ',
     readyToMove: null,
   };
 
   constructor(
+    private datePipe: DatePipe,
     private fb: FormBuilder,
     private router: Router,
-    private datePipe: DatePipe,
     private housingService: HousingService,
     private alertify: AlertifyService
   ) {}
 
   ngOnInit() {
+    // if (!localStorage.getItem('')) {
+    //   this.alertify.error('You must be looged in to add a property');
+    //   this.router.navigate(['/login']);
+    // }
+
     this.CreateAddPropertyForm();
     this.housingService.getAllCities().subscribe((data) => {
       this.cityList = data;
@@ -97,7 +101,7 @@ export class AddPropertyComponent implements OnInit {
 
       OtherInfo: this.fb.group({
         RTM: [null, Validators.required],
-        Possession: [null, Validators.required],
+        PossessionOn: [null, Validators.required],
         AOP: [null],
         Gated: [null],
         MainEntrance: [null],
@@ -106,6 +110,8 @@ export class AddPropertyComponent implements OnInit {
     });
   }
 
+  // #region <Getter Methods>
+  // #region <FormGroups>
   get BasicInfo() {
     return this.addPropertyForm.controls.BasicInfo as FormGroup;
   }
@@ -121,11 +127,9 @@ export class AddPropertyComponent implements OnInit {
   get OtherInfo() {
     return this.addPropertyForm.controls.OtherInfo as FormGroup;
   }
+  // #endregion
 
-  get PossessionOn() {
-    return this.OtherInfo.controls.PossessionOn as FormControl;
-  }
-
+  // #region <Form Controls>
   get SellRent() {
     return this.BasicInfo.controls.SellRent as FormControl;
   }
@@ -190,8 +194,8 @@ export class AddPropertyComponent implements OnInit {
     return this.OtherInfo.controls.RTM as FormControl;
   }
 
-  get Possession() {
-    return this.OtherInfo.controls.Possession as FormControl;
+  get PossessionOn() {
+    return this.OtherInfo.controls.PossessionOn as FormControl;
   }
 
   get AOP() {
@@ -210,25 +214,33 @@ export class AddPropertyComponent implements OnInit {
     return this.OtherInfo.controls.Description as FormControl;
   }
 
+  // #endregion
+  // #endregion
+
   onBack() {
     this.router.navigate(['/']);
   }
+
   onSubmit() {
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapProperty();
-      this.housingService.addProperty(this.property);
-      this.alertify.success('Congrats your property listed successfully');
-      console.log(this.addPropertyForm);
+      this.housingService.addProperty(this.property).subscribe(() => {
+        this.alertify.success(
+          'Congrats, your property listed successfully on our website'
+        );
+        console.log(this.addPropertyForm);
 
-      if (this.SellRent.value === '2') {
-        this.router.navigate(['/rent-property']);
-      } else {
-        this.router.navigate(['/']);
-      }
+        // if (this.SellRent.value === '2') {
+        //   this.router.navigate(['/rent-property']);
+        // } else {
+        //   this.router.navigate(['/']);
+        // }
+      });
     } else {
-      this.alertify.error('Please provide valid entries!');
-      console.log(console.error());
+      this.alertify.error(
+        'Please review the form and provide all valid entries'
+      );
     }
   }
 
@@ -238,7 +250,8 @@ export class AddPropertyComponent implements OnInit {
     this.property.bhk = this.BHK.value;
     this.property.propertyTypeId = this.PType.value;
     this.property.name = this.Name.value;
-    this.property.city = this.City.value;
+    this.property.CityId = this.City.value;
+    // this.property.city = this.City.value;
     this.property.furnishingTypeId = this.FType.value;
     this.property.price = this.Price.value;
     this.property.security = this.Security.value;
@@ -264,14 +277,17 @@ export class AddPropertyComponent implements OnInit {
       this.formTabs.tabs[0].active = true;
       return false;
     }
+
     if (this.PriceInfo.invalid) {
       this.formTabs.tabs[1].active = true;
       return false;
     }
-    if (this.PriceInfo.invalid) {
+
+    if (this.AddressInfo.invalid) {
       this.formTabs.tabs[2].active = true;
       return false;
     }
+
     if (this.OtherInfo.invalid) {
       this.formTabs.tabs[3].active = true;
       return false;
