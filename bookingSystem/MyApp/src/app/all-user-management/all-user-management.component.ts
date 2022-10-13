@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AllUserManagementComponent implements OnInit {
   public userList: User[] = [];
-  
+
   constructor(private userService: UserService, private http: HttpClient) {}
 
   ngOnInit(): void {

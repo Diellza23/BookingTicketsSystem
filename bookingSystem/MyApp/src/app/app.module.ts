@@ -26,16 +26,22 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SortPipe } from './Pipes/sort.pipe';
 import { DatePipe } from '@angular/common';
-
+import { PropertyEditComponent } from './property/property-edit/property-edit.component';
 
 const appRoutes: Routes = [
   // {path: 'add-property', component: AddPropertyComponent},
   { path: '', component: PropertyListComponent },
+
   { path: 'add-property', component: AddPropertyComponent },
   { path: 'rent-property', component: PropertyListComponent },
   {
     path: 'property-detail/:id',
     component: PropertyDetailComponent,
+    resolve: { prp: PropertyDetailsResolverService },
+  },
+  {
+    path: 'property-edit/:id',
+    component: PropertyEditComponent,
     resolve: { prp: PropertyDetailsResolverService },
   },
   { path: '**', component: PropertyListComponent },
@@ -51,6 +57,7 @@ const appRoutes: Routes = [
     AllUserManagementComponent,
     DashboardComponent,
     PropertyListComponent,
+    PropertyEditComponent,
     AddPropertyComponent,
     PropertyDetailComponent,
     FilterPipe,

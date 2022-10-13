@@ -22,7 +22,7 @@ export class PropertyCardComponent {
   @Input() hideIcons: boolean;
 
   deleteProperty(id) {
-    if (confirm('Do you want to delete this user with this id?' + id)) {
+    if (confirm('Do you want to delete this property with this id?' + id)) {
       this.housingService.deleteProperty(id).subscribe((result) => {
         console.warn('deleted?', result);
       });

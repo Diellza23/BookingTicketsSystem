@@ -13,9 +13,11 @@ namespace bookingSystem.Models
 
         public int SellRent { get; set; }
         public string Name { get; set; }
+
         public int PropertyTypeId { get; set; }
         public PropertyType PropertyType { get; set; }
         public int BHK { get; set; }
+
         public int FurnishingTypeId { get; set; }
         public FurnishingType FurnishingType { get; set; }
         public int Price { get; set; }
@@ -38,7 +40,6 @@ namespace bookingSystem.Models
         public ICollection<Photo> Photos { get; set; }
         public DateTime PostedOn { get; set; } = DateTime.Now;
 
-        [ForeignKey("AppUser")]
         public int PostedBy { get; set; }
         // public AppUser AppUser { get; set; }
     }

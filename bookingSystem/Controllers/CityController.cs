@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace bookingSystem.Controllers
 {
     // [Authorize]
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class CityController : ControllerBase

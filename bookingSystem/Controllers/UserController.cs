@@ -154,7 +154,7 @@ namespace bookingSystem.Controllers
                 return await Task.FromResult(new ResponseModel(ResponseCode.Error, ex.Message, null));
             }
         }
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         [HttpPost("AddRole")]
         public async Task<object> AddRole([FromBody] AddRoleBindingModel model)
         {

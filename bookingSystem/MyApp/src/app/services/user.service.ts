@@ -132,8 +132,4 @@ export class UserService {
   //   this.alertify.success(
   //     'Congrats, your property listed successfully on our website'
   //   );
-
-
-
-
 }

@@ -71,8 +71,5 @@ namespace bookingSystem.Controllers
             return new JsonResult(propertiesDto);
         }
 
-
-
-
     }
 }

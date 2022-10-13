@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace bookingSystem.Models
 {
@@ -9,6 +10,8 @@ namespace bookingSystem.Models
 
         [Required]
         public string Country { get; set; }
+
+
 
 
     }

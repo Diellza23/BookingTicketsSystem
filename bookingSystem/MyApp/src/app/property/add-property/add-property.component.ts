@@ -40,7 +40,7 @@ export class AddPropertyComponent implements OnInit {
     furnishingType: null,
     bhk: null,
     builtArea: null,
-    city: ' ',
+    city: '',
     readyToMove: null,
   };
 

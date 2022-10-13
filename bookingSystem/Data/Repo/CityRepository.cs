@@ -36,6 +36,6 @@ namespace bookingSystem.Data.Repo
             return await dc.Cities.ToListAsync();
         }
 
-       
+
     }
 }

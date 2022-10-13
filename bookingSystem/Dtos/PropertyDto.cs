@@ -4,6 +4,7 @@ namespace bookingSystem.Dtos
 {
     public class PropertyDto
     {
+        public int Id { get; set; } //added afterwards hehe
         public int SellRent { get; set; }
         public string Name { get; set; }
         public int PropertyTypeId { get; set; }
