@@ -12,6 +12,7 @@ import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 })
 export class PropertyDetailComponent implements OnInit {
   public propertyId: number;
+  public mainPhotoUrl: string = null;
   property = new Property();
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -26,6 +27,7 @@ export class PropertyDetailComponent implements OnInit {
     this.propertyId = +this.route.snapshot.params['id'];
     this.route.data.subscribe((data: Property) => {
       this.property = data['prp'];
+      console.log(this.property.photos);
     });
 
     this.property.age = this.housingService.getPropertyAge(
@@ -51,29 +53,25 @@ export class PropertyDetailComponent implements OnInit {
       },
     ];
 
-    this.galleryImages = [
-      {
-        small: 'assets/images/interior-3.jpg',
-        medium: 'assets/images/interior-3.jpg',
-        big: 'assets/images/interior-3.jpg',
-      },
-      {
-        small: 'assets/images/interior-2.jpg',
-        medium: 'assets/images/interior-2.jpg',
-        big: 'assets/images/interior-2.jpg',
-      },
-      {
-        small: 'assets/images/interior-3.jpg',
-        medium: 'assets/images/interior-3.jpg',
-        big: 'assets/images/interior-3.jpg',
-      },
-      {
-        small: 'assets/images/interior-3.jpg',
-        medium: 'assets/images/interior-3.jpg',
-        big: 'assets/images/interior-3.jpg',
-      },
-    ];
+    this.galleryImages = this.getPropertyPhotos();
   }
+
+  getPropertyPhotos(): NgxGalleryImage[] {
+    const photoUrls: NgxGalleryImage[] = [];
+    for (const photo of this.property.photos) {
+      if (photo.isPrimary) {
+        this.mainPhotoUrl = photo.imageUrl;
+      } else {
+        photoUrls.push({
+          small: photo.imageUrl,
+          medium: photo.imageUrl,
+          big: photo.imageUrl,
+        });
+      }
+    }
+    return photoUrls;
+  }
+
   deleteProperty(id) {
     if (confirm('Do you want to delete this user with this id?' + id)) {
       // return this.http

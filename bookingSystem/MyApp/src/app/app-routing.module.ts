@@ -8,8 +8,11 @@ import { PropertyCardComponent } from './property/property-card/property-card.co
 import { RegisterComponent } from './register/register.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { PropertyListComponent } from './property/property-list/property-list.component';
+import { MainComponent } from './main/main.component';
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: 'main', component: MainComponent },
+
   { path: 'dashboard', component: DashboardComponent },
 
   { path: 'propertyCard', component: PropertyCardComponent },

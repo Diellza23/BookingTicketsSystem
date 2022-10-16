@@ -1,0 +1,42 @@
+<div class="card" style="margin-bottom: 35px">
+  <div class="card-img-wrapper">
+    <img
+      *ngIf="property.photo"
+      class="card-img-top"
+      src="{{ property.photo }}"
+    />
+    <img
+      *ngIf="!property.photo"
+      class="card-img-top"
+      src="assets/images/interior-design.jpg"
+      routerLink="/property-detail/{{ property.id }}"
+    />
+    <!-- <ul *ngIf="!hideIcons" class="list-inline text-center member-icons animate">
+      <li class="list-inline-item">
+        <button class="button" routerLink="/property-detail/{{ property.id }}">
+          FEATURES
+        </button>
+      </li>
+    </ul> -->
+
+    <!-- <div class="card-body p-1"> -->
+    <div>
+      <h6 class="mb-0 left text-center">
+        LIVE TOUR ONLY <br />
+        <!-- {{ property.price }}$ -->
+      </h6>
+    </div>
+    <div class="bottom-left">
+      <h4>${{ property.price }}</h4>
+    </div>
+    <!-- <div class="bottom-right">{{ property.builtArea }} Sq.Ft.</div> -->
+    <h6 class="bottom-right">
+      | Area:
+      <span class="font-highlight">{{ property.builtArea }} Sq.Ft. </span>
+    </h6>
+
+    <!-- </div> -->
+  </div>
+</div>
+
+<!-- <app-property-list></app-property-list> -->

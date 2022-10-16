@@ -1,6 +1,6 @@
 <!-- <app-property-card></app-property-card>-->
 <!-- <app-property-list></app-property-list>  -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light nav">
   <div class="container-fluid">
     <!-- <a class="navbar-brand" href="#">Navbar</a> -->
     <button
@@ -16,6 +16,26 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="page"
+            *ngIf="!isUserlogin"
+            routerLink="/main"
+            >Main
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="page"
+            *ngIf="!isUserlogin"
+            routerLink="/dashboard"
+            >Blogs
+          </a>
+        </li>
         <li class="nav-item">
           <a
             class="nav-link"
@@ -38,7 +58,6 @@
           </a>
         </li>
 
-       
         <li class="nav-item">
           <a
             class="nav-link"

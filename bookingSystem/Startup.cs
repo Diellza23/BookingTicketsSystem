@@ -9,6 +9,7 @@ using bookingSystem.Extensions;
 using bookingSystem.Helpers;
 using bookingSystem.Interfaces;
 using bookingSystem.Middlewares;
+using bookingSystem.Services;
 using Claim.Data;
 using Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -80,6 +81,7 @@ namespace bookingSystem
             });
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IPhotoService, PhotoService>();
 
             services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>

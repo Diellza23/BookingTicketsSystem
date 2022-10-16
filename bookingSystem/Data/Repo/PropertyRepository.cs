@@ -33,6 +33,7 @@ namespace bookingSystem.Data.Repo
             .Include(p => p.PropertyType)
             .Include(p => p.City)
             .Include(p => p.FurnishingType)
+            .Include(p => p.Photos)
             .Where(p => p.SellRent == sellRent)
             .ToListAsync();
             return properties;
@@ -50,8 +51,21 @@ namespace bookingSystem.Data.Repo
             .Include(p => p.PropertyType)
             .Include(p => p.City)
             .Include(p => p.FurnishingType)
+            .Include(p => p.Photos)
             .Where(p => p.Id == id)
             .FirstAsync();
+            return properties;
+
+        }
+
+        public async Task<Propperty> GetPropertyByIdAsync(int id)
+        {
+
+            var properties = await dc.Propperties
+
+            .Include(p => p.Photos)
+            .Where(p => p.Id == id)
+            .FirstOrDefaultAsync();
             return properties;
 
         }
@@ -65,5 +79,7 @@ namespace bookingSystem.Data.Repo
         {
             throw new System.NotImplementedException();
         }
+
+
     }
 }

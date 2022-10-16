@@ -1,12 +1,12 @@
 <div class="card">
   <div class="card-img-wrapper">
     <img
-      *ngIf="property.image"
+      *ngIf="property.photo"
       class="card-img-top"
-      src="assets/images/{{ property.image }}.jpg"
+      src="{{ property.photo }}"
     />
     <img
-      *ngIf="!property.image"
+      *ngIf="!property.photo"
       class="card-img-top"
       src="assets/images/house.jpg"
     />

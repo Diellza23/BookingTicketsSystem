@@ -1,17 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
 import { IPropertyBase } from 'src/app/model/ipropertybase';
-import { HousingService } from 'src/app/services/housing.service';
 import { Property } from 'src/app/model/property';
+import { HousingService } from 'src/app/services/housing.service';
+import { Routes, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-property-card',
-  templateUrl: 'property-card.component.html',
-  styleUrls: ['property-card.component.css'],
+  selector: 'app-propertyUser',
+  templateUrl: './propertyUser.component.html',
+  styleUrls: ['./propertyUser.component.scss'],
 })
-export class PropertyCardComponent {
+export class PropertyUserComponent {
   public propertyList: Property[] = [];
-  public mainPhotoUrl: string = null;
-  constructor(private housingService: HousingService) {}
+  constructor(
+    private housingService: HousingService,
+    private http: HttpClient
+  ) {}
+
   @Input() property: IPropertyBase;
   @Input() hideIcons: boolean;
 

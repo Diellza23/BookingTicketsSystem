@@ -1,5 +1,5 @@
-using System;
-using bookingSystem.Dtos;
+using System.Collections.Generic;
+
 
 namespace bookingSystem.Dtos
 {
@@ -14,8 +14,9 @@ namespace bookingSystem.Dtos
         public int Security { get; set; }
         public bool Gated { get; set; }
         public int Maintenance { get; set; }
-         public int Age { get; set; }
+        public int Age { get; set; }
         public string Description { get; set; }
+        public ICollection<PhotoDto> Photos { get; set; }
 
     }
 }

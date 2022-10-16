@@ -85,3 +85,4 @@ C:\Users\DeZzeRt\Desktop\Diellza\Lab2\BookingTicketsSystem\bookingsystem\obj\Deb
 C:\Users\DeZzeRt\Desktop\Diellza\Lab2\BookingTicketsSystem\bookingsystem\obj\Debug\net5.0\ref\bookingSystem.dll
 C:\Users\DeZzeRt\Desktop\Diellza\Lab2\BookingTicketsSystem\bookingsystem\obj\Debug\net5.0\bookingSystem.pdb
 C:\Users\DeZzeRt\Desktop\Diellza\Lab2\BookingTicketsSystem\bookingsystem\obj\Debug\net5.0\bookingSystem.genruntimeconfig.cache
+C:\Users\DeZzeRt\Desktop\Diellza\Lab2\BookingTicketsSystem\bookingsystem\bin\Debug\net5.0\CloudinaryDotNet.dll

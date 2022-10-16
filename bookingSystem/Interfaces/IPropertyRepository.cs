@@ -9,6 +9,7 @@ namespace bookingSystem.Interfaces
         Task<IEnumerable<Propperty>> GetPropertiesAsync(int sellRent);
         Task<Propperty> GetPropertyDetailAsync(int id);
 
+        Task<Propperty> GetPropertyByIdAsync(int id);
         void AddProperty(Propperty property);
         void DeleteProperty(int id);
         Task GetPropertiesAsync();
@@ -17,5 +18,5 @@ namespace bookingSystem.Interfaces
 
 
     }
-    
+
 }
