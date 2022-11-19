@@ -30,6 +30,7 @@ import { PropertyEditComponent } from './property/property-edit/property-edit.co
 import { MainComponent } from './main/main.component';
 import { PropertyUserComponent } from './property/propertyUser/propertyUser.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const appRoutes: Routes = [
   // {path: 'add-property', component: AddPropertyComponent},
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
   { path: 'rent-property', component: PropertyListComponent },
   { path: 'main', component: MainComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'about-us', component: AboutUsComponent },
   {
     path: 'property-detail/:id',
     component: PropertyDetailComponent,
@@ -71,6 +73,7 @@ const appRoutes: Routes = [
     PropertyUserComponent,
 
     ProfileComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,

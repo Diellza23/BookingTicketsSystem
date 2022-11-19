@@ -257,15 +257,18 @@ button {
 
 .button {
   display: inline-block;
-  background: linear-gradient(101deg, hsl(228, 98%, 77%), hsl(228, 47%, 54%));
-  color: #fff;
+  // background: linear-gradient(101deg, hsl(228, 98%, 77%), hsl(228, 47%, 54%));
+  // color: #fff;
+  color: black;
   padding: 14px 28px;
   border-radius: 0.5rem;
-  font-size: var(--normal-font-size);
-  font-weight: var(--font-medium);
-  box-shadow: 0 4px 8px hsla(228, 66%, 45%, 0.25);
-  transition: 0.3s;
+  font-size: 0.938rem;
+  font-weight: 500;
+  // box-shadow: 0 4px 8px hsla(228, 66%, 45%, 0.25);
   cursor: pointer;
+}
+.button:hover {
+  color: blue;
 }
 
 .scroll-header {
