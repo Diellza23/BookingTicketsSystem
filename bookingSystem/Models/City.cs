@@ -8,7 +8,7 @@ namespace bookingSystem.Models
     {
         public string Name { get; set; }
 
-        [Required]
+        // [Required]
         public string Country { get; set; }
 
 

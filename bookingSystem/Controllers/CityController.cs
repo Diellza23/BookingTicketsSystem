@@ -56,7 +56,6 @@ namespace bookingSystem.Controllers
         [HttpPost("post")]
         public async Task<IActionResult> AddCity(CityDto cityDto)
         {
-
             var city = mapper.Map<City>(cityDto);
             city.LastUpdatedBy = 1;
             city.LastUpdatedOn = DateTime.Now;
@@ -68,8 +67,6 @@ namespace bookingSystem.Controllers
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateCity(int id, CityDto cityDto)
         {
-
-
             if (id != cityDto.Id)
                 return BadRequest("Update is not allowed");
 

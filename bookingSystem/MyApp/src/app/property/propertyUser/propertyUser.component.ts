@@ -11,11 +11,24 @@ import { Routes, RouterModule } from '@angular/router';
   styleUrls: ['./propertyUser.component.scss'],
 })
 export class PropertyUserComponent {
+  properties: IPropertyBase[];
   public propertyList: Property[] = [];
   constructor(
     private housingService: HousingService,
     private http: HttpClient
   ) {}
+  ngOnInit() {
+    this.housingService.getAllProperties().subscribe(
+      (data) => {
+        this.properties = data;
+        console.log(data);
+      },
+      (error) => {
+        console.log('httperror:');
+        console.log(error);
+      }
+    );
+  }
 
   @Input() property: IPropertyBase;
   @Input() hideIcons: boolean;

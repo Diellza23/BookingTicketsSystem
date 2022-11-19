@@ -49,6 +49,12 @@ export class HousingService {
     );
   }
 
+  getTopThreeProperties(): Observable<Property[]> {
+    return this.http.get<Property[]>(
+      `https://localhost:5001/api/propperty/top3/`
+    );
+  }
+
   // deleteUser(id: string) {
   //   return this.httpClient.delete(
   //     'https://localhost:5001/api/User/DeleteUser/id?id=' + id

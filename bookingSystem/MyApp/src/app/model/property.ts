@@ -28,5 +28,6 @@ export class Property implements IPropertyBase {
   maintenance?: number;
   estPossessionOn?: string;
   description?: string;
+  country: string;
   photos?: Photo[];
 }

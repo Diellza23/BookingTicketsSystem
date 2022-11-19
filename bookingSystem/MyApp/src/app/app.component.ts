@@ -9,7 +9,7 @@ import { User } from './Models/user';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-loggedinUser: string
+  loggedinUser: string;
 
   title = 'MyApp';
   constructor(private router: Router) {}
@@ -33,8 +33,8 @@ loggedinUser: string
   get isUser(): boolean {
     return this.user.roles.indexOf('User') > -1 && !this.isAdmin;
   }
-//   loggedin() {
-//     this.loggedinUser = localStorage.getItem('email');
-//     return this.loggedinUser;
-// }
+  //   loggedin() {
+  //     this.loggedinUser = localStorage.getItem('email');
+  //     return this.loggedinUser;
+  // }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -8,7 +9,8 @@ using bookingSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace bookingSystem.Controllers
 {
@@ -19,11 +21,14 @@ namespace bookingSystem.Controllers
         private readonly IMapper mapper;
         private readonly IPhotoService photoService;
 
-        public ProppertyController(IUnitOfWork uow, IMapper mapper, IPhotoService photoService)
+        private readonly IConfiguration _configuration;
+
+        public ProppertyController(IUnitOfWork uow, IMapper mapper, IPhotoService photoService, IConfiguration configuration)
         {
             this.photoService = photoService;
             this.uow = uow;
             this.mapper = mapper;
+            _configuration = configuration;
         }
 
         [HttpGet("list/{sellRent}")]
@@ -99,6 +104,29 @@ namespace bookingSystem.Controllers
             await uow.SaveAsync();
             return new JsonResult("Added");
         }
+        [HttpGet("top3")]
+        public JsonResult GetTopThree()
+        {
+            string query = @"select top 3 * from Propperties";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("DefaultConnection");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+
+        }
 
         [HttpPost("set-primary-photo/{propId}/{photoPublicId}")]
         public async Task<IActionResult> SetPrimaryPhoto(int propId, string photoPublicId)
@@ -145,7 +173,7 @@ namespace bookingSystem.Controllers
                 return new BadRequestObjectResult("You can't delete this primary photo");
 
             var result = await photoService.DeletePhotoAsync(photo.PublicId);
-            if (result.Error != null) 
+            if (result.Error != null)
                 return new BadRequestObjectResult(result.Error.Message);
 
             property.Photos.Remove(photo);
@@ -155,5 +183,9 @@ namespace bookingSystem.Controllers
             return new BadRequestObjectResult("Some error occurred, failed to delete this photo");
 
         }
+
+
+
+
     }
 }

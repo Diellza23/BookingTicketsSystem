@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bookingSystem.Data.Migrations
 {
-    public partial class InitialEntities : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -262,6 +262,7 @@ namespace bookingSystem.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsPrimary = table.Column<bool>(type: "bit", nullable: false),
                     ProppertyId = table.Column<int>(type: "int", nullable: false),

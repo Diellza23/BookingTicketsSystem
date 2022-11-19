@@ -1,6 +1,6 @@
 <div class="container">
-  <label>Filter City: &nbsp; </label>
-  <input [(ngModel)]="City" />
+  <!-- <label>Filter City: &nbsp; </label>
+  <input (keyup)="(City)" />
   <button
     type="button"
     (click)="onCityFilter()"
@@ -16,9 +16,9 @@
     style="margin-left: 20px"
   >
     Clear
-  </button>
+  </button> -->
 
-  <label style="margin-left: 15px">Sort by &nbsp;</label>
+  <!-- <label style="margin-left: 15px">Sort by &nbsp;</label>
   <select [(ngModel)]="SortbyParam">
     <option value="City">City</option>
     <option value="Price">Price</option>
@@ -31,8 +31,28 @@
   >
     <i *ngIf="SortDirection === 'asc'" class="fas fa-sort-alpha-down"></i>
     <i *ngIf="SortDirection === 'desc'" class="fas fa-sort-alpha-up"></i>
-  </button>
+  </button> -->
 
+  <form class="home__search">
+    <i class="bx bxs-map"></i>
+    <input
+      type="search"
+      placeholder="type something... "
+      class="home__search-input"
+    />
+    <button class="button">Search</button>
+  </form>
+
+  <div class="container properties">
+    <div class="row">
+      <!--klasa col-lg-2 col-md-6 mb-2 per 6 cards ne nje row ;)-->
+      <div class="col-md-3 col-xs-3" *ngFor="let property of properties">
+        <app-propertyUser [property]="property"></app-propertyUser>
+      </div>
+    </div>
+  </div>
+
+  <!--
   <div class="container">
     <div class="row">
       <div
@@ -45,9 +65,9 @@
       >
         <div class="shadow-lg p-3 mb-4">
           <app-property-card [property]="property"></app-property-card>
-          
         </div>
       </div>
     </div>
   </div>
+</div> -->
 </div>

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace bookingSystem.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20221016142656_InitialEntities")]
-    partial class InitialEntities
+    [Migration("20221114214059_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -295,6 +295,10 @@ namespace bookingSystem.Data.Migrations
 
                     b.Property<int>("ProppertyId")
                         .HasColumnType("int");
+
+                    b.Property<string>("PublicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

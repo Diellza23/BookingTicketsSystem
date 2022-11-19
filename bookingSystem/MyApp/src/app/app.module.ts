@@ -29,6 +29,7 @@ import { DatePipe } from '@angular/common';
 import { PropertyEditComponent } from './property/property-edit/property-edit.component';
 import { MainComponent } from './main/main.component';
 import { PropertyUserComponent } from './property/propertyUser/propertyUser.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
   // {path: 'add-property', component: AddPropertyComponent},
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
   { path: 'add-property', component: AddPropertyComponent },
   { path: 'rent-property', component: PropertyListComponent },
   { path: 'main', component: MainComponent },
+  { path: 'profile', component: ProfileComponent },
   {
     path: 'property-detail/:id',
     component: PropertyDetailComponent,
@@ -66,7 +68,9 @@ const appRoutes: Routes = [
     FilterPipe,
     SortPipe,
     MainComponent,
-    PropertyUserComponent
+    PropertyUserComponent,
+
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

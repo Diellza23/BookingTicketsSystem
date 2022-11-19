@@ -1,42 +1,44 @@
-<div class="card" style="margin-bottom: 35px">
-  <div class="card-img-wrapper">
-    <img
-      *ngIf="property.photo"
-      class="card-img-top"
-      src="{{ property.photo }}"
-    />
-    <img
-      *ngIf="!property.photo"
-      class="card-img-top"
-      src="assets/images/interior-design.jpg"
-      routerLink="/property-detail/{{ property.id }}"
-    />
-    <!-- <ul *ngIf="!hideIcons" class="list-inline text-center member-icons animate">
-      <li class="list-inline-item">
-        <button class="button" routerLink="/property-detail/{{ property.id }}">
-          FEATURES
-        </button>
-      </li>
-    </ul> -->
+<section class="popular section" id="popular">
+  <div class="container">
+    <span class="section__subtitle"></span>
 
-    <!-- <div class="card-body p-1"> -->
-    <div>
-      <h6 class="mb-0 left text-center">
-        LIVE TOUR ONLY <br />
-        <!-- {{ property.price }}$ -->
-      </h6>
-    </div>
-    <div class="bottom-left">
-      <h4>${{ property.price }}</h4>
-    </div>
-    <!-- <div class="bottom-right">{{ property.builtArea }} Sq.Ft.</div> -->
-    <h6 class="bottom-right">
-      | Area:
-      <span class="font-highlight">{{ property.builtArea }} Sq.Ft. </span>
-    </h6>
+    <div class="popular__container">
+      <div class="row">
+        <article class="popular__card col-md-3 col-xs-3">
+          <img
+            *ngIf="property.photo"
+            src="{{ property.photo }}"
+            class="popular__image"
+          />
 
-    <!-- </div> -->
+          <img
+            *ngIf="!property.photo"
+            src="assets/images/interior-2.jpg"
+            class="popular__image"
+            routerLink="/property-detail/{{ property.id }}"
+          />
+
+          <button
+            class="btn"
+            style="float: right; color: rgb(189, 123, 0)"
+            routerLink="/property-detail/{{ property.id }}"
+          >
+            Read More
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+
+          <div class="popular__data">
+            <h2 class="popular__price">
+              <span class="span__style">$</span> {{ property.price }}
+            </h2>
+            <h3 class="popular__title">{{ property.name }}</h3>
+            <p class="popular__description">{{ property.description }}</p>
+            <p class="popular__description">
+              Built Area: {{ property.builtArea }}
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
   </div>
-</div>
-
-<!-- <app-property-list></app-property-list> -->
+</section>

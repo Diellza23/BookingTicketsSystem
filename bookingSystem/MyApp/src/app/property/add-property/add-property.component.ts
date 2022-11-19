@@ -42,6 +42,8 @@ export class AddPropertyComponent implements OnInit {
     builtArea: null,
     city: '',
     readyToMove: null,
+    country: null,
+    description: null,
   };
 
   constructor(
@@ -82,6 +84,7 @@ export class AddPropertyComponent implements OnInit {
         FType: [null, Validators.required],
         Name: [null, Validators.required],
         City: [null, Validators.required],
+        Country: [null, Validators.required],
       }),
 
       PriceInfo: this.fb.group({
@@ -105,7 +108,7 @@ export class AddPropertyComponent implements OnInit {
         AOP: [null],
         Gated: [null],
         MainEntrance: [null],
-        Description: [null],
+        Description: [null, Validators.required],
       }),
     });
   }
@@ -152,6 +155,9 @@ export class AddPropertyComponent implements OnInit {
 
   get City() {
     return this.BasicInfo.controls.City as FormControl;
+  }
+  get Country() {
+    return this.BasicInfo.controls.Country as FormControl;
   }
 
   get Price() {
@@ -251,6 +257,7 @@ export class AddPropertyComponent implements OnInit {
     this.property.propertyTypeId = this.PType.value;
     this.property.name = this.Name.value;
     this.property.CityId = this.City.value;
+    this.property.country = this.Country.value;
     // this.property.city = this.City.value;
     this.property.furnishingTypeId = this.FType.value;
     this.property.price = this.Price.value;

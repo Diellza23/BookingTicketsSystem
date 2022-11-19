@@ -2,6 +2,7 @@
 
 <head>
   <title>Bootstrap Example</title>
+  <link rel="shortcut icon" href="" type="image/x-icon" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link
@@ -12,12 +13,12 @@
 </head>
 <body>
   <!-- Carousel -->
-  <div id="demo" class="carousel slide" data-bs-ride="carousel">
-    <!-- Indicators/dots -->
+  <!-- <div id="demo" class="carousel slide" data-bs-ride="carousel"> -->
+  <!-- Indicators/dots -->
 
-    <!-- The slideshow/carousel -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
+  <!-- The slideshow/carousel -->
+  <!-- <div class="carousel-inner"> -->
+  <!-- <div class="carousel-item active">
         <img
           src="assets/images/residence.jpg"
           alt="Los Angeles"
@@ -39,12 +40,12 @@
           </p>
         </div>
       </div>
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
 
-  <h3 class="text-center company">ABOUT OUR COMPANY</h3>
+  <!-- <h3 class="text-center company">ABOUT OUR COMPANY</h3> -->
 
-  <div class="card mb-3 container div" style="border: 0px">
+  <!-- <div class="card mb-3 container div" style="border: 0px">
     <div class="row g-0">
       <div class="col-md-4" style="border: 0px">
         <img
@@ -52,8 +53,8 @@
           class="img-fluid rounded-start"
           style="height: 100%"
         />
-      </div>
-      <div class="col-md-8">
+      </div> -->
+  <!-- <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id cumque
@@ -69,8 +70,8 @@
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis
               nobis soluta voluptatibus omnis mollitia. Soluta esse ullam maxrit
               est?
-            </li>
-            <li>
+            </li> -->
+  <!-- <li>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis
               nobis soluta voluptatibus omnis mollitia. Soluta esse ullam maxrit
               est?
@@ -84,9 +85,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="container header" style="border: 1px solid rgb(179, 179, 179)">
+  <!-- <div class="container header" style="border: 1px solid rgb(179, 179, 179)">
     <h1 style="color: cornflowerblue; margin-left: 20px; margin-top: 20px">
       ->OUR SERVICES
     </h1>
@@ -95,18 +96,18 @@
       blanditiis. Culpa animi unde iure explicabo a, voluptatem praesentium
       ipsam fugit repellat deleniti repudiandae, quae laboriosam doloribus
       dolores voluptatum assumenda excepturi.
-    </p>
-    <!-- <button class="btn btn-success" style="border-radius: 10px">
+    </p> -->
+  <!-- <button class="btn btn-success" style="border-radius: 10px">
       Talk to our agents
     </button> -->
-    <!-- <button
+  <!-- <button
       class="btn btn-warning"
       style="border-radius: 10px; margin-left: 20px; color: white"
     >
       See our projects
     </button> -->
 
-    <div class="row row-cols-1 row-cols-md-3 g-4" style="margin: 20px">
+  <!-- <div class="row row-cols-1 row-cols-md-3 g-4" style="margin: 20px">
       <div class="col">
         <div class="card">
           <div class="card-body">
@@ -119,8 +120,8 @@
             <button class="btn btn-outline-warning">Read more</button>
           </div>
         </div>
-      </div>
-      <div class="col">
+      </div> -->
+  <!-- <div class="col">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
@@ -132,8 +133,8 @@
             <button class="btn btn-outline-success">Read more</button>
           </div>
         </div>
-      </div>
-      <div class="col">
+      </div> -->
+  <!-- <div class="col">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
@@ -147,21 +148,333 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- <div class="container" style="margin-top: 40px"> -->
   <!-- </div> -->
 
-  <div class="mt-5 container">
-    <h2 class="text-center">Best Deal Properties</h2>
-  </div>
+  <!-- <div class="mt-5 container">
+    <i>Best Choice</i>
+    <h2 class="text-center">Popular Residences</h2>
+  </div> -->
 
-  <div class="container properties">
-    <div class="row">
-      <!--klasa col-lg-2 col-md-6 mb-2 per 6 cards ne nje row ;)-->
-      <div class="col-md-3 col-xs-3" *ngFor="let property of properties">
+  <!-- <div class="container properties">
+    <div class="row"> -->
+  <!--klasa col-lg-2 col-md-6 mb-2 per 6 cards ne nje row ;)-->
+  <!-- <div class="col-md-3 col-xs-3" *ngFor="let property of properties">
         <app-propertyUser [property]="property"></app-propertyUser>
       </div>
     </div>
-  </div>
+  </div> -->
+
+  <section class="home section">
+    <div class="home__container container grid">
+      <div class="home__data">
+        <h1 class="home__title">
+          Discover <br />
+          Most Suitable <br />
+          Property
+        </h1>
+        <p class="home__description">
+          Find a variety of properties that suit you very easily, forget all
+          difficulties in finding a residence for you
+        </p>
+
+        <form action="" class="home__search">
+          <i class="bx bxs-map"></i>
+          <input
+            type="search"
+            placeholder="search "
+            class="home__search-input"
+          />
+          <button class="button">Search</button>
+        </form>
+
+        <div class="home__value">
+          <div>
+            <h1 class="home__value-number">9K <span>+</span></h1>
+            <span class="home__value-desciption">
+              Premium <br />
+              Product
+            </span>
+          </div>
+          <div>
+            <h1 class="home__value-number">2K <span>+</span></h1>
+            <span class="home__value-desciption">
+              Happy <br />
+              Customer
+            </span>
+          </div>
+          <div>
+            <h1 class="home__value-number">28K <span>+</span></h1>
+            <span class="home__value-desciption">
+              Award <br />
+              Winning
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="home__images">
+        <div class="home__orbe"></div>
+        <div class="home__img">
+          <img src="assets/images/Duplex.jpg" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top: 50px; margin-bottom: 50px" class="logos section">
+    <div class="logos__container container grid">
+      <div class="logos__img">
+        <img src="assets/images/logo1.png" />
+      </div>
+      <div class="logos__img">
+        <img src="assets/images/logo2.png" />
+      </div>
+      <div class="logos__img">
+        <img src="assets/images/logo3.png" />
+      </div>
+      <div class="logos__img">
+        <img src="assets/images/logo4.png" />
+      </div>
+    </div>
+  </section>
+
+  <section class="popular section" id="popular">
+    <div class="container">
+      <span class="section__subtitle"></span>
+      <h2 class="section__title">Popular Residences<span>.</span></h2>
+
+      <div class="popular__container">
+        <div class="row">
+          <article
+            class="popular__card col-md-3 col-xs-3"
+            *ngFor="let property of properties"
+          >
+            <img
+              *ngIf="property.photo"
+              src="{{ property.photo }}"
+              class="popular__image"
+            />
+
+            <img
+              *ngIf="!property.photo"
+              src="assets/images/interior-2.jpg"
+              class="popular__image"
+              routerLink="/property-detail/{{ property.id }}"
+            />
+
+            <div class="popular__data">
+              <h2 class="popular__price">
+                <span class="span__style">$</span> {{ property.price }}
+              </h2>
+              <h3 class="popular__title">{{ property.name }}</h3>
+              <p class="popular__description">{{ property.description }}</p>
+            </div>
+          </article>
+          <button class="butoni" routerLink="/propertyList">
+            Take a look at all the properties
+            <i class="bx bxs-right-arrow-circle button-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="value section" id="value">
+    <div class="value__container container grid">
+      <div class="value__images">
+        <div class="value__orbe"></div>
+        <div class="value__img">
+          <img src="assets/images/value.jpg" />
+        </div>
+      </div>
+      <div class="value__content">
+        <div class="value__data">
+          <span class="section__subtitle" style="color: orange"
+            >Our Value
+          </span>
+          <h2 class="section__title">Value We Give To You</h2>
+          <p class="value__description">
+            We are always ready to help by providing the best service for you.
+            We believe a good place to live or rent can make your life better.
+          </p>
+        </div>
+
+        <div class="value__accordion">
+          <div class="value__accordion-item">
+            <header class="value__accordion-header">
+              <i class="bx bxs-shield-x value__accordion-icon"></i>
+              <h3 class="value__accordion-title">
+                Best interest rates on the market
+              </h3>
+              <div class="value__accordion-arrow">
+                <i class="bx bxs-down-arrow"></i>
+              </div>
+            </header>
+
+            <div class="value__accordion-content">
+              <p class="value__accordion-description">
+                The Prices we provide is the best for you, we guarantee no price
+                changes on your property due to varios unexpected costs that may
+                come.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="value__accordion">
+          <div class="value__accordion-item">
+            <header class="value__accordion-header">
+              <i class="bx bxs-x-square value__accordion-icon"></i>
+              <h3 class="value__accordion-title">Prevent unstable prices</h3>
+              <div class="value__accordion-arrow">
+                <i class="bx bxs-down-arrow"></i>
+              </div>
+            </header>
+
+            <div class="value__accordion-content">
+              <p class="value__accordion-description">
+                The Prices we provide is the best for you, we guarantee no price
+                changes on your property due to varios unexpected costs that may
+                come.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="value__accordion">
+          <div class="value__accordion-item">
+            <header class="value__accordion-header">
+              <i class="bx bxs-bar-chart-square value__accordion-icon"></i>
+              <h3 class="value__accordion-title">Best prices on the market</h3>
+              <div class="value__accordion-arrow">
+                <i class="bx bxs-down-arrow"></i>
+              </div>
+            </header>
+
+            <div class="value__accordion-content">
+              <p class="value__accordion-description">
+                The Prices we provide is the best for you, we guarantee no price
+                changes on your property due to varios unexpected costs that may
+                come.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="value__accordion">
+          <div class="value__accordion-item">
+            <header class="value__accordion-header">
+              <i class="bx bxs-bar-chart-square value__accordion-icon"></i>
+              <h3 class="value__accordion-title">
+                Advice on choosing the right property
+              </h3>
+              <div class="value__accordion-arrow">
+                <i class="bx bxs-down-arrow"></i>
+              </div>
+            </header>
+
+            <div class="value__accordion-content">
+              <p class="value__accordion-description">
+                The Prices we provide is the best for you, we guarantee no price
+                changes on your property due to varios unexpected costs that may
+                come.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact section" id="contact">
+    <div class="contact__container container grid">
+      <div class="contact__images">
+        <div class="contact__orbe"></div>
+
+        <div class="contact__img">
+          <img src="../../assets/images/contact.png" />
+        </div>
+      </div>
+
+      <div class="contact__content">
+        <div class="contact__data">
+          <span class="section__subtitle"> </span>
+
+          <h2 class="section__title">Get in Touch <span>.</span></h2>
+          <p class="contact__description">
+            Is there a problem finding your dream home? Need a guide in buying
+            or renting your first house? or need a consultation on residential
+            issues? just call us.
+          </p>
+        </div>
+
+        <div class="contact__card">
+          <div class="contact__card-box">
+            <div class="contact__card-info">
+              <i class="bx bxs-phone-call"></i>
+              <div>
+                <h3 class="contact__card-title">Call</h3>
+                <p class="contact__card-description">(831)316 65 69</p>
+              </div>
+            </div>
+
+            <button class="button contact__card-button">Call Now</button>
+          </div>
+
+          <div class="contact__card-box">
+            <div class="contact__card-info">
+              <i class="bx bxs-chat"></i>
+              <div>
+                <h3 class="contact__card-title">Chat</h3>
+                <p class="contact__card-description">(831)316 65 69</p>
+              </div>
+            </div>
+
+            <button class="button contact__card-button">Chat Now</button>
+          </div>
+
+          <div class="contact__card-box">
+            <div class="contact__card-info">
+              <i class="bx bxs-video"></i>
+              <div>
+                <h3 class="contact__card-title">Video Call</h3>
+                <p class="contact__card-description">(831)316 65 69</p>
+              </div>
+            </div>
+
+            <button class="button contact__card-button">Video Call Now</button>
+          </div>
+
+          <div class="contact__card-box">
+            <div class="contact__card-info">
+              <i class="bx bxs-message"></i>
+              <div>
+                <h3 class="contact__card-title">Contact Us</h3>
+                <p class="contact__card-description">(831)316 65 69</p>
+              </div>
+            </div>
+
+            <button class="button contact__card-button" routerLink="/dashboard">
+              Use Contact Form Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="subscribe section">
+    <div class="subscribe__container container">
+      <h1 class="subscribe__title">Get Started with Us</h1>
+      <p class="subscribe__description">
+        Sign up now and find super attractive prices and quotes from us, Find
+        your residence soon
+      </p>
+      <a href="#" class="button subscribe__button" routerLink="/register">
+        Sign Up Here
+      </a>
+    </div>
+  </section>
+
+  <!-- <script src="../../assets/main.js"></script> -->
 </body>

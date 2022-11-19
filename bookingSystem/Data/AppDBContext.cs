@@ -23,5 +23,6 @@ namespace Claim.Data
         public DbSet<Propperty> Propperties { get; set; }
         public DbSet<PropertyType> PropertyTypes { get; set; }
         public DbSet<FurnishingType> FurnishingTypes { get; set; }
+
     }
 }

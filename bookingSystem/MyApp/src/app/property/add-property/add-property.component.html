@@ -2,8 +2,16 @@
   <div class="row mb-5">
     <div class="col-8 shadow-lg p-0 bg-white">
       <div class="card">
-        <div class="card-header">
-          <h3>List your Property</h3>
+        <div>
+          <h3
+            style="
+              padding-left: 20px;
+              margin-top: 20px;
+              color: rgb(106, 122, 151);
+            "
+          >
+            List your Property
+          </h3>
         </div>
         <div class="card-body">
           <form (ngSubmit)="onSubmit()" [formGroup]="addPropertyForm">
@@ -11,18 +19,19 @@
               <tabset class="member-tabset" #formTabs>
                 <tab heading="Basic Info" formGroupName="BasicInfo">
                   <div class="form-group col-12">
-                    <p>I want to</p>
+                    <p class="paragraph">I want to</p>
                     <div
                       class="btn-group"
                       btnRadioGroup
                       formControlName="SellRent"
                     >
                       <label
-                        class="btn btn-outline-primary mr-2"
+                        class="btn btn-outline-primary"
                         btnRadio="1"
                         tabindex="0"
                         role="button"
                         name="SellRent"
+                        style="border-radius: 5px"
                         >Sell</label
                       >
                       <label
@@ -31,6 +40,7 @@
                         tabindex="0"
                         role="button"
                         name="SellRent"
+                        style="border-radius: 5px; margin-left: 5px"
                         >Rent</label
                       >
                     </div>
@@ -43,7 +53,7 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <p>BHK</p>
+                    <p class="paragraph">BHK</p>
                     <div
                       class="btn-group"
                       btnRadioGroup
@@ -52,6 +62,7 @@
                     >
                       <label
                         *ngFor="let bhk of [1, 2, 3, 4]"
+                        style="border-radius: 5px; margin-left: 5px"
                         class="btn btn-outline-primary mr-2"
                         [btnRadio]="bhk.toString()"
                         tabindex="0"
@@ -68,7 +79,7 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <p>Property Type</p>
+                    <p class="paragraph">Property Type</p>
                     <div
                       class="btn-group"
                       btnRadioGroup
@@ -78,6 +89,7 @@
                         *ngFor="let ptype of propertyTypes"
                         class="btn btn-outline-primary mr-2"
                         [btnRadio]="ptype.id.toString()"
+                        style="border-radius: 5px; margin-left: 5px"
                         tabindex="0"
                         role="button"
                         (click)="propertyView.propertyType = ptype.name"
@@ -94,7 +106,7 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <p>Furnishing Types (Changed)</p>
+                    <p class="paragraph">Furnishing Types (Changed)</p>
                     <div
                       class="btn-group"
                       btnRadioGroup
@@ -102,6 +114,7 @@
                     >
                       <label
                         *ngFor="let ftype of furnishTypes"
+                        style="border-radius: 5px; margin-left: 5px"
                         class="btn btn-outline-primary mr-2"
                         (click)="propertyView.furnishingType = ftype.name"
                         [btnRadio]="ftype.id.toString()"
@@ -121,7 +134,7 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <label>in Building/Society/Project</label>
+                    <label class="paragraph">in Building/Society/Project</label>
                     <input
                       type="text"
                       class="form-control"
@@ -139,7 +152,7 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <label>City</label>
+                    <label class="paragraph">City</label>
                     <select
                       #City
                       (change)="
@@ -166,6 +179,22 @@
                   </div>
 
                   <div class="form-group col-12">
+                    <label class="paragraph">Country</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      #builtArea
+                      (keyup)="propertyView.country = Country.value"
+                      formControlName="Country"
+                    />
+                    <div
+                      class="error-block"
+                      *ngIf="Country.invalid && nextClicked"
+                    >
+                      Please select country
+                    </div>
+                  </div>
+                  <div class="form-group col-12">
                     <button
                       type="button"
                       class="btn btn-primary btn-block"
@@ -178,8 +207,12 @@
 
                 <tab heading="Pricing and Area" formGroupName="PriceInfo">
                   <div class="form-group col-12">
-                    <label *ngIf="SellRent.value == 1">Price (in USD)</label>
-                    <label *ngIf="SellRent.value == 2">Rent (in USD)</label>
+                    <label *ngIf="SellRent.value == 1" class="paragraph"
+                      >Price (in USD)</label
+                    >
+                    <label *ngIf="SellRent.value == 2" class="paragraph"
+                      >Rent (in USD)</label
+                    >
                     <input
                       type="text"
                       class="form-control"
@@ -221,7 +254,7 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <label>Built Area (in Sqr Feet)</label>
+                    <label class="paragraph">Built Area (in Sqr Feet)</label>
                     <input
                       type="text"
                       class="form-control"
@@ -238,7 +271,7 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <label>Carpet Area (in Sqr Feet)</label>
+                    <label class="paragraph">Carpet Area (in Sqr Feet)</label>
                     <input
                       type="text"
                       formControlName="CarpetArea"
@@ -267,7 +300,7 @@
 
                 <tab heading="Address" formGroupName="AddressInfo">
                   <div class="form-group col-12">
-                    <label>Floor</label>
+                    <label class="paragraph">Floor</label>
                     <input
                       type="text"
                       formControlName="FloorNo"
@@ -276,7 +309,7 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <label>Total Floor</label>
+                    <label class="paragraph">Total Floors</label>
                     <input
                       type="text"
                       formControlName="TotalFloor"
@@ -285,7 +318,7 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <label>Address</label>
+                    <label class="paragraph">Address</label>
                     <input
                       type="text"
                       class="form-control"
@@ -302,7 +335,7 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <label>Landmark</label>
+                    <label class="paragraph">Landmark</label>
                     <input
                       type="text"
                       formControlName="LandMark"
@@ -331,9 +364,10 @@
 
                 <tab heading="Other Details" formGroupName="OtherInfo">
                   <div class="form-group col-12">
-                    <p>Ready to Move</p>
+                    <p class="paragraph">Ready to Move</p>
                     <div class="btn-group" btnRadioGroup formControlName="RTM">
                       <label
+                        style="border-radius: 5px; margin-left: 5px"
                         class="btn btn-outline-primary mr-2"
                         btnRadio="true"
                         tabindex="0"
@@ -344,6 +378,7 @@
                       </label>
 
                       <label
+                        style="border-radius: 5px; margin-left: 5px"
                         class="btn btn-outline-primary"
                         btnRadio="false"
                         tabindex="0"
@@ -359,10 +394,10 @@
                   </div>
 
                   <div class="form-group col-6">
-                    <label *ngIf="propertyView.readyToMove"
+                    <label *ngIf="propertyView.readyToMove" class="paragraph"
                       >Establishment Date</label
                     >
-                    <label *ngIf="!propertyView.readyToMove"
+                    <label *ngIf="!propertyView.readyToMove" class="paragraph"
                       >Possession Date</label
                     >
                     <input
@@ -391,13 +426,14 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <p>Gated Community</p>
+                    <p class="paragraph">Gated Community</p>
                     <div
                       class="btn-group"
                       btnRadioGroup
                       formControlName="Gated"
                     >
                       <label
+                        style="border-radius: 5px; margin-left: 5px"
                         class="btn btn-outline-primary mr-2"
                         btnRadio="true"
                         tabindex="0"
@@ -407,6 +443,7 @@
                       >
                       <label
                         class="btn btn-outline-primary"
+                        style="border-radius: 5px; margin-left: 5px"
                         btnRadio="false"
                         tabindex="0"
                         role="button"
@@ -417,13 +454,14 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <p>Main Entrance</p>
+                    <p class="paragraph">Main Entrance</p>
                     <div
                       class="btn-group"
                       btnRadioGroup
                       formControlName="MainEntrance"
                     >
                       <label
+                        style="border-radius: 5px; margin-left: 5px"
                         class="btn btn-outline-primary mr-2"
                         btnRadio="East"
                         tabindex="0"
@@ -432,6 +470,7 @@
                         >East</label
                       >
                       <label
+                        style="border-radius: 5px; margin-left: 5px"
                         class="btn btn-outline-primary"
                         btnRadio="West"
                         tabindex="0"
@@ -440,6 +479,7 @@
                         >West</label
                       >
                       <label
+                        style="border-radius: 5px; margin-left: 5px"
                         class="btn btn-outline-primary"
                         btnRadio="South"
                         tabindex="0"
@@ -448,6 +488,7 @@
                         >South</label
                       >
                       <label
+                        style="border-radius: 5px; margin-left: 5px"
                         class="btn btn-outline-primary"
                         btnRadio="North"
                         tabindex="0"
@@ -459,7 +500,7 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <label>Description</label>
+                    <label class="paragraph">Description</label>
                     <textarea
                       type="text"
                       class="form-control"
@@ -517,8 +558,18 @@
       </div>
     </div>
     <div class="col-4">
-      <div class="card-header">
-        <h3>Your Property Preview</h3>
+      <div class="card">
+        <h3
+          class="paragraph"
+          style="
+            padding-left: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: rgb(106, 122, 151);
+          "
+        >
+          Your Property Preview
+        </h3>
       </div>
       <div class="shadow-lg p-3 bg-white">
         <app-property-card [property]="propertyView"></app-property-card>
