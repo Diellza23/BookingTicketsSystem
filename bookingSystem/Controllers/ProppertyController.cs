@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -6,25 +7,29 @@ using AutoMapper;
 using bookingSystem.Dtos;
 using bookingSystem.Interfaces;
 using bookingSystem.Models;
+using Claim.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace bookingSystem.Controllers
 {
     [Route("api/[controller]")]
-    public class ProppertyController
+    public class ProppertyController : ControllerBase
     {
+        private readonly AppDBContext appDBContext;
         private readonly IUnitOfWork uow;
         private readonly IMapper mapper;
         private readonly IPhotoService photoService;
 
         private readonly IConfiguration _configuration;
 
-        public ProppertyController(IUnitOfWork uow, IMapper mapper, IPhotoService photoService, IConfiguration configuration)
+        public ProppertyController(AppDBContext _appDbContext, IUnitOfWork uow, IMapper mapper, IPhotoService photoService, IConfiguration configuration)
         {
+            _appDbContext = appDBContext;
             this.photoService = photoService;
             this.uow = uow;
             this.mapper = mapper;
@@ -50,17 +55,111 @@ namespace bookingSystem.Controllers
         }
 
 
+
+
+
+
+
+
+        [HttpPost("Shtoo")]
+        public async Task<IActionResult> AddOrEdit(int id, [Bind("Id,Name,Address,Address2,Security,SellRent,Maintenance,MainEntrance,FloorNo,SellRent,Description,BHK,CityId,ReadyToMove,TotalFloors,EstPossessionOn,FurnishingTypeId,Price,Gated,PropertyTypeId,BuiltArea,CarpetArea")]
+        Propperty proppertyData)
+        {
+            bool DoesPropertyexist = false;
+
+            Propperty property = await uow.PropertyRepository.FindProperty(id);
+
+            if (property != null)
+            {
+                DoesPropertyexist = true;
+            }
+            else
+            {
+                property = new Propperty();
+            }
+
+            // if (ModelState.IsValid)
+            // {
+            try
+            {
+                property.Name = property.Name;
+                property.Address = proppertyData.Address;
+                property.Address2 = proppertyData.Address2;
+                property.Security = proppertyData.Security;
+                property.SellRent = proppertyData.SellRent;
+                property.Maintenance = proppertyData.Maintenance;
+                property.MainEntrance = proppertyData.MainEntrance;
+                property.FloorNo = proppertyData.FloorNo;
+                property.SellRent = proppertyData.SellRent;
+                property.Description = proppertyData.Description;
+                property.BHK = proppertyData.BHK;
+                property.CityId = proppertyData.CityId;
+                property.ReadyToMove = proppertyData.ReadyToMove;
+                property.TotalFloors = proppertyData.TotalFloors;
+                property.EstPossessionOn = proppertyData.EstPossessionOn;
+                property.FurnishingTypeId = proppertyData.FurnishingTypeId;
+                property.Price = proppertyData.Price;
+                property.Gated = proppertyData.Gated;
+                property.PropertyTypeId = proppertyData.PropertyTypeId;
+                property.BuiltArea = proppertyData.BuiltArea;
+                property.CarpetArea = proppertyData.CarpetArea;
+
+
+
+                if (DoesPropertyexist)
+                {
+                    appDBContext.Update(property);
+                }
+                else
+                {
+                    appDBContext.Add(property);
+                }
+                await appDBContext.SaveChangesAsync();
+            }
+            catch (NullReferenceException)
+            {
+                // return new BadRequestResult();
+                return new BadRequestResult();
+            }
+            return RedirectToAction(nameof(Index));
+            // }
+            // return new JsonResult("Idk");
+        }
+
+
+
+
+
+
+
+        [HttpPost("Shto")]
+        public async Task<ActionResult<Propperty>> Shto(Propperty property)
+        {
+            await uow.PropertyRepository.CreatePropperty(property);
+            // return CreatedAtAction("Post", new { id = property.Id }, property);
+            await uow.SaveAsync();
+            return new JsonResult("sadhasdh");
+        }
+
+
+
+
+
+
         // propperty/add
         [HttpPost("add")]
         [AllowAnonymous]
         public async Task<IActionResult> AddProperty(PropertyDto propertyDto)
         {
+
             var property = mapper.Map<Propperty>(propertyDto);
             property.PostedBy = 1;
             property.LastUpdatedBy = 1;
+            // property.Name = "diellza";
             uow.PropertyRepository.AddProperty(property);
             await uow.SaveAsync();
-            return new JsonResult("Added");
+            // return new JsonResult("Added");
+            return new JsonResult("IT DOESNT WORK");
         }
 
         [HttpDelete("deleteProperty/id")]
@@ -104,6 +203,101 @@ namespace bookingSystem.Controllers
             await uow.SaveAsync();
             return new JsonResult("Added");
         }
+
+
+
+        
+
+
+
+        // [HttpPut("edit/{id}")]
+        // public async Task<IActionResult> UpdateProperty(int id, int bhk, string name, int price, int builtArea, int carpetArea, string address, string address2, int floorNo, int totalFloors, bool readyToMove, string mainEntrance, int security, bool gated, int maintenance, string desciption)
+        // {
+        //     var property = await uow.PropertyRepository.FindProperty(id);
+
+
+        //     property.Name = name;
+        //     property.BHK = bhk;
+        //     property.Price = price;
+        //     property.BuiltArea = builtArea;
+        //     property.CarpetArea = carpetArea;
+        //     property.Address = address;
+        //     property.Address2 = address2;
+        //     property.FloorNo = floorNo;
+        //     property.TotalFloors = totalFloors;
+        //     property.ReadyToMove = readyToMove;
+        //     property.MainEntrance = mainEntrance;
+        //     property.Maintenance = maintenance;
+        //     property.Security = security;
+        //     property.Gated = gated;
+        //     property.Description = desciption;
+        //     // mapper.Map(propertyUpdateDto, property);
+        //     // await uow.SaveAsync();
+
+        //     if (await uow.SaveAsync())
+        //     {
+        //         return new JsonResult("Worked");
+        //     }
+        //     else
+        //     {
+        //         return new BadRequestObjectResult("Could not be updated, check for errors");
+        //         // return new JsonResult("Something went wrong");
+        //     }
+        // }
+
+        // [HttpPut("edit/{id}")]
+        // // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> AddOrEdit(int id, [Bind("Id,SellRent,Name,Address,Address2")]
+        //     Propperty propData)
+        // {
+        //     bool IsPropExist = false;
+
+        //     Propperty property = await uow.PropertyRepository.FindProperty(id);
+
+        //     if (property != null)
+        //     {
+        //         IsPropExist = true;
+        //     }
+        //     else
+        //     {
+        //         property = new Propperty();
+        //     }
+
+
+        //     try
+        //     {
+        //         property.Name = propData.Name;
+        //         property.Address = propData.Address;
+        //         property.Address2 = propData.Address2;
+
+        //         if (IsPropExist)
+        //         {
+        //             await uow.PropertyRepository.UpdatePropperty(property);
+        //         }
+        //         else
+        //         {
+        //             uow.PropertyRepository.AddProperty(property);
+        //         }
+        //         await uow.SaveAsync();
+        //     }
+        //     catch (DbUpdateConcurrencyException)
+        //     {
+        //         throw;
+        //     }
+        //     return new JsonResult("Success");
+        // }
+
+        [HttpPut("edit/{id}")]
+        public async Task<IActionResult> UpdateProperty(Propperty prop)
+        {
+            await uow.PropertyRepository.UpdatePropperty(prop);
+            return new OkResult();
+        }
+
+
+
+
+
         [HttpGet("top3")]
         public JsonResult GetTopThree()
         {
@@ -183,6 +377,7 @@ namespace bookingSystem.Controllers
             return new BadRequestObjectResult("Some error occurred, failed to delete this photo");
 
         }
+
 
 
 

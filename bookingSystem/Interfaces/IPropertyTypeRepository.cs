@@ -7,5 +7,7 @@ namespace bookingSystem.Interfaces
     public interface IPropertyTypeRepository
     {
          Task<IEnumerable<PropertyType>> GetPropertyTypesAsync();
+        void AddPropertyType(PropertyType propertyType);
+    
     }
 }

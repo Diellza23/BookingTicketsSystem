@@ -1,0 +1,171 @@
+<div class="container" style="margin-top: 10px">
+  <div class="row shadow">
+    <div class="col-sm-4 p-0">
+      <div class="card">
+        <div class="card-img-wrapper">
+          <img class="card-img-top" />
+          <img class="card-img-top" />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8 p-0">
+      <form [formGroup]="editProperty" (ngSubmit)="updateProperty()">
+        <div class="form-group">
+          <tabset class="membet-tabset">
+            <tab heading="Overview">
+              <h2 style="margin-bottom: 20px">Property Overview</h2>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="heading">
+                    <strong>Project Name:</strong>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="name"
+                      class="form-control"
+                    />
+                  </div>
+                  <hr />
+
+                  <div class="heading">
+                    <strong>Floor Number:</strong>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="floorNo"
+                    />
+                  </div>
+                  <hr />
+
+                  <hr />
+                  <div class="heading">
+                    <strong>Possession:</strong>
+                    <input
+                      type="date"
+                      class="form-control"
+                      formControlName="possession"
+                    />
+                    <!-- <p>{{ property.estPossessionOn | date }}</p> -->
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="heading">
+                    <strong>Main Entrance:</strong>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="mainEntrance"
+                    />
+                    <!-- <p>{{ property.mainEntrance }}</p> -->
+                  </div>
+                  <hr />
+
+                  <div class="heading">
+                    <strong>Security Deposit:</strong>
+                    <input
+                      type="text"
+                      formControlName="security"
+                      class="form-control"
+                    />
+                  </div>
+                  <hr />
+
+                  <div class="heading">
+                    <strong>Maintenance:</strong>
+                    <input formControlName="maintenance" class="form-control" />
+                  </div>
+                  <hr />
+
+                  <div class="heading">
+                    <strong>About Property:</strong>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="description"
+                      rows="2"
+                    />
+                  </div>
+                </div>
+              </div>
+            </tab>
+
+            <tab heading="Address">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h2 style="margin-bottom: 20px">Address</h2>
+                  <div class="heading">
+                    <strong>Built area:</strong>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="builtArea"
+                      class="form-control"
+                    />
+
+                    <hr />
+                    <strong>Carpet area:</strong>
+                    <input
+                      type="text"
+                      formControlName="carpetArea"
+                      class="form-control"
+                    />
+
+                    <hr />
+                    <strong>Furnishing type:</strong>
+                    <input
+                      type="text"
+                      formControlName="furnishingType"
+                      class="form-control"
+                    />
+
+                    <hr />
+                    <strong>Available for:</strong>
+                    <input class="form-control" />
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <h2 style="margin-bottom: 20px">Address</h2>
+                  <div class="heading">
+                    <strong>Address 1:</strong>
+                    <input
+                      type="text"
+                      formControlName="address"
+                      class="form-control"
+                    />
+
+                    <hr />
+                    <strong>Address 2:</strong>
+                    <input
+                      type="text"
+                      formControlName="address2"
+                      class="form-control"
+                    />
+
+                    <hr />
+                    <strong>City:</strong>
+                    <input
+                      type="text"
+                      formControlName="city"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+            </tab>
+
+            <tab heading="Photos">
+              <!-- <ngx-gallery
+                [options]="galleryOptions"
+                [images]="galleryImages"
+                class="ngx-gallery"
+              ></ngx-gallery> -->
+            </tab>
+          </tabset>
+        </div>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </form>
+    </div>
+  </div>
+</div>

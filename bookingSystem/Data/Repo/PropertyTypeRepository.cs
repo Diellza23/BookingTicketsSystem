@@ -19,5 +19,11 @@ namespace bookingSystem.Data.Repo
         {
             return await dc.PropertyTypes.ToListAsync();
         }
+
+
+        public void AddPropertyType(PropertyType propertyType)
+        {
+            dc.PropertyTypes.AddAsync(propertyType);
+        }
     }
 }

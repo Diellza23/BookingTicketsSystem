@@ -30,9 +30,9 @@ namespace bookingSystem.Data.Repo
         public async Task<IEnumerable<Propperty>> GetPropertiesAsync(int sellRent)
         {
             var properties = await dc.Propperties
-            .Include(p => p.PropertyType)
-            .Include(p => p.City)
-            .Include(p => p.FurnishingType)
+            // .Include(p => p.PropertyType)
+            // .Include(p => p.City)
+            // .Include(p => p.FurnishingType)
             .Include(p => p.Photos)
             .Where(p => p.SellRent == sellRent)
             .ToListAsync();
@@ -48,9 +48,9 @@ namespace bookingSystem.Data.Repo
         {
 
             var properties = await dc.Propperties
-            .Include(p => p.PropertyType)
-            .Include(p => p.City)
-            .Include(p => p.FurnishingType)
+            // .Include(p => p.PropertyType)
+            // .Include(p => p.City)
+            // .Include(p => p.FurnishingType)
             .Include(p => p.Photos)
             .Where(p => p.Id == id)
             .FirstAsync();
@@ -75,9 +75,38 @@ namespace bookingSystem.Data.Repo
             return await dc.Propperties.ToListAsync();
         }
 
-        public Task<IEnumerable<Propperty>> GetPropperties()
+
+
+        public async Task<Propperty> FindProperty(int id)
         {
-            throw new System.NotImplementedException();
+            return await dc.Propperties.FindAsync(id);
+        }
+
+
+
+        public async Task<Propperty> UpdatePropperty(Propperty objPropperty)
+        {
+            dc.Propperties.Update(objPropperty);
+            await dc.SaveChangesAsync();
+            return objPropperty;
+            // dc.Propperties.Update(objPropperty);
+            // dc.Entry(objPropperty).State = EntityState.Modified;
+            // await dc.SaveChangesAsync();
+            // return objPropperty;
+        }
+
+        public async Task<Propperty> InsertProperty(Propperty objPropperty)
+        {
+            dc.Propperties.Add(objPropperty);
+            await dc.SaveChangesAsync();
+            return objPropperty;
+        }
+
+        public async Task<Propperty> CreatePropperty(Propperty property)
+        {
+            dc.Propperties.Add(property);
+            await dc.SaveChangesAsync();
+            return property;
         }
 
 

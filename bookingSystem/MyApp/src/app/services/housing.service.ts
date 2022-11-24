@@ -77,6 +77,26 @@ export class HousingService {
     return this.http.post(`https://localhost:5001/api/propperty/add`, property);
   }
 
+  editProperty(property: Property) {
+    return this.http.put(
+      `https://localhost:5001/api/propperty/edit/{id}`,
+      property
+    );
+  }
+
+  getCurrentData(id: number) {
+    return this.http.get<Property>(
+      this.baseUrl + '/propperty/detail/' + id.toString()
+    );
+  }
+
+  updateProperty(id, data) {
+    return this.http.put(
+      `https://localhost:5001/api/propperty/edit/id=` + id,
+      data
+    );
+  }
+
   newPropID() {
     if (localStorage.getItem('PID')) {
       return +localStorage.getItem('PID');

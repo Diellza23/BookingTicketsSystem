@@ -30,6 +30,7 @@ namespace bookingSystem.Data.Repo
         {
             return await dc.Cities.FindAsync(id);
         }
+        
 
         public async Task<IEnumerable<City>> GetCitiesAsync()
         {

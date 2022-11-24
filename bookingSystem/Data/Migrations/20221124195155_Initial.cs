@@ -56,7 +56,7 @@ namespace bookingSystem.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastUpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedBy = table.Column<int>(type: "int", nullable: false)
                 },

@@ -13,7 +13,6 @@ namespace bookingSystem.Models
 
         public int SellRent { get; set; }
         public string Name { get; set; }
-
         public int PropertyTypeId { get; set; }
         public PropertyType PropertyType { get; set; }
         public int BHK { get; set; }
