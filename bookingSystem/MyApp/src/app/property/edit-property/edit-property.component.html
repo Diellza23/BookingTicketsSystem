@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="col-sm-8 p-0">
-      <form [formGroup]="editProperty" (ngSubmit)="updateProperty()">
+      <form [formGroup]="editProperty" (ngSubmit)="updateProperty(id)">
         <div class="form-group">
           <tabset class="membet-tabset">
             <tab heading="Overview">
@@ -145,11 +145,23 @@
 
                     <hr />
                     <strong>City:</strong>
-                    <input
-                      type="text"
-                      formControlName="city"
+                    <select
+                      #City
+                      (change)="
+                        propertyView.city =
+                          City.options[City.options.selectedIndex].text
+                      "
                       class="form-control"
-                    />
+                      formControlName="City"
+                    >
+                      <option value="">--Select City--</option>
+                      <option
+                        *ngFor="let city of cityList"
+                        value="{{ city.id }}"
+                      >
+                        {{ city.name }}
+                      </option>
+                    </select>
                   </div>
                 </div>
               </div>

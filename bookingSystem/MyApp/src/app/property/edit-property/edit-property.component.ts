@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HousingService } from 'src/app/services/housing.service';
 import { ActivatedRoute } from '@angular/router';
+import { Ikeyvaluepair } from 'src/app/model/ikeyvaluepair';
+import { IPropertyBase } from 'src/app/model/ipropertybase';
 
 @Component({
   selector: 'app-edit-property',
@@ -10,6 +12,27 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditPropertyComponent implements OnInit {
   alert: boolean = false;
+  id: number;
+
+  propertyTypes: Ikeyvaluepair[];
+  furnishTypes: Ikeyvaluepair[];
+  cityList: any[];
+
+  propertyView: IPropertyBase = {
+    id: null,
+    name: '',
+    price: null,
+    sellRent: null,
+    propertyType: null,
+    furnishingType: null,
+    bhk: null,
+    builtArea: null,
+    city: '',
+    readyToMove: null,
+    country: null,
+    description: null,
+  };
+
   editProperty = new FormGroup({
     name: new FormControl(''),
     address: new FormControl(''),
@@ -50,12 +73,25 @@ export class EditPropertyComponent implements OnInit {
           city: new FormControl(result['city']),
         });
       });
+    this.housingService.getAllCities().subscribe((data) => {
+      this.cityList = data;
+      console.log(data);
+    });
+
+    this.housingService.getPropertyTypes().subscribe((data) => {
+      this.propertyTypes = data;
+    });
+
+    this.housingService.getFurnishingTypes().subscribe((data) => {
+      this.furnishTypes = data;
+    });
   }
 
-  updateProperty() {
+  updateProperty(id: number) {
     this.housingService
       .updateProperty(this.router.snapshot.params.id, this.editProperty.value)
       .subscribe((result) => {
+        this.cityList = this.cityList;
         console.log(result, 'data updated successfully');
       });
   }

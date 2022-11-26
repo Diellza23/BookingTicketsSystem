@@ -34,7 +34,12 @@
             </a>
           </li>
           <li class="nav__item">
-            <a href="#" class="nav__link" routerLink="/about-us">
+            <a
+              href="#"
+              *ngIf="!isUserlogin"
+              class="nav__link"
+              routerLink="/about-us"
+            >
               <i class="bx bx-award"> </i>
               <span>About </span>
             </a>
@@ -51,7 +56,7 @@
               <span> Contact</span>
             </a>
           </li>
-          <li class="nav__item">
+          <!-- <li class="nav__item">
             <a
               href="#"
               class="nav__link"
@@ -61,12 +66,12 @@
               <i class="bx bxs-city"></i>
               <span> Rent </span>
             </a>
-          </li>
+          </li> -->
           <li class="nav__item">
             <a
               href="#"
               class="nav__link"
-              *ngIf="!isUserlogin"
+              *ngIf="isUserlogin"
               routerLink="/add-property"
             >
               <i class="bx bx-phone"></i>

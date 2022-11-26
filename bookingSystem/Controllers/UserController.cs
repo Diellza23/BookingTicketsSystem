@@ -22,7 +22,7 @@ using Models.DTO;
 
 namespace bookingSystem.Controllers
 {
-    // [Authorize(Roles = "Admin,User")]
+    // [Authorize(Roles = "Admin,User")] //26 nentor
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
@@ -91,7 +91,7 @@ namespace bookingSystem.Controllers
                 {
                     var roles = (await _userManager.GetRolesAsync(user)).ToList();
 
-                    allUserDTO.Add(new UserDTO(user.Id, user.FullName, user.Email, user.UserName, user.DateCreated, roles));
+                    allUserDTO.Add(new UserDTO(user.Id, user.FullName, user.Email, user.UserName, user.DateCreated, roles, user.Id));
                 }
                 return await Task.FromResult(new ResponseModel(ResponseCode.OK, "", allUserDTO));
             }
@@ -115,7 +115,7 @@ namespace bookingSystem.Controllers
                     var role = (await _userManager.GetRolesAsync(user)).ToList();
                     if (role.Any(x => x == "User"))
                     {
-                        allUserDTO.Add(new UserDTO(user.Id, user.FullName, user.Email, user.UserName, user.DateCreated, role));
+                        allUserDTO.Add(new UserDTO(user.Id, user.FullName, user.Email, user.UserName, user.DateCreated, role, user.Id));
 
                     }
                 }
@@ -142,7 +142,7 @@ namespace bookingSystem.Controllers
                     {
                         var appUser = await _userManager.FindByEmailAsync(model.Email);
                         var roles = (await _userManager.GetRolesAsync(appUser)).ToList();
-                        var user = new UserDTO(appUser.Id, appUser.FullName, appUser.Email, appUser.UserName, appUser.DateCreated, roles);
+                        var user = new UserDTO(appUser.Id, appUser.FullName, appUser.Email, appUser.UserName, appUser.DateCreated, roles, appUser.Id);
                         user.Token = GenerateToken(appUser, roles);
                         return await Task.FromResult(new ResponseModel(ResponseCode.OK, "", user));
                     }

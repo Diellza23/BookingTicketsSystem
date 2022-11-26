@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,15 +30,40 @@ import { PropertyUserComponent } from './property/propertyUser/propertyUser.comp
 import { ProfileComponent } from './profile/profile.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { EditPropertyComponent } from './property/edit-property/edit-property.component';
+import { PropertyRentComponent } from './property/property-rent/property-rent.component';
+import { PropertySellComponent } from './property/property-sell/property-sell.component';
+import { AuthGuardService } from './guards/auth.service';
 
 const appRoutes: Routes = [
   // {path: 'add-property', component: AddPropertyComponent},
-  { path: '', component: PropertyListComponent },
-
-  { path: 'add-property', component: AddPropertyComponent },
-  { path: 'rent-property', component: PropertyListComponent },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
   { path: 'main', component: MainComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'propertyCard', component: PropertyCardComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'user-management',
+    component: UserManagementComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'all-user-management',
+    component: AllUserManagementComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'add-property',
+    component: AddPropertyComponent,
+    canActivate: [AuthGuardService],
+  },
+  { path: 'sell-property', component: PropertySellComponent },
+  { path: 'rent-property', component: PropertyRentComponent },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuardService],
+  },
   { path: 'about-us', component: AboutUsComponent },
   {
     path: 'property-detail/:id',
@@ -47,7 +71,11 @@ const appRoutes: Routes = [
     resolve: { prp: PropertyDetailsResolverService },
   },
 
-  { path: 'edit-property/:id', component: EditPropertyComponent },
+  {
+    path: 'edit-property/:id',
+    component: EditPropertyComponent,
+    canActivate: [AuthGuardService],
+  },
 
   { path: '**', component: PropertyListComponent },
 ];
@@ -71,10 +99,11 @@ const appRoutes: Routes = [
     EditPropertyComponent,
     ProfileComponent,
     AboutUsComponent,
+    PropertyRentComponent,
+    PropertySellComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,

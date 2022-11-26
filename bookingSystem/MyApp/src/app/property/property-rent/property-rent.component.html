@@ -32,6 +32,10 @@
     <i *ngIf="SortDirection === 'asc'" class="fas fa-sort-alpha-down"></i>
     <i *ngIf="SortDirection === 'desc'" class="fas fa-sort-alpha-up"></i>
   </button> -->
+  <h3>Properties up for RENT</h3>
+  <h5>
+    Find your ideal property to rent to fullfill your needs on your budget.
+  </h5>
 
   <form class="home__search">
     <i class="bx bxs-map"></i>
@@ -44,15 +48,6 @@
   </form>
 
   <div class="container properties">
-    <h3>All the Properties able to RENT or PURCHASE</h3>
-    <button class="butoni btn" routerLink="/rent-property">
-      See ONLY properties that are able for RENT
-      <i class="bx bx-right-arrow-circle"></i>
-    </button>
-    <button style="float:right" class="butoni btn" routerLink="/sell-property">
-      See ONLY properties that are able for PURCHASE
-      <i class="bx bx-right-arrow-circle"></i>
-    </button>
     <div class="row">
       <!--klasa col-lg-2 col-md-6 mb-2 per 6 cards ne nje row ;)-->
       <div class="col-md-3 col-xs-3" *ngFor="let property of properties">

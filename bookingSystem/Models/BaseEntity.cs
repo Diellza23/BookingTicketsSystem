@@ -7,7 +7,7 @@ namespace bookingSystem.Models
     {
         // [Column(Order = 0)]
         public int Id { get; set; }
-        public DateTime LastUpdatedOn { get; set; } = DateTime.Now;
-        public int LastUpdatedBy { get; set; }
+        // public DateTime LastUpdatedOn { get; set; } = DateTime.Now;
+        // public int LastUpdatedBy { get; set; }
     }
 }

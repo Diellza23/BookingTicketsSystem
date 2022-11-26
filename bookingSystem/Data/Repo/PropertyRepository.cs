@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -109,6 +110,65 @@ namespace bookingSystem.Data.Repo
             return property;
         }
 
+        public async Task<Propperty> AddUpdateProperty(int id, int sellRent, string name, int propertyTypeId, int furnishingTypeId, int price, int bhk, int builtArea, int cityId, bool readyToMove, int carpetArea, string address, string address2, int floorNo, int totalFloors, string mainEntrance, int security, bool gated, int maintenance, DateTime estPossessionOn, string description, string authorId)
+        {
+            var tempPropperty = dc.Propperties.FirstOrDefault(x => x.Id == id);
+            if (tempPropperty == null)
+            {
+                tempPropperty = new Propperty()
+                {
+                    SellRent = sellRent,
+                    Name = name,
+                    PropertyTypeId = propertyTypeId,
+                    FurnishingTypeId = furnishingTypeId,
+                    Price = price,
+                    BHK = bhk,
+                    BuiltArea = builtArea,
+                    CityId = cityId,
+                    ReadyToMove = readyToMove,
+                    CarpetArea = carpetArea,
+                    Address = address,
+                    Address2 = address2,
+                    FloorNo = floorNo,
+                    TotalFloors = totalFloors,
+                    MainEntrance = mainEntrance,
+                    Security = security,
+                    Gated = gated,
+                    Maintenance = maintenance,
+                    EstPossessionOn = estPossessionOn,
+                    Description = description,
+                    AppUserId = authorId,
+                    PostedOn = DateTime.UtcNow,
 
+                };
+                await dc.Propperties.AddAsync(tempPropperty);
+                await dc.SaveChangesAsync();
+                return tempPropperty;
+            }
+            tempPropperty.SellRent = sellRent;
+            tempPropperty.Name = name;
+            tempPropperty.PropertyTypeId = propertyTypeId;
+            tempPropperty.FurnishingTypeId = furnishingTypeId;
+            tempPropperty.Price = price;
+            tempPropperty.BHK = bhk;
+            tempPropperty.BuiltArea = builtArea;
+            tempPropperty.CityId = cityId;
+            tempPropperty.ReadyToMove = readyToMove;
+            tempPropperty.CarpetArea = carpetArea;
+            tempPropperty.Address = address;
+            tempPropperty.Address2 = address2;
+            tempPropperty.FloorNo = floorNo;
+            tempPropperty.TotalFloors = totalFloors;
+            tempPropperty.MainEntrance = mainEntrance;
+            tempPropperty.Security = security;
+            tempPropperty.Gated = gated;
+            tempPropperty.Maintenance = maintenance;
+            tempPropperty.EstPossessionOn = DateTime.UtcNow;
+            tempPropperty.Description = description;
+
+            dc.Update(tempPropperty);
+            await dc.SaveChangesAsync();
+            return tempPropperty;
+        }
     }
 }

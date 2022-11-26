@@ -12,6 +12,7 @@ using bookingSystem.Middlewares;
 using bookingSystem.Services;
 using Claim.Data;
 using Data.Entities;
+using IService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -28,6 +29,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Models;
+using Service;
 
 namespace bookingSystem
 {
@@ -70,6 +72,9 @@ namespace bookingSystem
                     ValidAudience = audience
                 };
             });
+
+            services.AddScoped<IPropertyService, PropertyService>();
+
             services.AddCors(opt =>
             {
                 opt.AddPolicy(_loginOrigin, builder =>

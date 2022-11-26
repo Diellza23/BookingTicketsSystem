@@ -54,6 +54,11 @@ export class HousingService {
       `https://localhost:5001/api/propperty/top3/`
     );
   }
+  getTopEightProperties(): Observable<Property[]> {
+    return this.http.get<Property[]>(
+      `https://localhost:5001/api/propperty/top8/`
+    );
+  }
 
   // deleteUser(id: string) {
   //   return this.httpClient.delete(
@@ -67,19 +72,22 @@ export class HousingService {
     );
   }
 
-  // getAllProperties(SellRent?: number): Observable<Property[]> {
-  //   return this.http.get<Property[]>(
-  //     this.baseUrl + '/propperty/list/' + SellRent.toString()
-  //   );
-  // }
+  getAllPropertiesRent(SellRent?: number): Observable<Property[]> {
+    return this.http.get<Property[]>(
+      this.baseUrl + '/propperty/list/' + SellRent.toString()
+    );
+  }
 
   addProperty(property: Property) {
-    return this.http.post(`https://localhost:5001/api/propperty/add`, property);
+    return this.http.post(
+      `https://localhost:5001/api/propperty/AddUpdateProperty`,
+      property
+    );
   }
 
   editProperty(property: Property) {
     return this.http.put(
-      `https://localhost:5001/api/propperty/edit/{id}`,
+      `https://localhost:5001/api/propperty/AddUpdateProperty/`,
       property
     );
   }

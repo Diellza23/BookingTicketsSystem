@@ -39,8 +39,8 @@ namespace bookingSystem.Controllers
         public async Task<IActionResult> AddPropertyType(PropertyTypeDto propertyTypeDto)
         {
             var propertyType = mapper.Map<PropertyType>(propertyTypeDto);
-            propertyType.LastUpdatedBy = 1;
-            propertyType.LastUpdatedOn = DateTime.Now;
+            // propertyType.LastUpdatedBy = 1;
+            // propertyType.LastUpdatedOn = DateTime.Now;
             uow.PropertyTypeRepository.AddPropertyType(propertyType);
             await uow.SaveAsync();
             return new JsonResult(propertyType);

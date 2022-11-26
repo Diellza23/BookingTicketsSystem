@@ -57,8 +57,8 @@ namespace bookingSystem.Controllers
         public async Task<IActionResult> AddCity(CityDto cityDto)
         {
             var city = mapper.Map<City>(cityDto);
-            city.LastUpdatedBy = 1;
-            city.LastUpdatedOn = DateTime.Now;
+            // city.LastUpdatedBy = 1;
+            // city.LastUpdatedOn = DateTime.Now;
             uow.CityRepository.AddCity(city);
             await uow.SaveAsync();
             return StatusCode(201);
@@ -75,8 +75,8 @@ namespace bookingSystem.Controllers
             if (cityFromDb == null)
                 return BadRequest("Update not allowed");
 
-            cityFromDb.LastUpdatedBy = 1;
-            cityFromDb.LastUpdatedOn = DateTime.Now;
+            // cityFromDb.LastUpdatedBy = 1;
+            // cityFromDb.LastUpdatedOn = DateTime.Now;
             mapper.Map(cityDto, cityFromDb);
             // throw new Exception("Some unknown error occurred");
             await uow.SaveAsync();
@@ -88,8 +88,8 @@ namespace bookingSystem.Controllers
         public async Task<IActionResult> UpdateCity(int id, CityUpdateDto cityDto)
         {
             var cityFromDb = await uow.CityRepository.FindCity(id);
-            cityFromDb.LastUpdatedBy = 1;
-            cityFromDb.LastUpdatedOn = DateTime.Now;
+            // cityFromDb.LastUpdatedBy = 1;
+            // cityFromDb.LastUpdatedOn = DateTime.Now;
             mapper.Map(cityDto, cityFromDb);
             await uow.SaveAsync();
             return StatusCode(200);
@@ -100,8 +100,8 @@ namespace bookingSystem.Controllers
         public async Task<IActionResult> UpdateCityPatch(int id, JsonPatchDocument<City> citytoPatch)
         {
             var cityFromDb = await uow.CityRepository.FindCity(id);
-            cityFromDb.LastUpdatedBy = 1;
-            cityFromDb.LastUpdatedOn = DateTime.Now;
+            // cityFromDb.LastUpdatedBy = 1;
+            // cityFromDb.LastUpdatedOn = DateTime.Now;
 
             citytoPatch.ApplyTo(cityFromDb, ModelState);
             await uow.SaveAsync();

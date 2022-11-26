@@ -39,7 +39,9 @@ namespace bookingSystem.Models
         public ICollection<Photo> Photos { get; set; }
         public DateTime PostedOn { get; set; } = DateTime.Now;
 
-        public int PostedBy { get; set; }
+
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
         // public AppUser AppUser { get; set; }
     }
 }
