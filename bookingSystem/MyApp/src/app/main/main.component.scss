@@ -630,6 +630,25 @@ button {
   }
 }
 
+@media screen and(max-width:767px) {
+  // .popular__card {
+  //   width: 300px;
+  //   margin-left: 60px;
+  //   // background-color: aquamarine;
+  // }
+
+  .popular__image {
+    width: 400px;
+    margin-left: 7px;
+  }
+
+  .popular__card {
+    width: 430px;
+
+    // margin-left: -80px;
+  }
+}
+
 @media screen and(min-width:767px) {
   .home__container {
     grid-template-columns: repeat(2, 1fr);
@@ -666,6 +685,9 @@ button {
 }
 
 @media screen and(min-width: 1023px) {
+  .popular__image {
+    margin-left: 10px;
+  }
   .section {
     padding: 7.5rem 0 1rem;
   }

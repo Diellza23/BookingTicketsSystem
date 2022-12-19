@@ -8,9 +8,11 @@ using bookingSystem.Dtos;
 using bookingSystem.Interfaces;
 using bookingSystem.Models;
 using Claim.Data;
+using Data.Entities;
 using Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -26,16 +28,18 @@ namespace bookingSystem.Controllers
         private readonly IUnitOfWork uow;
         private readonly IMapper mapper;
         private readonly IPhotoService photoService;
+        private readonly UserManager<AppUser> _userManager;
 
         private readonly IConfiguration _configuration;
 
-        public ProppertyController(AppDBContext _appDbContext, IUnitOfWork uow, IMapper mapper, IPhotoService photoService, IConfiguration configuration)
+        public ProppertyController(AppDBContext _appDbContext, IUnitOfWork uow, IMapper mapper, IPhotoService photoService, IConfiguration configuration, UserManager<AppUser> userManager)
         {
             _appDbContext = appDBContext;
             this.photoService = photoService;
             this.uow = uow;
             this.mapper = mapper;
             _configuration = configuration;
+            _userManager = userManager;
         }
 
         [HttpGet("list/{sellRent}")]
@@ -60,6 +64,7 @@ namespace bookingSystem.Controllers
         [HttpPost("AddUpdateProperty")]
         public async Task<object> AddUpdateProperty([FromBody] PropertyDto model)
         {
+
             try
             {
                 if (model == null || model.Name.Length < 1)
@@ -190,9 +195,6 @@ namespace bookingSystem.Controllers
 
             return new JsonResult(table);
         }
-
-
-
 
 
 

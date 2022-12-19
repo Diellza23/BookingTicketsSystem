@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Property } from 'src/app/model/property';
+import { Constants } from 'src/app/Helper/constants';
 
 @Component({
   selector: 'app-property-list',
@@ -43,6 +44,10 @@ export class PropertyListComponent implements OnInit {
   }
   onCityFilter() {
     this.SearchCity = this.City;
+  }
+  get isUserlogin() {
+    const user = localStorage.getItem(Constants.USER_KEY);
+    return user && user.length > 0;
   }
 
   onCityFilterClear() {

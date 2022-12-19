@@ -30,6 +30,7 @@
             class="btn"
             style="float: right; color: rgb(189, 123, 0)"
             routerLink="/edit-property/{{ property.id }}"
+            *ngIf="isUserlogin"
           >
             Edit
             <i class="fa-solid fa-pen-to-square"></i>

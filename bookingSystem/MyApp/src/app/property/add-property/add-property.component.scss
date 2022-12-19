@@ -32,3 +32,32 @@
   width: 100px;
   margin-right: 10px;
 }
+
+@media screen and(max-width:700px) {
+  .card {
+    width: 600px;
+  }
+}
+@media screen and(max-width:1000px) {
+  .cardImg {
+    width: 240px;
+  }
+}
+
+@media screen and(max-width:700px) {
+  .cardImage {
+    width: 500px;
+
+    margin-bottom: 50px;
+  }
+  .cardImg {
+    width: 100%;
+  }
+}
+
+// @media screen and(min-width:736px) {
+//   .cardImage {
+//     width: 300px;
+//     background-color: #ff0000;
+//   }
+// }

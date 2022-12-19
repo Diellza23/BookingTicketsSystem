@@ -47,7 +47,24 @@ button {
 }
 
 .butoni {
-  background-color: rgb(214, 234, 255);
+  border: 1px solid rgb(84, 136, 191);
+  // background-color: rgb(214, 234, 255);
+  // text-decoration: overline;
+  // text-decoration: underline;
+}
+
+@media screen and(max-width:767px) {
+  .cards {
+    width: 100%;
+    margin-left: 60px;
+    // background-color: aquamarine;
+  }
+}
+
+@media screen and(min-width:1023px) {
+  .cards {
+    margin-left: -5px;
+  }
 }
 
 .butoni:hover {

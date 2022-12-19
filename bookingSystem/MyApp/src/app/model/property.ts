@@ -1,6 +1,6 @@
 import { IPropertyBase } from './ipropertybase';
-import { Photo } from './Photo';
-
+import { Photo } from './photo';
+// import { Photo } from './Photo';
 export class Property implements IPropertyBase {
   id: number;
   sellRent: number;

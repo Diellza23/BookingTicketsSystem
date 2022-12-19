@@ -2,15 +2,40 @@
   padding: 1rem 0 5rem;
 }
 
+// @media screen and(min-width:767px) {
+//   .popular__card {
+//     background-color: aqua;
+//   }
+// }
+
 .popular__card {
   width: 290px;
   background-color: var(--container-color);
   padding: 0.5rem 0.5rem 1.5rem;
 }
 
+@media screen and(max-width:767px) {
+  .popular__image {
+    width: 380px;
+    margin-left: -5px;
+  }
+
+  .popular__card {
+    width: 500px;
+    margin-left: -80px;
+  }
+}
+
+@media screen and(min-width:1023px) {
+  .popular__image {
+    margin-left: -8px;
+  }
+}
+
 .popular__image {
   border-radius: 1rem;
   margin-bottom: 1rem;
+  // margin-left: -8px;
 }
 
 .popular__data {

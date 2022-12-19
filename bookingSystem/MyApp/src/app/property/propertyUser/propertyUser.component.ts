@@ -4,6 +4,7 @@ import { IPropertyBase } from 'src/app/model/ipropertybase';
 import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { Routes, RouterModule } from '@angular/router';
+import { Constants } from 'src/app/Helper/constants';
 
 @Component({
   selector: 'app-propertyUser',
@@ -28,6 +29,10 @@ export class PropertyUserComponent {
         console.log(error);
       }
     );
+  }
+  get isUserlogin() {
+    const user = localStorage.getItem(Constants.USER_KEY);
+    return user && user.length > 0;
   }
 
   @Input() property: IPropertyBase;
