@@ -18,6 +18,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Model;
+using Model.BindingModel;
 
 namespace bookingSystem.Controllers
 {
@@ -60,7 +61,7 @@ namespace bookingSystem.Controllers
             return new JsonResult(propertyDTO);
         }
 
-        [Authorize(Roles = "Admin,User")]
+        // [Authorize(Roles = "Admin,User")]
         [HttpPost("AddUpdateProperty")]
         public async Task<object> AddUpdateProperty([FromBody] PropertyDto model)
         {
@@ -74,6 +75,52 @@ namespace bookingSystem.Controllers
                 var result = await uow.PropertyRepository.AddUpdateProperty(model.Id, model.SellRent, model.Name, model.PropertyTypeId, model.FurnishingTypeId, model.Price, model.BHK, model.BuiltArea, model.CityId, model.ReadyToMove, model.CarpetArea, model.Address, model.Address2, model.FloorNo, model.TotalFloors, model.MainEntrance, model.Security, model.Gated, model.Maintenance, model.EstPossessionOn, model.Description, model.AppUserId);
 
                 return await Task.FromResult(new ResponseModel(ResponseCode.OK, (model.Id > 0 ? "Recorded Update" : "New Record added"), result));
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(new ResponseModel(ResponseCode.Error, ex.Message, null));
+            }
+        }
+
+
+        [AllowAnonymous]
+        [HttpGet("GetPropertyList")]
+        public async Task<object> GetPropertyList([FromQuery] string AuthorId)
+        {
+            try
+            {
+                if (AuthorId.Length < 3)
+                {
+                    return await Task.FromResult(new ResponseModel(ResponseCode.Error, "Parameters are missing", null));
+                }
+
+                var result = await uow.PropertyRepository.GetAllProperties(AuthorId);
+
+
+                return await Task.FromResult(new ResponseModel(ResponseCode.OK, "", result));
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(new ResponseModel(ResponseCode.Error, ex.Message, null));
+            }
+        }
+
+
+        [Authorize(Roles = "Admin,User")]
+        [HttpPost("DeleteProperty")]
+        public async Task<object> DeleteProperty([FromBody] DeletePropBindingModel model)
+        {
+            try
+            {
+                if (model.Id < 1)
+                {
+                    return await Task.FromResult(new ResponseModel(ResponseCode.Error, "Parameters are missing", null));
+                }
+
+                var result = await uow.PropertyRepository.DeleteProperty(model.Id);
+
+
+                return await Task.FromResult(new ResponseModel(ResponseCode.OK, "Record Deleted", result));
             }
             catch (Exception ex)
             {
@@ -104,13 +151,13 @@ namespace bookingSystem.Controllers
         //     return new JsonResult("IT DOESNT WORK");
         // }
 
-        [HttpDelete("deleteProperty/id")]
-        public async Task<IActionResult> DeleteProperty(int id)
-        {
-            uow.PropertyRepository.DeleteProperty(id);
-            await uow.SaveAsync();
-            return new JsonResult("Deleted", id);
-        }
+        // [HttpDelete("deleteProperty/id")]
+        // public async Task<IActionResult> DeleteProperty(int id)
+        // {
+        //     uow.PropertyRepository.DeleteProperty(id);
+        //     await uow.SaveAsync();
+        //     return new JsonResult("Deleted", id);
+        // }
 
         [HttpGet("allProperties")]
         public async Task<IActionResult> GetProperties()
@@ -252,5 +299,8 @@ namespace bookingSystem.Controllers
             return new BadRequestObjectResult("Some error occurred, failed to delete this photo");
 
         }
+
+
+
     }
 }

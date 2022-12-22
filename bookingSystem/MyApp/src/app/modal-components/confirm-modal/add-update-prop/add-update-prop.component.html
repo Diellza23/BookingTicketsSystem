@@ -1,0 +1,257 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{ headerTitle }}</h4>
+  <button
+    type="button"
+    class="btn-close close pull-right"
+    aria-label="Close"
+    (click)="decline()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="addUpdatePropForm">
+    <div class="row">
+      <label>Sell Rent</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="sellRent"
+          name="sellRent"
+          class="form-control"
+          formControlName="sellRent"
+          [(ngModel)]="sellRent"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>Name</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-control"
+          formControlName="name"
+          [(ngModel)]="name"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>Proptype</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="propertyType"
+          name="propertyType"
+          class="form-control"
+          formControlName="propertyType"
+          [(ngModel)]="propertyType"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>FurnishingType</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="furnishingType"
+          name="furnishingType"
+          class="form-control"
+          formControlName="furnishingType"
+          [(ngModel)]="furnishingType"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>Price</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="price"
+          name="price"
+          class="form-control"
+          formControlName="price"
+          [(ngModel)]="price"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>BuiltArea</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="builtArea"
+          name="builtArea"
+          class="form-control"
+          formControlName="builtArea"
+          [(ngModel)]="builtArea"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>Address</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="address"
+          name="address"
+          class="form-control"
+          formControlName="address"
+          [(ngModel)]="address"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>Address</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="address2"
+          name="address2"
+          class="form-control"
+          formControlName="address2"
+          [(ngModel)]="address2"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>City</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="city"
+          name="city"
+          class="form-control"
+          formControlName="city"
+          [(ngModel)]="city"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>Country</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="country"
+          name="country"
+          class="form-control"
+          formControlName="country"
+          [(ngModel)]="country"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>FloorNo</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="floorNo"
+          name="floorNo"
+          class="form-control"
+          formControlName="floorNo"
+          [(ngModel)]="floorNo"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>TotalFloors</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="totalFloors"
+          name="totalFloors"
+          class="form-control"
+          formControlName="totalFloors"
+          [(ngModel)]="totalFloors"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>ReadyToMove</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="readyToMove"
+          name="readyToMove"
+          class="form-control"
+          formControlName="readyToMove"
+          [(ngModel)]="readyToMove"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>MainEntrance</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="mainEntrance"
+          name="mainEntrance"
+          class="form-control"
+          formControlName="mainEntrance"
+          [(ngModel)]="mainEntrance"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>Security</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="security"
+          name="security"
+          class="form-control"
+          formControlName="security"
+          [(ngModel)]="security"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>Maintenance</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="maintenance"
+          name="maintenance"
+          class="form-control"
+          formControlName="maintenance"
+          [(ngModel)]="maintenance"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>DateOfPossession</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="dateOfPossession"
+          name="dateOfPossession"
+          class="form-control"
+          formControlName="dateOfPossession"
+          [(ngModel)]="dateOfPossession"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label>Description</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="description"
+          name="description"
+          class="form-control"
+          formControlName="description"
+          [(ngModel)]="description"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="decline()">
+    Close
+  </button>
+  <button type="submit" class="btn btn-default" (click)="confirm()">
+    {{ confirmBtnTitle }}
+  </button>
+</div>

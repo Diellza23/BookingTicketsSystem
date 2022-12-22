@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using bookingSystem.Interfaces;
 using bookingSystem.Models;
 using Claim.Data;
+using DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace bookingSystem.Data.Repo
@@ -22,11 +23,11 @@ namespace bookingSystem.Data.Repo
             dc.Propperties.Add(property);
         }
 
-        public void DeleteProperty(int id)
-        {
-            var property = dc.Propperties.Find(id);
-            dc.Propperties.Remove(property);
-        }
+        // public void DeleteProperty(int id)
+        // {
+        //     var property = dc.Propperties.Find(id);
+        //     dc.Propperties.Remove(property);
+        // }
 
         public async Task<IEnumerable<Propperty>> GetPropertiesAsync(int sellRent)
         {
@@ -163,12 +164,57 @@ namespace bookingSystem.Data.Repo
             tempPropperty.Security = security;
             tempPropperty.Gated = gated;
             tempPropperty.Maintenance = maintenance;
-            tempPropperty.EstPossessionOn = DateTime.UtcNow;
+            tempPropperty.EstPossessionOn = estPossessionOn;
             tempPropperty.Description = description;
 
             dc.Update(tempPropperty);
             await dc.SaveChangesAsync();
             return tempPropperty;
         }
+
+        public async Task<List<PropertyDTO>> GetAllProperties(string authorId)
+        {
+            return await (
+                from property in dc.Propperties
+                where property.AppUserId == authorId
+                select new PropertyDTO()
+                {
+                    Id = property.Id,
+                    SellRent = property.SellRent,
+                    Name = property.Name,
+                    PropertyType = property.PropertyTypeId,
+                    FurnishingType = property.FurnishingTypeId,
+                    Price = property.Price,
+                    BuiltArea = property.BuiltArea,
+                    Address = property.Address,
+                    Address2 = property.Address2,
+                    City = property.CityId,
+                    FloorNo = property.FloorNo,
+                    TotalFloors = property.TotalFloors,
+                    ReadyToMove = property.ReadyToMove,
+                    MainEntrance = property.MainEntrance,
+                    Security = property.Security,
+                    Maintenance = property.Maintenance,
+                    Description = property.Description,
+                    AppUserId = property.AppUserId,
+                    AuthorName = property.AppUser.FullName,
+                    Created = property.PostedOn,
+                }
+            ).ToListAsync();
+        }
+
+        public async Task<bool> DeleteProperty(int id)
+        {
+            var tempProperty = dc.Propperties.FirstOrDefault(x => x.Id == id);
+            if (tempProperty == null)
+                return await Task.FromResult(true);
+
+            dc.Propperties.Remove(tempProperty);
+            await dc.SaveChangesAsync();
+            return await Task.FromResult(true);
+        }
+
+
+
     }
 }

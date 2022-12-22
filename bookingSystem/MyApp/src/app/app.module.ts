@@ -33,6 +33,10 @@ import { EditPropertyComponent } from './property/edit-property/edit-property.co
 import { PropertyRentComponent } from './property/property-rent/property-rent.component';
 import { PropertySellComponent } from './property/property-sell/property-sell.component';
 import { AuthGuardService } from './guards/auth.service';
+import { PropertyModuleComponent } from './property-module/prop-moduleManagement/property-module.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ConfirmModalComponent } from './modal-components/confirm-modal/confirm-modal.component';
+import { AddUpdatePropComponent } from './modal-components/confirm-modal/add-update-prop/add-update-prop.component';
 
 const appRoutes: Routes = [
   // {path: 'add-property', component: AddPropertyComponent},
@@ -42,6 +46,7 @@ const appRoutes: Routes = [
   { path: 'propertyCard', component: PropertyCardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'property-management', component: PropertyModuleComponent },
   {
     path: 'user-management',
     component: UserManagementComponent,
@@ -101,6 +106,9 @@ const appRoutes: Routes = [
     AboutUsComponent,
     PropertyRentComponent,
     PropertySellComponent,
+    PropertyModuleComponent,
+    ConfirmModalComponent,
+    AddUpdatePropComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,7 +123,9 @@ const appRoutes: Routes = [
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
     NgxGalleryModule,
+    ModalModule.forRoot(),
   ],
+  entryComponents: [ConfirmModalComponent],
   providers: [
     HousingService,
     AlertifyService,

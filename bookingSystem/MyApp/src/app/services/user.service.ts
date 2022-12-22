@@ -12,15 +12,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  private readonly baseURL: string = 'https://localhost:5001/api/user/';
-
   constructor(private httpClient: HttpClient) {}
   public login(email: string, password: string) {
     const body = {
       Email: email,
       Password: password,
     };
-    return this.httpClient.post<ResponseModel>(this.baseURL + 'Login', body);
+    return this.httpClient.post<ResponseModel>(
+      Constants.BASE_URL + 'user/Login',
+      body
+    );
   }
 
   public register(
@@ -36,7 +37,7 @@ export class UserService {
       Roles: roles,
     };
     return this.httpClient.post<ResponseModel>(
-      this.baseURL + 'RegisterUser',
+      Constants.BASE_URL + 'user/RegisterUser',
       body
     );
   }
@@ -46,7 +47,7 @@ export class UserService {
       Authorization: `Bearer ${userInfo?.token}`,
     });
     return this.httpClient
-      .get<ResponseModel>(this.baseURL + 'GetAllUser', {
+      .get<ResponseModel>(Constants.BASE_URL + 'user/GetAllUser', {
         headers: headers,
       })
       .pipe(
@@ -72,7 +73,7 @@ export class UserService {
       Authorization: `Bearer ${userInfo?.token}`,
     });
     return this.httpClient
-      .get<ResponseModel>(this.baseURL + 'GetUserList', {
+      .get<ResponseModel>(Constants.BASE_URL + 'user/GetUserList', {
         headers: headers,
       })
       .pipe(
@@ -98,7 +99,7 @@ export class UserService {
       Authorization: `Bearer ${userInfo?.token}`,
     });
     return this.httpClient
-      .get<ResponseModel>(this.baseURL + 'GetRoles', {
+      .get<ResponseModel>(Constants.BASE_URL + 'user/GetRoles', {
         headers: headers,
       })
       .pipe(

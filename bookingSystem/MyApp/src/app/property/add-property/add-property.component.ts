@@ -13,6 +13,8 @@ import { HousingService } from 'src/app/services/housing.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { Ikeyvaluepair } from 'src/app/model/ikeyvaluepair';
 import { DatePipe } from '@angular/common';
+import { Constants } from 'src/app/Helper/constants';
+import { User } from 'src/app/Models/user';
 
 @Component({
   selector: 'app-add-property',
@@ -44,6 +46,7 @@ export class AddPropertyComponent implements OnInit {
     readyToMove: null,
     country: null,
     description: null,
+    appUserId: null,
   };
 
   constructor(
@@ -220,6 +223,10 @@ export class AddPropertyComponent implements OnInit {
     return this.OtherInfo.controls.Description as FormControl;
   }
 
+  get user(): User {
+    return JSON.parse(localStorage.getItem(Constants.USER_KEY)) as User;
+  }
+
   // #endregion
   // #endregion
 
@@ -231,18 +238,20 @@ export class AddPropertyComponent implements OnInit {
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapProperty();
-      this.housingService.addProperty(this.property).subscribe(() => {
-        this.alertify.success(
-          'Congrats, your property listed successfully on our website'
-        );
-        console.log(this.addPropertyForm);
+      this.housingService
+        .addProperty(this.property, this.user.id)
+        .subscribe(() => {
+          this.alertify.success(
+            'Congrats, your property listed successfully on our website'
+          );
+          console.log(this.addPropertyForm);
 
-        if (this.SellRent.value === '2') {
-          this.router.navigate(['/rent-property']);
-        } else {
-          this.router.navigate(['/']);
-        }
-      });
+          if (this.SellRent.value === '2') {
+            this.router.navigate(['/rent-property']);
+          } else {
+            this.router.navigate(['/']);
+          }
+        });
     } else {
       this.alertify.error(
         'Please review the form and provide all valid entries'
@@ -277,6 +286,7 @@ export class AddPropertyComponent implements OnInit {
       'MM/dd/yyyy'
     );
     this.property.description = this.Description.value;
+    this.property.appUserId = this.user.id;
   }
 
   allTabsValid(): boolean {

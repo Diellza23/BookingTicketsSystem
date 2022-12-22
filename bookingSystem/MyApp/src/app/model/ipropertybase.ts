@@ -13,4 +13,5 @@ export interface IPropertyBase {
   photo?: string;
   estPossessionOn?: string;
   description?: string;
+  appUserId?: string;
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 // import { IProperty } from '../property/IProperty.interface';
 import { Observable } from 'rxjs';
@@ -8,6 +8,7 @@ import { Property } from '../model/property';
 import { IPropertyBase } from '../model/ipropertybase';
 import { environment } from 'src/environments/environment';
 import { Ikeyvaluepair } from '../model/ikeyvaluepair';
+import { Constants } from '../Helper/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -78,10 +79,16 @@ export class HousingService {
     );
   }
 
-  addProperty(property: Property) {
+  addProperty(property: Property, authorId: string) {
+    let userInfo = JSON.parse(localStorage.getItem(Constants.USER_KEY));
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${userInfo?.token}`,
+    });
     return this.http.post(
-      `https://localhost:5001/api/propperty/AddUpdateProperty`,
-      property
+      `https://localhost:5001/api/propperty/AddUpdateProperty?AuthorId=` +
+        authorId,
+      property,
+      { headers: headers }
     );
   }
 
@@ -98,9 +105,9 @@ export class HousingService {
     );
   }
 
-  updateProperty(id, data) {
+  updateProperty(id: number, data: any) {
     return this.http.put(
-      `https://localhost:5001/api/propperty/edit/id=` + id,
+      `https://localhost:5001/api/propperty/AddUpdateProperty/${id}`,
       data
     );
   }

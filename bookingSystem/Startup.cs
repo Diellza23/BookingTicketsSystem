@@ -29,7 +29,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Models;
-using Service;
+// using Service;
 
 namespace bookingSystem
 {
@@ -73,7 +73,7 @@ namespace bookingSystem
                 };
             });
 
-            services.AddScoped<IPropertyService, PropertyService>();
+            // services.AddScoped<IPropertyService, PropertyService>();
 
             services.AddCors(opt =>
             {
