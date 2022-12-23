@@ -17,7 +17,7 @@ export class Property implements IPropertyBase {
   furnishingType: string;
   carpetArea?: number;
   address: string;
-  address2?: string;
+  address2: string;
   floorNo?: string;
   totalFloors?: string;
   readyToMove: boolean;

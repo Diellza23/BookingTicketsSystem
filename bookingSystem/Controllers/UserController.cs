@@ -262,6 +262,39 @@ namespace bookingSystem.Controllers
             return NotFound();
         }
 
+        [HttpPost("editInfo")]
+        public async Task<IActionResult> EditUser(UserDTO model)
+        {
+            var user = await _userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+            {
+                return new JsonResult($"User with Id = {model.Id} cannot be found");
+            }
+            else
+            {
+                user.Id = model.Id;
+                user.Email = model.Email;
+                user.UserName = model.UserName;
+                user.FullName = model.FullName;
+                // user.Password = model.Password;
+
+                var result = await _userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return new JsonResult("U nderruar");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return new OkResult();
+            }
+        }
+
 
     }
 }

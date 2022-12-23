@@ -1,45 +1,66 @@
-<!-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-6">
+<div
+  class="container"
+  style="
+    background-color: rgb(84, 78, 97);
+    color: white;
+    margin-top: 30px;
+    height: 100px;
+    padding-top: 30px;
+  "
+>
+  <div>
+    <h3 style="display: inline">Users</h3>
+    <p style="display: inline; margin-left: 50px; color: rgb(181, 193, 193)">
+      Authenticate and authorize users
+    </p>
+  </div>
+</div>
 
-            <div class="card" >
-
-            </div>
+<table class="table align-middle mb-0 bg-white container">
+  <thead class="bg-light">
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>UserName</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userList">
+      <td>
+        <div class="d-flex align-items-center">
+          <img
+            src="../../assets/images/user.png"
+            alt=""
+            style="width: 45px; height: 45px"
+            class="rounded-circle"
+          />
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{ user.fullName }}</p>
+            <p class="text-muted mb-0">{{ user.id }}</p>
+          </div>
         </div>
-    </div>
-</div> -->
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{ user.email }}</p>
+        <!-- <p class="text-muted mb-0">App User</p> -->
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{ user.userName }}</p>
+        <!-- <p class="text-muted mb-0">Username</p> -->
+      </td>
 
-<div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <!-- <th scope="col">Id</th> -->
-        <th scope="col">Full Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">UserName</th>
-        <th scope="col">Role</th>
-        <th scope="col">Operations</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of userList">
-        <td></td>
-        <!-- <td>{{ user.id }}</td> -->
-        <td>{{ user.fullName }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.userName }}</td>
-        <td>{{ user.roles.join(",") }}</td>
-        <!-- <button onclick="deleteUser(user)" class="btn-btn-danger">
-          Delete
-        </button> -->
+      <td>{{ user.roles }}</td>
+      <td>
         <button
-          class="btn btn-outline-danger ms-2"
-          (click)="deleteUser(user.id)"
+          type="button"
+          class="btn btn-link btn-sm btn-rounded"
+          (click)="deleteUser(user)"
         >
           Delete
         </button>
-      </tr>
-    </tbody>
-  </table>
-</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
