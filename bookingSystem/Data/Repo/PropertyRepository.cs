@@ -86,15 +86,34 @@ namespace bookingSystem.Data.Repo
 
 
 
-        public async Task<Propperty> UpdatePropperty(Propperty objPropperty)
+        public async Task<Propperty> UpdatePropperty(int id, int sellRent, string name, int propertyTypeId, int furnishingTypeId, int price, int bhk, int builtArea, int cityId, bool readyToMove, int carpetArea, string address, string address2, int floorNo, int totalFloors, string mainEntrance, int security, bool gated, int maintenance, DateTime estPossessionOn, string description, string authorId)
         {
-            dc.Propperties.Update(objPropperty);
+            var tempPropperty = dc.Propperties.FirstOrDefault(x => x.Id == id);
+            
+            tempPropperty.SellRent = sellRent;
+            tempPropperty.Name = name;
+            tempPropperty.PropertyTypeId = propertyTypeId;
+            tempPropperty.FurnishingTypeId = furnishingTypeId;
+            tempPropperty.Price = price;
+            tempPropperty.BHK = bhk;
+            tempPropperty.BuiltArea = builtArea;
+            tempPropperty.CityId = cityId;
+            tempPropperty.ReadyToMove = readyToMove;
+            tempPropperty.CarpetArea = carpetArea;
+            tempPropperty.Address = address;
+            tempPropperty.Address2 = address2;
+            tempPropperty.FloorNo = floorNo;
+            tempPropperty.TotalFloors = totalFloors;
+            tempPropperty.MainEntrance = mainEntrance;
+            tempPropperty.Security = security;
+            tempPropperty.Gated = gated;
+            tempPropperty.Maintenance = maintenance;
+            tempPropperty.EstPossessionOn = estPossessionOn;
+            tempPropperty.Description = description;
+
+            dc.Update(tempPropperty);
             await dc.SaveChangesAsync();
-            return objPropperty;
-            // dc.Propperties.Update(objPropperty);
-            // dc.Entry(objPropperty).State = EntityState.Modified;
-            // await dc.SaveChangesAsync();
-            // return objPropperty;
+            return tempPropperty;
         }
 
         public async Task<Propperty> InsertProperty(Propperty objPropperty)

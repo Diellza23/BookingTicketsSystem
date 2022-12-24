@@ -93,7 +93,7 @@ export class HousingService {
   }
 
   editProperty(property: Property) {
-    return this.http.put(
+    return this.http.post(
       `https://localhost:5001/api/propperty/AddUpdateProperty/`,
       property
     );
@@ -106,8 +106,10 @@ export class HousingService {
   }
 
   updateProperty(id: number, data: any) {
-    return this.http.put(
-      `https://localhost:5001/api/propperty/AddUpdateProperty/${id}`,
+    console.log(data);
+    data.id = +id;
+    return this.http.post(
+      `https://localhost:5001/api/propperty/AddUpdateProperty`,
       data
     );
   }

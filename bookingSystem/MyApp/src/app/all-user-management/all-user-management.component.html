@@ -56,9 +56,16 @@
         <button
           type="button"
           class="btn btn-link btn-sm btn-rounded"
-          (click)="deleteUser(user)"
+          (click)="deleteUser(user.id)"
         >
           Delete
+        </button>
+        <button
+          type="button"
+          class="btn btn-link btn-sm btn-rounded"
+          routerLink="/edit-user-info/{{ user.id }}"
+        >
+          Edit info
         </button>
       </td>
     </tr>

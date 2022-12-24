@@ -87,12 +87,11 @@ export class EditPropertyComponent implements OnInit {
     });
   }
 
-  updateProperty(id: number) {
+  updateProperty() {
     this.housingService
       .updateProperty(this.router.snapshot.params.id, this.editProperty.value)
       .subscribe((result) => {
         this.cityList = this.cityList;
-        console.log(result, 'data updated successfully');
       });
   }
 }

@@ -37,6 +37,8 @@ import { PropertyModuleComponent } from './property-module/prop-moduleManagement
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ConfirmModalComponent } from './modal-components/confirm-modal/confirm-modal.component';
 import { AddUpdatePropComponent } from './modal-components/confirm-modal/add-update-prop/add-update-prop.component';
+import { EditUserInformationComponent } from './edit-user-information/edit-user-information.component';
+import { ChangePasswordComponent } from './change-Password/change-Password.component';
 
 const appRoutes: Routes = [
   // {path: 'add-property', component: AddPropertyComponent},
@@ -50,6 +52,16 @@ const appRoutes: Routes = [
   {
     path: 'user-management',
     component: UserManagementComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'change-password/:id',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'edit-user-info/:id',
+    component: EditUserInformationComponent,
     canActivate: [AuthGuardService],
   },
   {
@@ -109,6 +121,8 @@ const appRoutes: Routes = [
     PropertyModuleComponent,
     ConfirmModalComponent,
     AddUpdatePropComponent,
+    EditUserInformationComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

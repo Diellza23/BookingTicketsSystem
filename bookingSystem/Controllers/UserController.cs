@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using bookingSystem.Models.DTO;
 using Data.Entities;
 using Enum;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -230,15 +231,16 @@ namespace bookingSystem.Controllers
         }
 
         [HttpDelete("DeleteUser/id")]
+        // [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteUser(string id)
         {
-            AppUser user = await _userManager.FindByIdAsync(id);
-            if (user is null)
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
             {
                 return new JsonResult("User with id can not be found: ", id);
 
             }
-            IdentityResult res = await _userManager.DeleteAsync(user);
+            var res = await _userManager.DeleteAsync(user);
 
             if (res.Succeeded)
             {
@@ -250,7 +252,8 @@ namespace bookingSystem.Controllers
             return new JsonResult("User deleted successfully");
         }
 
-        [HttpGet("GetUserById/id")]
+        [AllowAnonymous]
+        [HttpGet("GetUserById/{id}")]
         public async Task<IActionResult> GetUserById(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -262,10 +265,10 @@ namespace bookingSystem.Controllers
             return NotFound();
         }
 
-        [HttpPost("editInfo")]
-        public async Task<IActionResult> EditUser(UserDTO model)
+        [HttpPost("editInfo/{id}")]
+        public async Task<IActionResult> EditUser(UserDTO model, string id)
         {
-            var user = await _userManager.FindByIdAsync(model.Id);
+            var user = await _userManager.FindByIdAsync(id);
 
             if (user == null)
             {
@@ -273,10 +276,12 @@ namespace bookingSystem.Controllers
             }
             else
             {
-                user.Id = model.Id;
+                // user.Id = id;
+                // user.Id = model.Id;
                 user.Email = model.Email;
                 user.UserName = model.UserName;
                 user.FullName = model.FullName;
+                // user.DateCreated = model.DateCreated;
                 // user.Password = model.Password;
 
                 var result = await _userManager.UpdateAsync(user);
@@ -294,6 +299,76 @@ namespace bookingSystem.Controllers
                 return new OkResult();
             }
         }
+
+        [HttpPost("changePassword/{id}")]
+        public async Task<IActionResult> ChangePassword(ChangePassword model, string id)
+        {
+            if (ModelState.IsValid)
+            {
+                // var user = await _userManager.GetUserAsync(User);
+                var user = await _userManager.FindByIdAsync(id);
+                if (user == null)
+                {
+                    return new JsonResult("User with id ${model.Id} doesnt exist");
+                }
+
+                // ChangePasswordAsync changes the user password
+                var result = await _userManager.ChangePasswordAsync(user,
+                    model.CurrentPassword, model.NewPassword);
+
+                // The new password did not meet the complexity rules or
+                // the current password is incorrect. Add these errors to
+                // the ModelState and rerender ChangePassword view
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return new JsonResult("Errors");
+                }
+
+                // Upon successfully changing the password refresh sign-in cookie
+                await _signInManager.RefreshSignInAsync(user);
+                return new JsonResult("Pass changed");
+            }
+
+            return new JsonResult(model);
+        }
+
+        [HttpPost("deleteThisUser/{id}")]
+        public async Task<IActionResult> DeleteUserSpecific(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return new JsonResult("User with ID ={id} cannot be found");
+            }
+            else
+            {
+                var result = await _userManager.DeleteAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return new JsonResult("U fshi");
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return new JsonResult("Tried");
+            }
+        }
+
+
+
+
+
+
+
+
+
 
 
     }

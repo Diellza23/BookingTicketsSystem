@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="col-sm-8 p-0">
-      <form [formGroup]="editProperty" (ngSubmit)="updateProperty(id)">
+      <form [formGroup]="editProperty" (ngSubmit)="updateProperty()">
         <div class="form-group">
           <tabset class="membet-tabset">
             <tab heading="Overview">
@@ -176,7 +176,13 @@
             </tab>
           </tabset>
         </div>
-        <button class="btn btn-primary" type="submit">Save changes</button>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (onclick)="updateProperty()"
+        >
+          Save changes
+        </button>
       </form>
     </div>
   </div>

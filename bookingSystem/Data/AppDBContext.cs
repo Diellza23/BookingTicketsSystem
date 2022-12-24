@@ -25,5 +25,7 @@ namespace Claim.Data
         public DbSet<FurnishingType> FurnishingTypes { get; set; }
 
         public DbSet<Property> Properties { get; set; }
+
+
     }
 }

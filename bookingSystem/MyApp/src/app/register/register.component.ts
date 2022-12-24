@@ -29,12 +29,15 @@ export class RegisterComponent implements OnInit {
     let fullName = this.registerForm.controls['fullName'].value;
     let email = this.registerForm.controls['email'].value;
     let password = this.registerForm.controls['password'].value;
+    
     this.userService
       .register(
         fullName,
         email,
         password,
-        this.roles.filter((x) => x.isSelected).map((x) => x.role)
+
+        this.roles.filter((x) => x.isSelected).map((x) => x.role),
+
       )
       .subscribe(
         (data: ResponseModel) => {

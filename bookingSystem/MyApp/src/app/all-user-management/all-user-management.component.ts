@@ -31,8 +31,8 @@ export class AllUserManagementComponent implements OnInit {
 
       this.userService.deleteUser(id).subscribe((result) => {
         console.warn('deleted?', result);
+        this.getAllUser();
       });
-      window.location.reload();
 
       // this.userService.deleteUser(id).subscribe((user) => {
       //   this.getAllUser();

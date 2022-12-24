@@ -83,6 +83,15 @@ namespace bookingSystem.Controllers
         }
 
 
+
+
+
+
+
+
+
+
+
         [AllowAnonymous]
         [HttpGet("GetPropertyList")]
         public async Task<object> GetPropertyList([FromQuery] string AuthorId)
