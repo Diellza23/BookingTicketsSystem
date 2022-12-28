@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ResponseCode } from '../../enums/responseCode';
 import { Constants } from '../../Helper/constants';
+import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ConfirmModalComponent } from '../../modal-components/confirm-modal/confirm-modal.component';
 import { Prop } from '../../Models/prop';
 import { User } from '../../Models/user';

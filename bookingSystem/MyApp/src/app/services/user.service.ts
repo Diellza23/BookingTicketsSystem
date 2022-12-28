@@ -28,13 +28,21 @@ export class UserService {
     fullName: string,
     email: string,
     password: string,
-    roles: string[]
+    roles: string[],
+    phoneNumber: string,
+    address: string,
+    state: string,
+    country: string
   ) {
     const body = {
       FullName: fullName,
       Email: email,
       Password: password,
       Roles: roles,
+      PhoneNumber: phoneNumber,
+      Address: address,
+      State: state,
+      Country: country,
     };
     return this.httpClient.post<ResponseModel>(
       Constants.BASE_URL + 'user/RegisterUser',
@@ -57,7 +65,17 @@ export class UserService {
             if (res.dateSet) {
               res.dateSet.map((x: User) => {
                 userList.push(
-                  new User(x.id, x.fullName, x.email, x.userName, x.roles)
+                  new User(
+                    x.id,
+                    x.fullName,
+                    x.email,
+                    x.userName,
+                    x.roles,
+                    x.phoneNumber,
+                    x.address,
+                    x.state,
+                    x.country
+                  )
                 );
               });
             }
@@ -83,7 +101,17 @@ export class UserService {
             if (res.dateSet) {
               res.dateSet.map((x: User) => {
                 userList.push(
-                  new User(x.id, x.fullName, x.email, x.userName, x.roles)
+                  new User(
+                    x.id,
+                    x.fullName,
+                    x.email,
+                    x.userName,
+                    x.roles,
+                    x.phoneNumber,
+                    x.address,
+                    x.state,
+                    x.country
+                  )
                 );
               });
             }

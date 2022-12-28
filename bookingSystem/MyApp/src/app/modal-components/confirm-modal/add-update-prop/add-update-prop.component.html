@@ -12,6 +12,19 @@
 <div class="modal-body">
   <form [formGroup]="addUpdatePropForm">
     <div class="row">
+      <label>Id</label>
+      <div class="col-10">
+        <input
+          type="text"
+          id="id"
+          name="id"
+          class="form-control"
+          formControlName="id"
+          [(ngModel)]="propId"
+        />
+      </div>
+    </div>
+    <div class="row">
       <label>Sell Rent</label>
       <div class="col-10">
         <input

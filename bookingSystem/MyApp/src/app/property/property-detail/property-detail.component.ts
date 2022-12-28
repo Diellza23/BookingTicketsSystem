@@ -5,6 +5,7 @@ import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import { Constants } from 'src/app/Helper/constants';
+import { User } from 'src/app/Models/user';
 
 @Component({
   selector: 'app-property-detail',
@@ -59,6 +60,10 @@ export class PropertyDetailComponent implements OnInit {
   get isUserlogin() {
     const user = localStorage.getItem(Constants.USER_KEY);
     return user && user.length > 0;
+  }
+
+  get user(): User {
+    return JSON.parse(localStorage.getItem(Constants.USER_KEY)) as User;
   }
 
   getPropertyPhotos(): NgxGalleryImage[] {

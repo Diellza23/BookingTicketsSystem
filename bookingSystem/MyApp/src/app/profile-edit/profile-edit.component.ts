@@ -1,16 +1,19 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Constants } from '../Helper/constants';
 import { User } from '../Models/user';
+import { UserService } from '../services/user.service';
+
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
+  selector: 'app-profile-edit',
+  templateUrl: './profile-edit.component.html',
+  styleUrls: ['./profile-edit.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileEditComponent implements OnInit {
   loggedinUser: string;
   public userList: User[] = [];
 
-  constructor() {}
+  constructor(private userService: UserService, private http: HttpClient) {}
 
   ngOnInit() {}
   get isUserlogin() {

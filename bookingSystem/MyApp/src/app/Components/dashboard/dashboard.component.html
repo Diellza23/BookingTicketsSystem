@@ -25,13 +25,14 @@
           <!--Grid column-->
           <div class="col-md-6">
             <div class="md-form mb-0">
-              <label for="name" class="" style="opacity: 0.6">Name:</label>
+              <label for="name" class="" style="opacity: 0.6">Title:</label>
               <input
                 type="text"
                 id="name"
-                name="name"
+                name="title"
                 class="form-control"
                 style="border-radius: 10px"
+                [(ngModel)]="title"
               />
             </div>
           </div>
@@ -40,49 +41,27 @@
           <!--Grid column-->
           <div class="col-md-6">
             <div class="md-form mb-0">
-              <label for="email" class="" style="opacity: 0.6">Email</label>
+              <label for="email" class="" style="opacity: 0.6">Username</label>
               <input
                 type="text"
-                id="email"
-                name="email"
+                name="username"
                 style="border-radius: 10px"
                 class="form-control"
+                [(ngModel)]="username"
               />
             </div>
           </div>
           <!--Grid column-->
         </div>
-        <!--Grid row-->
 
-        <!--Grid row-->
         <div class="row">
-          <div class="col-md-12">
-            <div class="md-form mb-0">
-              <label for="subject" class="" style="opacity: 0.6">Title:</label>
-              <input
-                type="email"
-                formControlName="email"
-                aria-describedby="emailHelp"
-                id="email"
-                class="form-control"
-                required
-                style="margin-bottom: 20px; border-radius: 10px"
-              />
-            </div>
-          </div>
-        </div>
-        <!--Grid row-->
-
-        <!--Grid row-->
-        <div class="row">
-          <!--Grid column-->
           <div class="col-md-12">
             <div class="md-form">
               <label for="message" style="opacity: 0.6">Content:</label>
               <textarea
                 type="text"
-                id="message"
-                name="message"
+                name="content"
+                [(ngModel)]="content"
                 rows="4"
                 class="form-control md-textarea"
                 style="border-radius: 10px"
@@ -95,13 +74,14 @@
 
       <div class="text-md-left">
         <button
-          type="submit"
+          type="button"
           class="btn btn-primary w-100 butoni"
-          onclick="document.getElementById('contact-form').submit();"
+          (click)="createPost()"
         >
           Send Message
         </button>
       </div>
+
       <div class="status"></div>
     </div>
     <!--Grid column-->

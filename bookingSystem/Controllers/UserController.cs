@@ -61,7 +61,7 @@ namespace bookingSystem.Controllers
                         return await Task.FromResult(new ResponseModel(ResponseCode.Error, "Role does not exist", null));
                     }
                 }
-                var user = new AppUser() { FullName = model.FullName, UserName = model.Email, Email = model.Email, DateCreated = DateTime.UtcNow, DateModified = DateTime.UtcNow };
+                var user = new AppUser() { FullName = model.FullName, UserName = model.Email, Email = model.Email, DateCreated = DateTime.UtcNow, DateModified = DateTime.UtcNow, PhoneNumber = model.PhoneNumber, Address = model.Address, State = model.State, Country = model.Country };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -92,7 +92,7 @@ namespace bookingSystem.Controllers
                 {
                     var roles = (await _userManager.GetRolesAsync(user)).ToList();
 
-                    allUserDTO.Add(new UserDTO(user.Id, user.FullName, user.Email, user.UserName, user.DateCreated, roles, user.Id));
+                    allUserDTO.Add(new UserDTO(user.Id, user.FullName, user.Email, user.UserName, user.DateCreated, roles, user.Id, user.PhoneNumber, user.Address, user.State, user.Country));
                 }
                 return await Task.FromResult(new ResponseModel(ResponseCode.OK, "", allUserDTO));
             }
@@ -116,7 +116,7 @@ namespace bookingSystem.Controllers
                     var role = (await _userManager.GetRolesAsync(user)).ToList();
                     if (role.Any(x => x == "User"))
                     {
-                        allUserDTO.Add(new UserDTO(user.Id, user.FullName, user.Email, user.UserName, user.DateCreated, role, user.Id));
+                        allUserDTO.Add(new UserDTO(user.Id, user.FullName, user.Email, user.UserName, user.DateCreated, role, user.Id, user.PhoneNumber, user.Address, user.State, user.Country));
 
                     }
                 }
@@ -143,7 +143,7 @@ namespace bookingSystem.Controllers
                     {
                         var appUser = await _userManager.FindByEmailAsync(model.Email);
                         var roles = (await _userManager.GetRolesAsync(appUser)).ToList();
-                        var user = new UserDTO(appUser.Id, appUser.FullName, appUser.Email, appUser.UserName, appUser.DateCreated, roles, appUser.Id);
+                        var user = new UserDTO(appUser.Id, appUser.FullName, appUser.Email, appUser.UserName, appUser.DateCreated, roles, appUser.Id, appUser.PhoneNumber, appUser.Address, appUser.State, appUser.Country);
                         user.Token = GenerateToken(appUser, roles);
                         return await Task.FromResult(new ResponseModel(ResponseCode.OK, "", user));
                     }
@@ -281,6 +281,10 @@ namespace bookingSystem.Controllers
                 user.Email = model.Email;
                 user.UserName = model.UserName;
                 user.FullName = model.FullName;
+                user.PhoneNumber = model.PhoneNumber;
+                user.Address = model.Address;
+                user.Country = model.Country;
+                user.State = model.State;
                 // user.DateCreated = model.DateCreated;
                 // user.Password = model.Password;
 

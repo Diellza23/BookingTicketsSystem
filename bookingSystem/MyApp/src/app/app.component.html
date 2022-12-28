@@ -53,6 +53,17 @@
           </li>
           <li class="nav__item">
             <a
+              class="nav__link"
+              [class.disabled]="isUser"
+              *ngIf="isUserlogin && !isUser"
+              routerLink="/contact"
+            >
+              <i class="bx bx-message"> </i>
+              <span>Contact messages </span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a
               href="#"
               class="nav__link"
               routerLinkActive="active"
@@ -163,7 +174,7 @@
           Welcome {{ user.email }}
         </a>
         <div class="dropdown-menu" *dropdownMenu>
-          <a href="#" class="dropdown-item" routerLink="/profile">
+          <a href="#" class="dropdown-item" routerLink="/profile/">
             <i class="far fa-user-circle"></i> My Profile</a
           >
           <a

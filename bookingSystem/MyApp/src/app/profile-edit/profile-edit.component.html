@@ -28,21 +28,60 @@
           <hr />
           <div class="row">
             <div class="col-sm-3">
-              <p class="mb-0">Full Name</p>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter FullName"
+                formControlName="fullName"
+              />
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ user.fullName }}</p>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter FullName"
+                formControlName="email"
+              />
             </div>
           </div>
           <hr />
           <div class="row">
             <div class="col-sm-3">
-              <p class="mb-0">Email</p>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter phone"
+                formControlName="phoneNumber"
+              />
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ user.email }}</p>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter address"
+                formControlName="address"
+              />
             </div>
           </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Country"
+                formControlName="country"
+              />
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter State"
+                formControlName="state"
+              />
+            </div>
+          </div>
+
           <hr />
           <div class="row">
             <div class="col-sm-3">
@@ -52,52 +91,12 @@
               <p class="text-muted mb-0">{{ user.roles }}</p>
             </div>
           </div>
-          <hr />
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Phone Number</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ user.phoneNumber }}</p>
-            </div>
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Address</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ user.address }}</p>
-            </div>
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Country</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ user.country }}</p>
-            </div>
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">State</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ user.state }}</p>
-            </div>
-          </div>
 
           <hr />
         </div>
       </div>
-      <button
-        class="btn btn-outline-primary"
-        style="width: 100%"
-        routerLink="/edit-user-info/{{ user.id }}"
-      >
-        Edit your info
+      <button class="btn btn-outline-primary" style="width: 100%">
+        Modify
       </button>
     </div>
   </div>

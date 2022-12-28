@@ -39,6 +39,8 @@ import { ConfirmModalComponent } from './modal-components/confirm-modal/confirm-
 import { AddUpdatePropComponent } from './modal-components/confirm-modal/add-update-prop/add-update-prop.component';
 import { EditUserInformationComponent } from './edit-user-information/edit-user-information.component';
 import { ChangePasswordComponent } from './change-Password/change-Password.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 const appRoutes: Routes = [
   // {path: 'add-property', component: AddPropertyComponent},
@@ -55,6 +57,16 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService],
   },
   {
+    path: 'contact',
+    component: ContactFormComponent,
+    canActivate: [AuthGuardService],
+  },
+  // {
+  //   path: 'profile-edit/:id',
+  //   component: ProfileEditComponent,
+  //   canActivate: [AuthGuardService],
+  // },
+  {
     path: 'change-password/:id',
     component: ChangePasswordComponent,
     canActivate: [AuthGuardService],
@@ -64,6 +76,7 @@ const appRoutes: Routes = [
     component: EditUserInformationComponent,
     canActivate: [AuthGuardService],
   },
+
   {
     path: 'all-user-management',
     component: AllUserManagementComponent,
@@ -123,6 +136,8 @@ const appRoutes: Routes = [
     AddUpdatePropComponent,
     EditUserInformationComponent,
     ChangePasswordComponent,
+    ProfileEditComponent,
+    ContactFormComponent,
   ],
   imports: [
     BrowserModule,

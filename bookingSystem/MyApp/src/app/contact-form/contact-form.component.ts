@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from 'src/app/model/post';
-import { AlertifyService } from 'src/app/services/alertify.service';
-import { DataService } from 'src/app/shared/data.service';
+import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { ResponseCode } from '../enums/responseCode';
+import { ConfirmModalComponent } from '../modal-components/confirm-modal/confirm-modal.component';
+import { Post } from '../model/post';
+import { AlertifyService } from '../services/alertify.service';
+import { DataService } from '../shared/data.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  selector: 'app-contact-form',
+  templateUrl: './contact-form.component.html',
+  styleUrls: ['./contact-form.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class ContactFormComponent implements OnInit {
   post: Post = {
     _id: '',
     title: '',
@@ -24,7 +27,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit(): void {
@@ -56,22 +60,50 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  // deletePostById(post: Post) {
+  //   if (
+  //     window.confirm(
+  //       'Are you sure you want to delete post with id: ' + post._id
+  //     )
+  //   ) {
+  //     this.dataService.deletePostById(post._id).subscribe(
+  //       (res) => {
+  //         this.allPosts = [];
+  //         this.getAllPost();
+  //       },
+  //       (err) => {
+  //         console.log(err);
+  //       }
+  //     );
+  //   }
+  // }
+
   deletePostById(post: Post) {
-    if (
-      window.confirm(
-        'Are you sure you want to delete post with id: ' + post._id
-      )
-    ) {
-      this.dataService.deletePostById(post._id).subscribe(
-        (res) => {
-          this.allPosts = [];
-          this.getAllPost();
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    }
+    const initialState: ModalOptions = {
+      initialState: {
+        message: 'Do you want to delete?',
+        confirmTitle: 'Yes',
+        declineTitle: 'No',
+      },
+    };
+    const bsModalRef = this.modalService.show(
+      ConfirmModalComponent,
+      initialState
+    );
+    bsModalRef.content.modalResponse.subscribe((result) => {
+      if (result) {
+        this.dataService.deletePostById(post._id).subscribe(
+          (res) => {
+            this.alertify.success('Contact message deleted successfully!');
+            this.allPosts = [];
+            this.getAllPost();
+          },
+          (err) => {
+            this.alertify.error('Contact message could not be deleted');
+          }
+        );
+      }
+    });
   }
 
   createPost() {
@@ -80,11 +112,9 @@ export class DashboardComponent implements OnInit {
     this.post.content = this.content;
     this.dataService.createPost(this.post).subscribe(
       (res) => {
-        this.alertify.success('Contact message submitted successfully!');
         this.ngOnInit();
       },
       (err) => {
-        this.alertify.error('Something went wrong, message not sent!');
         console.log(err);
       }
     );

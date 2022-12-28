@@ -22,6 +22,10 @@
       <th>Full Name</th>
       <th>Email</th>
       <th>UserName</th>
+      <th>Contact</th>
+      <th>Address</th>
+      <th>Country</th>
+      <th>State</th>
       <th>Role</th>
       <th>Actions</th>
     </tr>
@@ -50,22 +54,40 @@
         <p class="fw-normal mb-1">{{ user.userName }}</p>
         <!-- <p class="text-muted mb-0">Username</p> -->
       </td>
+      <td>
+        <p class="fw-normal mb-1">{{ user.phoneNumber }}</p>
+        <!-- <p class="text-muted mb-0">Username</p> -->
+      </td>
+      <td>
+        <p class="fw-normal mb-1" style="width: 70px">{{ user.address }}</p>
+        <!-- <p class="text-muted mb-0">Username</p> -->
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{ user.country }}</p>
+        <!-- <p class="text-muted mb-0">Username</p> -->
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{ user.state }}</p>
+        <!-- <p class="text-muted mb-0">Username</p> -->
+      </td>
 
       <td>{{ user.roles }}</td>
       <td>
         <button
           type="button"
-          class="btn btn-link btn-sm btn-rounded"
-          (click)="deleteUser(user.id)"
+          class="btn btn-primary"
+          style="width: 70px"
+          routerLink="/edit-user-info/{{ user.id }}"
         >
-          Delete
+          Edit
         </button>
         <button
           type="button"
-          class="btn btn-link btn-sm btn-rounded"
-          routerLink="/edit-user-info/{{ user.id }}"
+          class="btn btn-outline-danger"
+          style="width: 70px; margin-left: 10px"
+          (click)="deleteUser(user.id)"
         >
-          Edit info
+          Delete
         </button>
       </td>
     </tr>

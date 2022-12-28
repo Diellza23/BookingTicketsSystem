@@ -14,7 +14,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 })
 export class AddUpdatePropComponent implements OnInit {
   public headerTitle: string = 'Add Property';
-  public confirmBtnTitle: string = 'Add';
+  public confirmBtnTitle: string = 'Update';
   public sellRent: number;
   public name: string;
   public propertyType: string;

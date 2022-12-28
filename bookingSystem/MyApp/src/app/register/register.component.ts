@@ -16,6 +16,10 @@ export class RegisterComponent implements OnInit {
     fullName: ['', [Validators.required]],
     email: ['', [Validators.email, Validators.required]],
     password: ['', Validators.required],
+    phoneNumber: ['', Validators.required],
+    address: ['', Validators.required],
+    country: ['', Validators.required],
+    state: ['', Validators.required],
   });
   constructor(
     private formBuilder: FormBuilder,
@@ -29,7 +33,11 @@ export class RegisterComponent implements OnInit {
     let fullName = this.registerForm.controls['fullName'].value;
     let email = this.registerForm.controls['email'].value;
     let password = this.registerForm.controls['password'].value;
-    
+    let phoneNumber = this.registerForm.controls['phoneNumber'].value;
+    let address = this.registerForm.controls['address'].value;
+    let country = this.registerForm.controls['country'].value;
+    let state = this.registerForm.controls['state'].value;
+
     this.userService
       .register(
         fullName,
@@ -37,7 +45,10 @@ export class RegisterComponent implements OnInit {
         password,
 
         this.roles.filter((x) => x.isSelected).map((x) => x.role),
-
+        phoneNumber,
+        address,
+        country,
+        state
       )
       .subscribe(
         (data: ResponseModel) => {
@@ -45,6 +56,10 @@ export class RegisterComponent implements OnInit {
             this.registerForm.controls['fullName'].setValue('');
             this.registerForm.controls['email'].setValue('');
             this.registerForm.controls['password'].setValue('');
+            this.registerForm.controls['phoneNumber'].setValue('');
+            this.registerForm.controls['address'].setValue('');
+            this.registerForm.controls['country'].setValue('');
+            this.registerForm.controls['state'].setValue('');
             this.roles.forEach((x) => (x.isSelected = false));
           }
           console.log('response', data);
@@ -65,13 +80,13 @@ export class RegisterComponent implements OnInit {
     //     x.isSelected = !x.isSelected;
     //   }
     // });
-    this.roles.forEach(x=>{
-      if(x.role==role){
-        x.isSelected=true;
-      }else{
-        x.isSelected=false;
+    this.roles.forEach((x) => {
+      if (x.role == role) {
+        x.isSelected = true;
+      } else {
+        x.isSelected = false;
       }
-    })
+    });
   }
   get isRoleSelected() {
     return this.roles.filter((x) => x.isSelected).length > 0;
