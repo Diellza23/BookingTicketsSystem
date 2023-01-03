@@ -7,7 +7,9 @@
 <body>
   <header class="header" id="header">
     <nav class="nav container">
-      <a href="#" class="nav__logo"> Didi <i class="bx bx-diamond"></i></a>
+      <a href="#" class="nav__logo">
+        Real Estate <i class="bx bx-diamond"></i
+      ></a>
 
       <div class="nav__menu">
         <ul class="nav__list">
@@ -15,7 +17,7 @@
             <a
               href="#"
               class="nav__link"
-              *ngIf="!isUserlogin"
+              *ngIf="!isUserlogin || !isAdmin"
               routerLink="/main"
             >
               <i class="bx bx-building-house"> </i>
@@ -26,7 +28,7 @@
             <a
               href="#"
               class="nav__link"
-              *ngIf="!isUserlogin"
+              *ngIf="!isUserlogin || !isAdmin"
               routerLink="/propertyList"
             >
               <i class="bx bx-buildings"></i>
@@ -34,9 +36,25 @@
             </a>
           </li>
           <li class="nav__item">
-            <a href="#" class="nav__link" routerLink="/property-management">
-              <i class="bx bx-award"> </i>
-              <span>Property Management </span>
+            <a
+              href="#"
+              class="nav__link"
+              *ngIf="!isUserlogin || !isAdmin"
+              routerLink="/sell-property"
+            >
+              <i class="bx bx-buildings"></i>
+              <span> Purchase </span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a
+              href="#"
+              class="nav__link"
+              *ngIf="!isUserlogin || !isAdmin"
+              routerLink="/rent-property"
+            >
+              <i class="bx bx-buildings"></i>
+              <span> Rent </span>
             </a>
           </li>
 
@@ -66,11 +84,22 @@
             <a
               href="#"
               class="nav__link"
+              *ngIf="isUserlogin && !isAdmin"
+              routerLink="/add-property"
+            >
+              <i class="bx bx-book-add"></i>
+              <span> List Property</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a
+              href="#"
+              class="nav__link"
               routerLinkActive="active"
-              *ngIf="!isUserlogin"
+              *ngIf="!isUserlogin || !isAdmin"
               routerLink="/dashboard"
             >
-              <i class="bx bx-phone"></i>
+              <i class="bx bx-conversation"></i>
               <span> Contact</span>
             </a>
           </li>
@@ -89,19 +118,8 @@
             <a
               href="#"
               class="nav__link"
-              *ngIf="isUserlogin"
-              routerLink="/add-property"
-            >
-              <i class="bx bx-phone"></i>
-              <span> List Property</span>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a
-              href="#"
-              class="nav__link"
               [class.disabled]="isUser"
-              *ngIf="isUserlogin && !isUser"
+              *ngIf="isUserlogin && isAdmin"
               routerLink="/all-user-management"
             >
               <i class="bx bx-user-circle"></i>
@@ -112,7 +130,7 @@
             <a
               href="#"
               class="nav__link"
-              *ngIf="isUserlogin && !isUser"
+              *ngIf="isUserlogin && isAdmin"
               routerLink="/user-management"
               style="margin-right: 50px"
             >
@@ -171,12 +189,22 @@
 
       <div class="dropdown" *ngIf="isUserlogin" dropdown>
         <a class="dropdown-toggle text-black" dropdownToggle (click)="(false)">
-          Welcome {{ user.email }}
+          {{ user.fullName }}
         </a>
         <div class="dropdown-menu" *dropdownMenu>
           <a href="#" class="dropdown-item" routerLink="/profile/">
             <i class="far fa-user-circle"></i> My Profile</a
           >
+          <a
+            href="#"
+            class="dropdown-item"
+            routerLink="/property-management"
+            *ngIf="isUserlogin && !isAdmin"
+          >
+            <i class="bx bx-book-reader"> </i>
+            <span>Properties I posted</span>
+          </a>
+
           <a
             href="#"
             class="dropdown-item"

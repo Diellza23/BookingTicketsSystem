@@ -1,16 +1,10 @@
 <div
   class="container"
-  style="
-    background-color: rgb(84, 78, 97);
-    color: white;
-    margin-top: 30px;
-    height: 100px;
-    padding-top: 30px;
-  "
+  style="margin-top: 30px; height: 100px; padding-top: 30px"
 >
   <div>
-    <h3 style="display: inline">Users</h3>
-    <p style="display: inline; margin-left: 50px; color: rgb(181, 193, 193)">
+    <h3 style="display: inline">User Management</h3>
+    <p style="display: inline; margin-left: 50px; color: rgb(123, 126, 126)">
       Authenticate and authorize users
     </p>
   </div>
@@ -75,11 +69,11 @@
       <td>
         <button
           type="button"
-          class="btn btn-primary"
+          class="btn btn-outline-primary"
           style="width: 70px"
           routerLink="/edit-user-info/{{ user.id }}"
         >
-          Edit
+          <i class="bx bx-edit"> </i>
         </button>
         <button
           type="button"
@@ -87,7 +81,7 @@
           style="width: 70px; margin-left: 10px"
           (click)="deleteUser(user.id)"
         >
-          Delete
+          <i class="bx bx-trash"> </i>
         </button>
       </td>
     </tr>

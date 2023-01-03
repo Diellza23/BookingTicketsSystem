@@ -13,6 +13,7 @@ namespace bookingSystem.Helpers
             CreateMap<PropertyType, PropertyTypeDto>().ReverseMap(); //u shtu
             CreateMap<City, CityUpdateDto>().ReverseMap();
             CreateMap<Propperty, PropertyDto>().ReverseMap();
+
             CreateMap<Photo, PhotoDto>().ReverseMap();
 
             CreateMap<Propperty, PropertyUpdateDto>().ReverseMap(); //u shtu
@@ -31,7 +32,7 @@ namespace bookingSystem.Helpers
            .ForMember(d => d.PropertyType, opt => opt.MapFrom(src => src.PropertyType.Name))
            .ForMember(d => d.FurnishingType, opt => opt.MapFrom(src => src.FurnishingType.Name));
 
-            CreateMap<PropertyType, KeyValuePairDto>().ReverseMap();
+            CreateMap<PropertyType, KeyValuePairDto>();
             CreateMap<FurnishingType, KeyValuePairDto>();
         }
     }

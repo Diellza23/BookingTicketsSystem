@@ -56,3 +56,16 @@ h3 {
 h3:hover {
   color: rgb(4, 89, 173);
 }
+
+.containerDiv {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centeredDiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

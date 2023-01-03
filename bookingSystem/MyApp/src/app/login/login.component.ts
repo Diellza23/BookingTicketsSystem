@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
           );
           let user = data.dateSet as User;
           if (user.roles.indexOf('Admin') > -1)
-            this.router.navigate(['/all-user-management']);
+            this.router.navigate(['/profile']);
           else {
-            this.router.navigate(['/user-management']);
+            this.router.navigate(['/profile']);
           }
         }
         console.log('response', data);

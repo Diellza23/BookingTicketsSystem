@@ -46,6 +46,7 @@ export class PropertyModuleComponent implements OnInit {
       initialState: {
         headerTitle: 'Update Prop',
         propId: tempProperty.id,
+        sellRent: tempProperty.sellRent,
         name: tempProperty.name,
         propertyType: tempProperty.propertyTypeId,
         furnishingType: tempProperty.furnishingTypeId,

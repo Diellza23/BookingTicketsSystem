@@ -32,9 +32,9 @@ namespace bookingSystem.Data.Repo
         public async Task<IEnumerable<Propperty>> GetPropertiesAsync(int sellRent)
         {
             var properties = await dc.Propperties
-            // .Include(p => p.PropertyType)
-            // .Include(p => p.City)
-            // .Include(p => p.FurnishingType)
+            .Include(p => p.PropertyType)
+            .Include(p => p.City)
+            .Include(p => p.FurnishingType)
             .Include(p => p.Photos)
             .Where(p => p.SellRent == sellRent)
             .ToListAsync();
@@ -50,10 +50,11 @@ namespace bookingSystem.Data.Repo
         {
 
             var properties = await dc.Propperties
-            // .Include(p => p.PropertyType)
-            // .Include(p => p.City)
-            // .Include(p => p.FurnishingType)
+            .Include(p => p.PropertyType)
+            .Include(p => p.City)
+            .Include(p => p.FurnishingType)
             .Include(p => p.Photos)
+            .Include(p => p.AppUser)
             .Where(p => p.Id == id)
             .FirstAsync();
             return properties;
@@ -89,7 +90,7 @@ namespace bookingSystem.Data.Repo
         public async Task<Propperty> UpdatePropperty(int id, int sellRent, string name, int propertyTypeId, int furnishingTypeId, int price, int bhk, int builtArea, int cityId, bool readyToMove, int carpetArea, string address, string address2, int floorNo, int totalFloors, string mainEntrance, int security, bool gated, int maintenance, DateTime estPossessionOn, string description, string authorId)
         {
             var tempPropperty = dc.Propperties.FirstOrDefault(x => x.Id == id);
-            
+
             tempPropperty.SellRent = sellRent;
             tempPropperty.Name = name;
             tempPropperty.PropertyTypeId = propertyTypeId;

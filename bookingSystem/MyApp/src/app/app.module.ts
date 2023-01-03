@@ -138,7 +138,7 @@ const appRoutes: Routes = [
     ChangePasswordComponent,
     ProfileEditComponent,
     ContactFormComponent,
-  ],
+   ],
   imports: [
     BrowserModule,
     FormsModule,

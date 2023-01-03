@@ -58,10 +58,10 @@ export class EditUserInformationComponent implements OnInit {
             'Account settings updated, please login again to see the changes!'
           );
           console.log(result, 'data updated successfully');
-          // localStorage.clear();  //per me u bo modification
+          // localStorage.clear(); //per me u bo modification
           window.setTimeout(function () {
             location.reload();
-          }, 2000);
+          }, 3000);
         } else {
           this.alertify.error("Data modification didn't work!");
         }

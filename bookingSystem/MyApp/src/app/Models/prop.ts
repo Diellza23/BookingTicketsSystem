@@ -2,10 +2,12 @@ export class Prop {
   id: number;
   sellRent: number;
   name: string;
-  propertyTypeId: string;
+  propertyType: string;
+  propertyTypeId: number;
   bhk: number;
-  furnishingTypeId: string;
   price: number;
+  furnishingTypeId: number;
+  furnishingType: string;
   builtArea: number;
   carpetArea: number;
   address: string;
@@ -27,9 +29,11 @@ export class Prop {
     id: number = 0,
     sellRent: number = 1,
     name: string = '',
-    propertyTypeId: string = '',
+    propertyType: string = '',
+    propertyTypeId: number,
     bhk: number = 0,
-    furnishingTypeId: string = '',
+    furnishingType: string = '',
+    furnishingTypeId: number = 0,
     price: number = 0,
     builtArea: number = 0,
     carpetArea: number = 0,
@@ -51,8 +55,10 @@ export class Prop {
     this.id = id;
     this.sellRent = sellRent;
     this.name = name;
+    this.propertyType = propertyType;
     this.propertyTypeId = propertyTypeId;
     this.bhk = bhk;
+    this.furnishingType = furnishingType;
     this.furnishingTypeId = furnishingTypeId;
     this.price = price;
     this.builtArea = builtArea;

@@ -31,4 +31,8 @@ export class Property implements IPropertyBase {
   country: string;
   photos?: Photo[];
   appUserId: string;
+  fullName: string;
+  phoneNumber: string;
+  email: string;
+  state: string;
 }

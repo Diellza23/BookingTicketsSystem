@@ -58,6 +58,14 @@ namespace bookingSystem.Controllers
         {
             var property = await uow.PropertyRepository.GetPropertyDetailAsync(id);
             var propertyDTO = mapper.Map<PropertyDetailDto>(property);
+            propertyDTO.FullName = property.AppUser.FullName;
+            propertyDTO.PhoneNumber = property.AppUser.PhoneNumber;
+            propertyDTO.Email = property.AppUser.Email;
+            propertyDTO.State = property.AppUser.State;
+
+
+            // var user = property.AppUser.FullName;
+            // Console.WriteLine(user);
             return new JsonResult(propertyDTO);
         }
 

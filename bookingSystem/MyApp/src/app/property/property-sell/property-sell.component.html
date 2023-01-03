@@ -1,68 +1,131 @@
-<div class="container">
-  <!-- <label>Filter City: &nbsp; </label>
-  <input (keyup)="(City)" />
-  <button
-    type="button"
-    (click)="onCityFilter()"
-    class="btn btn-primary"
-    style="margin-left: 15px"
-  >
-    Search <i class="fas fa-search" style="margin-left: 10px"></i>
-  </button>
-  <button
-    type="button"
-    (click)="onCityFilterClear()"
-    class="btn btn-outline-secondary"
-    style="margin-left: 20px"
-  >
-    Clear
-  </button> -->
-
-  <!-- <label style="margin-left: 15px">Sort by &nbsp;</label>
-  <select [(ngModel)]="SortbyParam">
-    <option value="City">City</option>
-    <option value="Price">Price</option>
-  </select>
-  <button
-    class="btn btn-success"
-    type="button"
-    (click)="onSortDirection()"
-    style="margin-left: 10px"
-  >
-    <i *ngIf="SortDirection === 'asc'" class="fas fa-sort-alpha-down"></i>
-    <i *ngIf="SortDirection === 'desc'" class="fas fa-sort-alpha-up"></i>
-  </button> -->
-  <div>
-    <h2
-      style="
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
-          sans-serif;
-      "
-    >
+<div>
+  <div class="container">
+    <h1 style="font-family: 'Poppins', sans-serif; margin-top: 30px">
       Sell your home yourself
-    </h2>
+    </h1>
     <p>
       Deciding to sell your home yourself is referred to as for-sale-by-owner
       (FSBO). The FSBO process is similar to traditional selling, but without
       the help of a real estate agent. In this case, you’re responsible for the
       home prep, marketing, showings, and negotiations.
     </p>
-    <button class="btn btn-primary">Post your home for sale</button>
+    <button
+      class="btn btn-primary"
+      style="
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        height: 50px;
+      "
+      routerLink="/add-property"
+    >
+      Post your home for sale
+    </button>
   </div>
 
-  <h3>Properties up for PURCHASE</h3>
-  <!-- <h3>Sell your home with confidence</h3> -->
-  <h5>Find your ideal property to buy to fullfill your needs .</h5>
+  <div class="card mb-3 container" style="border: 0px">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          src="../../../assets/images/sellHouse.png"
+          class="img-fluid rounded-start"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body" style="margin-top: 30px; margin-left: 80px">
+          <h3
+            class="card-title"
+            style="font-family: 'Poppins', sans-serif; font-weight: bold"
+          >
+            How to sell?
+          </h3>
+          <p class="card-text">
+            When selling yourself, start with home prep, staging, and hiring a
+            professional photographer. Once your marketing materials are ready,
+            research comparable homes to help price your home. Then, create a
+            listing on Zillow. You’ll likely host home showings or open houses.
+            Then select an offer, negotiate, accept and close.
+          </p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Tips on how to sell your residence successfully</small
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <form class="home__search">
-    <i class="bx bxs-map"></i>
-    <input
-      type="search"
-      placeholder="type something... "
-      class="home__search-input"
+  <h2
+    style="
+      font-family: 'Poppins', sans-serif;
+      margin-top: 40px;
+      margin-bottom: 70px;
+      text-align: center;
+    "
+  >
+    Resources for a successful sale
+  </h2>
+  <div class="containerDiv">
+    <img
+      src="../../../assets/images/modernhomedesign.jpg"
+      alt="picture of a residence"
+      style="width: 100%; opacity: 0.9; height: 500px"
     />
-    <button class="button">Search</button>
-  </form>
+
+    <div class="centeredDiv">
+      <p
+        style="
+          font-size: large;
+          font-family: 'Poppins', sans-serif;
+          font-weight: bold;
+        "
+      >
+        Explore your home's value. Add your house details to get a review.
+      </p>
+      <form class="home__search">
+        <i class="bx bxs-map"></i>
+        <input
+          type="search"
+          placeholder="Enter your house details... "
+          class="home__search-input"
+          style="color: rgb(175, 174, 174)"
+        />
+        <button
+          class="btn btn-primary"
+          style="width: 140px; margin-right: 10px"
+          routerLink="/add-property"
+        >
+          Get started
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <h4
+      style="text-align: center; text-transform: uppercase; margin-bottom: 30px"
+    >
+      Properties up for purchase
+    </h4>
+    <p style="display: inline; margin-left: 50px; color: rgb(123, 126, 126)">
+      Prepare to sell
+    </p>
+    <p style="display: inline; margin-left: 50px; color: rgb(123, 126, 126)">
+      Price your property
+    </p>
+    <p style="display: inline; margin-left: 50px; color: rgb(123, 126, 126)">
+      Property's image rising
+    </p>
+    <p style="display: inline; margin-left: 50px; color: rgb(123, 126, 126)">
+      Get noticed
+    </p>
+    <p style="display: inline; margin-left: 50px; color: rgb(123, 126, 126)">
+      Clients reach out
+    </p>
+    <p style="display: inline; margin-left: 50px; color: rgb(123, 126, 126)">
+      Offers, closing & selling
+    </p>
+  </div>
 
   <div class="container properties">
     <div class="row">

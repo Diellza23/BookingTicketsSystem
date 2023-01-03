@@ -20,13 +20,13 @@
         <th scope="col">Prop Type</th>
         <th scope="col">BHK</th>
         <th scope="col">furnish</th>
-        <th scope="col">price</th>
+        <!-- <th scope="col">price</th>
         <th scope="col">built area</th>
         <th scope="col">carpetArea</th>
         <th scope="col">address</th>
-        <th scope="col">address 2</th>
+        <th scope="col">address 2</th> -->
         <th scope="col">city</th>
-        <th scope="col">floor</th>
+        <!-- <th scope="col">floor</th>
         <th scope="col">total</th>
         <th scope="col">readyToMove</th>
         <th scope="col">mainEntrance</th>
@@ -36,8 +36,8 @@
 
         <th scope="col">Date</th>
         <th scope="col">Desc</th>
-        <th scope="col">Posted on</th>
-        <td>Actions</td>
+        <th scope="col">Posted on</th> -->
+        <th style="text-align: center">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -46,16 +46,16 @@
         <td>{{ prop.id }}</td>
         <td>{{ prop.sellRent }}</td>
         <td>{{ prop.name }}</td>
-        <td>{{ prop.propertyTypeId }}</td>
+        <td>{{ prop.propertyType }}</td>
         <td>{{ prop.bhk }}</td>
-        <td>{{ prop.furnishingTypeId }}</td>
-        <td>{{ prop.price }}</td>
+        <td>{{ prop.furnishingType }}</td>
+        <!-- <td>{{ prop.price }}</td>
         <td>{{ prop.builtArea }}</td>
         <td>{{ prop.carpetArea }}</td>
         <td>{{ prop.address }}</td>
-        <td>{{ prop.address2 }}</td>
+        <td>{{ prop.address2 }}</td> -->
         <td>{{ prop.city }}</td>
-        <td>{{ prop.floorNo }}</td>
+        <!-- <td>{{ prop.floorNo }}</td>
         <td>{{ prop.totalFloors }}</td>
         <td>{{ prop.readyToMove }}</td>
         <td>{{ prop.mainEntrance }}</td>
@@ -64,28 +64,31 @@
         <td>{{ prop.maintenance }}</td>
         <td>{{ prop.estPossessionOn }}</td>
         <td>{{ prop.description }}</td>
-        <td>{{ prop.postedOn | date : "M/d/y" }}</td>
-        <td>
+        <td>{{ prop.postedOn | date : "M/d/y" }}</td> -->
+        <td style="text-align: center">
           <div class="btn-group">
             <button
               type="button"
-              class="btn btn-primary"
+              style="width: 70px"
+              class="btn btn-outline-primary"
               (click)="onEdit(prop)"
             >
-              Edit
+              <i class="bx bx-edit"> </i>
             </button>
             <button
+              style="width: 70px; margin-left: 10px"
               type="button"
-              class="btn btn-danger"
+              class="btn btn-outline-danger"
               (click)="onDelete(prop.id)"
             >
-              Delete
+              <i class="bx bx-trash"> </i>
             </button>
             <button
-              class="btn btn-default"
+              style="width: 70px; margin-left: 10px"
+              class="btn btn-outline-secondary"
               routerLink="/property-detail/{{ prop.id }}"
             >
-              Details
+              <i class="bx bx-message-square-detail"> </i>
             </button>
           </div>
         </td>
