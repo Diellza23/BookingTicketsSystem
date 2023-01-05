@@ -14,7 +14,7 @@ import { Constants } from 'src/app/Helper/constants';
   styleUrls: ['./property-list.component.scss'],
 })
 export class PropertyListComponent implements OnInit {
-  // SellRent = 1;
+  // SellRent = [1, 2];
   properties: IPropertyBase[];
   Today = new Date();
   City = '';

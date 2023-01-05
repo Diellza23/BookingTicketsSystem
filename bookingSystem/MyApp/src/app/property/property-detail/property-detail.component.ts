@@ -66,6 +66,10 @@ export class PropertyDetailComponent implements OnInit {
     return JSON.parse(localStorage.getItem(Constants.USER_KEY)) as User;
   }
 
+  changePrimaryPhoto(mainPhotoUrl: string) {
+    this.mainPhotoUrl = mainPhotoUrl;
+  }
+
   getPropertyPhotos(): NgxGalleryImage[] {
     const photoUrls: NgxGalleryImage[] = [];
     for (const photo of this.property.photos) {
@@ -95,4 +99,5 @@ export class PropertyDetailComponent implements OnInit {
       window.location.reload();
     }
   }
+  
 }

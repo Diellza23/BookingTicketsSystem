@@ -16,7 +16,7 @@ namespace bookingSystem.Helpers
 
             CreateMap<Photo, PhotoDto>().ReverseMap();
 
-            CreateMap<Propperty, PropertyUpdateDto>().ReverseMap(); //u shtu
+            // CreateMap<Propperty, PropertyUpdateDto>().ReverseMap(); //u shtu
 
             CreateMap<Propperty, PropertyListDto>()
             .ForMember(d => d.City, opt => opt.MapFrom(src => src.City.Name))

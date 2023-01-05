@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace bookingSystem.Dtos
@@ -33,7 +34,7 @@ namespace bookingSystem.Dtos
         public string Description { get; set; }
         public string AuthorName { get; set; }
         public string AppUserId { get; set; }
-
+        public ICollection<PhotoDto> Photos { get; set; }
         // // public int Age { get; set; }
         // public string Description { get; set; }
 

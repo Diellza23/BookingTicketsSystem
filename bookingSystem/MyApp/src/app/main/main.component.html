@@ -242,7 +242,7 @@
   </section>
 
   <section class="popular section" id="popular">
-    <div class="container">
+    <div class="container-md">
       <span class="section__subtitle"></span>
       <h2 class="section__title">Popular Residences<span>.</span></h2>
 
@@ -251,6 +251,7 @@
           <article
             class="popular__card col-md-3 col-xs-3"
             *ngFor="let property of properties"
+            style="margin: 50px"
           >
             <img
               *ngIf="property.photo"
@@ -270,7 +271,9 @@
                 <span class="span__style">$</span> {{ property.price }}
               </h2>
               <h3 class="popular__title">{{ property.name }}</h3>
-              <p class="popular__description">{{ property.description }}</p>
+              <p class="popular__title" style="color: rgb(198, 158, 84)">
+                {{ property.city }}
+              </p>
             </div>
           </article>
           <button class="butoni" routerLink="/propertyList">

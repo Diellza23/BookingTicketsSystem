@@ -1,5 +1,5 @@
 <section class="popular section" id="popular">
-  <div class="container">
+  <div class="">
     <span class="section__subtitle"></span>
 
     <div class="popular__container">
@@ -26,6 +26,7 @@
             Read More
             <i class="fa-solid fa-pen-to-square"></i>
           </button>
+
           <button
             class="btn"
             style="float: right; color: rgb(189, 123, 0)"
@@ -40,10 +41,15 @@
             <h2 class="popular__price">
               <span class="span__style">$</span> {{ property.price }}
             </h2>
+
             <h3 class="popular__title">{{ property.name }}</h3>
             <p class="popular__description">{{ property.description }}</p>
-            <p class="popular__description">
-              Built Area: {{ property.builtArea }}
+
+            <p class="popular__description" *ngIf="property.sellRent == 1">
+              Available for: Purchase
+            </p>
+            <p class="popular__description" *ngIf="property.sellRent == 2">
+              Available for:Rent
             </p>
           </div>
         </article>

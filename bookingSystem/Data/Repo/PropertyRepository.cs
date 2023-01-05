@@ -75,7 +75,14 @@ namespace bookingSystem.Data.Repo
 
         public async Task<IEnumerable<Propperty>> GetProperties()
         {
-            return await dc.Propperties.ToListAsync();
+            var properties = await dc.Propperties
+            .Include(p => p.PropertyType)
+            .Include(p => p.City)
+            .Include(p => p.FurnishingType)
+            .Include(p => p.Photos)
+            .ToListAsync();
+            return properties;
+            // return await dc.Propperties.ToListAsync();
         }
 
 

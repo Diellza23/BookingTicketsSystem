@@ -234,7 +234,8 @@ button {
 
 .section__title {
   font-size: 1.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: -1rem;
+  margin-left: 50px;
 }
 
 .section__title span {
@@ -630,6 +631,19 @@ button {
   }
 }
 
+// @media screen and(max-width:1423px) {
+//   .popular__image {
+//     width: 400px;
+//     margin-left: 7px;
+//   }
+
+//   .popular__card {
+//     width: 430px;
+
+//     // margin-left: -80px;
+//   }
+// }
+
 @media screen and(max-width:767px) {
   // .popular__card {
   //   width: 300px;
@@ -686,7 +700,8 @@ button {
 
 @media screen and(min-width: 1023px) {
   .popular__image {
-    margin-left: 10px;
+    // margin-left: 10px;
+    width: 100%;
   }
   .section {
     padding: 7.5rem 0 1rem;
@@ -833,12 +848,13 @@ button {
 }
 
 .butoni {
-  margin-top: 20px;
+  // margin-top: 20px;
   background-color: rgb(214, 236, 253);
   color: hsl(228, 66%, 53%);
   height: 50px;
   width: auto;
   border-radius: 5px;
+  margin-left: 50px;
 }
 .butoni:hover {
   background-color: hsl(228, 66%, 53%);

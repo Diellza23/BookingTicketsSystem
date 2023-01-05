@@ -62,6 +62,7 @@ namespace bookingSystem.Controllers
             propertyDTO.PhoneNumber = property.AppUser.PhoneNumber;
             propertyDTO.Email = property.AppUser.Email;
             propertyDTO.State = property.AppUser.State;
+            propertyDTO.City = property.City.Name;
 
 
             // var user = property.AppUser.FullName;
@@ -89,16 +90,6 @@ namespace bookingSystem.Controllers
                 return await Task.FromResult(new ResponseModel(ResponseCode.Error, ex.Message, null));
             }
         }
-
-
-
-
-
-
-
-
-
-
 
         [AllowAnonymous]
         [HttpGet("GetPropertyList")]
@@ -181,13 +172,13 @@ namespace bookingSystem.Controllers
         {
             // throw new UnauthorizedAccessException();
             var properties = await uow.PropertyRepository.GetProperties();
-            var propertiesDto = mapper.Map<IEnumerable<PropertyDto>>(properties);
+            var propertiesDto = mapper.Map<IEnumerable<PropertyListDto>>(properties);
             return new JsonResult(propertiesDto);
         }
 
         [HttpPost("add/photo/{propId}")]
         [AllowAnonymous]
-        public async Task<IActionResult> AddProppertyPhoto(IFormFile file, int propId)
+        public async Task<ActionResult<PhotoDto>> AddProppertyPhoto(IFormFile file, int propId)
         {
             var result = await photoService.UploadPhotoAsync(file);
             if (result.Error != null)
@@ -206,8 +197,10 @@ namespace bookingSystem.Controllers
             }
 
             property.Photos.Add(photo);
-            await uow.SaveAsync();
-            return new JsonResult("Added");
+            if (await uow.SaveAsync())
+                return mapper.Map<PhotoDto>(photo);
+
+            return new BadRequestObjectResult("Some problem occured in uploading this photo, try again later");
         }
 
 
@@ -230,35 +223,9 @@ namespace bookingSystem.Controllers
                     myCon.Close();
                 }
             }
-
-            return new JsonResult(table);
-
-        }
-
-
-
-        [HttpGet("top8")]
-        public JsonResult GetTopEight()
-        {
-            string query = @"select top 8 * from Propperties";
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("DefaultConnection");
-            SqlDataReader myReader;
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader); ;
-
-                    myReader.Close();
-                    myCon.Close();
-                }
-            }
-
             return new JsonResult(table);
         }
+
 
 
 

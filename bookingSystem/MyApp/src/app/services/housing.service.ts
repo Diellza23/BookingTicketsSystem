@@ -147,4 +147,36 @@ export class HousingService {
 
     return age.toString();
   }
+
+  setPrimaryPhoto(propertyId: number, propertyPhotoId: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer' + localStorage.getItem('token'),
+      }),
+    };
+    return this.http.post(
+      'https://localhost:5001/api/propperty/set-primary-photo/' +
+        String(propertyId) +
+        '/' +
+        propertyPhotoId,
+      {},
+      httpOptions
+    );
+  }
+
+  deletePhoto(propertyId: number, propertyPhotoId: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer' + localStorage.getItem('token'),
+      }),
+    };
+    return this.http.delete(
+      'https://localhost:5001/api/propperty/delete-photo/' +
+        String(propertyId) +
+        '/' +
+        propertyPhotoId,
+
+      httpOptions
+    );
+  }
 }

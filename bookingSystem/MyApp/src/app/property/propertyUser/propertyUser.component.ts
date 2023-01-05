@@ -5,6 +5,7 @@ import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { Routes, RouterModule } from '@angular/router';
 import { Constants } from 'src/app/Helper/constants';
+import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 
 @Component({
   selector: 'app-propertyUser',
@@ -14,15 +15,21 @@ import { Constants } from 'src/app/Helper/constants';
 export class PropertyUserComponent {
   properties: IPropertyBase[];
   public propertyList: Property[] = [];
+  public mainPhotoUrl: string = null;
+  propertyy = new Property();
+
   constructor(
     private housingService: HousingService,
     private http: HttpClient
   ) {}
   ngOnInit() {
+
+
     this.housingService.getAllProperties().subscribe(
       (data) => {
         this.properties = data;
         console.log(data);
+
       },
       (error) => {
         console.log('httperror:');
@@ -45,5 +52,21 @@ export class PropertyUserComponent {
       });
       window.location.reload();
     }
+  }
+
+  getPropertyPhotos(): NgxGalleryImage[] {
+    const photoUrls: NgxGalleryImage[] = [];
+    for (const photo of this.propertyy.photos) {
+      if (photo.isPrimary) {
+        this.mainPhotoUrl = photo.imageUrl;
+      } else {
+        photoUrls.push({
+          small: photo.imageUrl,
+          medium: photo.imageUrl,
+          big: photo.imageUrl,
+        });
+      }
+    }
+    return photoUrls;
   }
 }

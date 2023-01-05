@@ -11,10 +11,10 @@ export class MainComponent implements OnInit {
   properties: IPropertyBase[];
   constructor(private housingService: HousingService) {}
 
-  ngOnInit() {
-    this.housingService.getTopThreeProperties().subscribe(
+  ngOnInit(): void {
+    this.housingService.getAllProperties().subscribe(
       (data) => {
-        this.properties = data;
+        this.properties = data.splice(0, 3);
         console.log(data);
       },
       (error) => {

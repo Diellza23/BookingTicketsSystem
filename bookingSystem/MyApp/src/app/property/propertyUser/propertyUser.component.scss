@@ -1,5 +1,6 @@
 .popular__container {
   padding: 1rem 0 5rem;
+  width: 300px;
 }
 
 // @media screen and(min-width:767px) {
@@ -16,25 +17,42 @@
 
 @media screen and(max-width:767px) {
   .popular__image {
-    width: 380px;
-    margin-left: -5px;
+    width: 100%;
   }
 
   .popular__card {
     width: 500px;
-    margin-left: -80px;
   }
 }
+
+// @media screen and(min-width:1023px) {
+//   .popular__image {
+//     width: 80%;
+//   }
+
+//   .popular__card {
+//     width: 1000px;
+//   }
+// }
+// @media screen and(max-width:320px) {
+//   .popular__image {
+//     margin-left: -8px;
+//     width: 100%;
+//   }
+// }
 
 @media screen and(min-width:1023px) {
   .popular__image {
     margin-left: -8px;
+    width: 100%;
   }
 }
 
 .popular__image {
   border-radius: 1rem;
   margin-bottom: 1rem;
+  margin-left: 2px;
+  width: 100%;
   // margin-left: -8px;
 }
 

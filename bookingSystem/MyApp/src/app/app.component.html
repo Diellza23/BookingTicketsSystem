@@ -11,13 +11,17 @@
         Real Estate <i class="bx bx-diamond"></i
       ></a>
 
+      <!-- <p href="#" class="nav__logo" *ngIf="!isUserlogin && isAdmin">
+        Real Estate <i class="bx bx-diamond"></i>
+      </p> -->
+
       <div class="nav__menu">
         <ul class="nav__list">
           <li class="nav__item">
             <a
               href="#"
               class="nav__link"
-              *ngIf="!isUserlogin || !isAdmin"
+              *ngIf="!isUserlogin"
               routerLink="/main"
             >
               <i class="bx bx-building-house"> </i>
@@ -28,7 +32,7 @@
             <a
               href="#"
               class="nav__link"
-              *ngIf="!isUserlogin || !isAdmin"
+              *ngIf="!isUserlogin"
               routerLink="/propertyList"
             >
               <i class="bx bx-buildings"></i>
@@ -39,7 +43,7 @@
             <a
               href="#"
               class="nav__link"
-              *ngIf="!isUserlogin || !isAdmin"
+              *ngIf="!isUserlogin"
               routerLink="/sell-property"
             >
               <i class="bx bx-buildings"></i>
@@ -50,7 +54,7 @@
             <a
               href="#"
               class="nav__link"
-              *ngIf="!isUserlogin || !isAdmin"
+              *ngIf="!isUserlogin"
               routerLink="/rent-property"
             >
               <i class="bx bx-buildings"></i>

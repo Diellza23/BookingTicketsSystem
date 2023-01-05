@@ -41,6 +41,8 @@ import { EditUserInformationComponent } from './edit-user-information/edit-user-
 import { ChangePasswordComponent } from './change-Password/change-Password.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { PhotoEditorComponent } from './property/photo-editor/photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 const appRoutes: Routes = [
   // {path: 'add-property', component: AddPropertyComponent},
@@ -138,7 +140,17 @@ const appRoutes: Routes = [
     ChangePasswordComponent,
     ProfileEditComponent,
     ContactFormComponent,
-   ],
+    PhotoEditorComponent,
+  ],
+  entryComponents: [ConfirmModalComponent],
+  providers: [
+    HousingService,
+    AlertifyService,
+    PropertyDetailsResolverService,
+    DatePipe,
+  ],
+  bootstrap: [AppComponent],
+
   imports: [
     BrowserModule,
     FormsModule,
@@ -153,14 +165,7 @@ const appRoutes: Routes = [
     BsDatepickerModule.forRoot(),
     NgxGalleryModule,
     ModalModule.forRoot(),
+    FileUploadModule,
   ],
-  entryComponents: [ConfirmModalComponent],
-  providers: [
-    HousingService,
-    AlertifyService,
-    PropertyDetailsResolverService,
-    DatePipe,
-  ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
