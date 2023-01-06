@@ -2,7 +2,11 @@
   <div class="">
     <span class="section__subtitle"></span>
 
-    <div class="popular__container">
+    <div
+      class="popular__container"
+      routerLink="/property-detail/{{ property.id }}"
+      style="cursor: pointer"
+    >
       <div class="row">
         <article class="popular__card col-md-3 col-xs-3">
           <img
@@ -18,14 +22,14 @@
             routerLink="/property-detail/{{ property.id }}"
           />
 
-          <button
+          <!-- <button
             class="btn"
             style="float: right; color: rgb(189, 123, 0)"
             routerLink="/property-detail/{{ property.id }}"
           >
             Read More
             <i class="fa-solid fa-pen-to-square"></i>
-          </button>
+          </button> -->
 
           <button
             class="btn"
@@ -38,19 +42,52 @@
           </button>
 
           <div class="popular__data">
-            <h2 class="popular__price">
-              <span class="span__style">$</span> {{ property.price }}
-            </h2>
-
-            <h3 class="popular__title">{{ property.name }}</h3>
-            <p class="popular__description">{{ property.description }}</p>
-
-            <p class="popular__description" *ngIf="property.sellRent == 1">
-              Available for: Purchase
+            <h6 class="" style="display: inline">
+              <i class="fa fa-map-marker"> </i> {{ property.city }},
+            </h6>
+            <h6 class="" style="display: inline">
+              {{ property.country }}
+            </h6>
+            <p
+              style="
+                display: inline;
+                float: right;
+                color: rgb(198, 122, 75);
+                font-size: 13px;
+                margin-top: 3px;
+              "
+            >
+              {{ property.builtArea }} Sq Ft
             </p>
-            <p class="popular__description" *ngIf="property.sellRent == 2">
-              Available for:Rent
-            </p>
+            <h4 class="popular__price">
+              <span class="span__style"> $</span>{{ property.price }}
+            </h4>
+
+            <!-- <p style="font-size: 15px">{{ property.name }}</p> -->
+            <h6 class="" style="color: rgb(0, 0, 0)">
+              <p
+                style="
+                  display: inline;
+                  color: rgb(126, 126, 126);
+                  font-size: 14px;
+                "
+              >
+                Type:
+              </p>
+              {{ property.propertyType }}
+            </h6>
+            <h6 class="popular__description" *ngIf="property.sellRent == 1">
+              <p style="color: rgb(198, 122, 75); display: inline">
+                Available for:
+              </p>
+              Purchase
+            </h6>
+            <h6 class="popular__description" *ngIf="property.sellRent == 2">
+              <p style="color: rgb(198, 122, 75); display: inline">
+                Available for
+              </p>
+              : Rent
+            </h6>
           </div>
         </article>
       </div>

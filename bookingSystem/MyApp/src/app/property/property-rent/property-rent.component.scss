@@ -1,3 +1,8 @@
+body {
+  font-family: FreightSansLF Pro, Noto Sans JP, Noto Sans KR, Helvetica Neue,
+    Helvetica, Arial, Lucida Grande, Segoe UI, Tahoma, -apple-system, Roboto,
+    sans-serif;
+}
 .home__search {
   background-color: #fff;
   padding: 0.35rem 0.35rem 0.35rem 0.75rem;
@@ -56,3 +61,136 @@ h3 {
 h3:hover {
   color: rgb(4, 89, 173);
 }
+
+.containerDiv {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centeredDiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.butoni {
+  font-weight: bold;
+  border-radius: 40px;
+  width: 200px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-color: transparent;
+  color: #fff;
+}
+.card:hover img {
+  transform: scale(1.2, 1.2);
+  transition-duration: 500ms;
+  transition-timing-function: ease-out;
+  height: 250px;
+  opacity: 0.9;
+  cursor: pointer;
+}
+.card img {
+  transform: scale(1, 1);
+  transition-duration: 500ms;
+  transition-timing-function: ease-out;
+  height: 250px;
+}
+.card-img-wrapper:hover .member-icons {
+  bottom: 0;
+  opacity: 1;
+}
+.animate {
+  transition: all 0.2s ease-in-out;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+.conDiv {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+@media screen and (max-width: 770px) {
+  .conDiv {
+    margin-left: 20px;
+  }
+  .mainDiv {
+    max-width: 450px;
+    margin-top: 10px;
+    // margin-left: 20px;
+
+    // height: 200px;
+  }
+  .secondaryDiv {
+    max-width: 380px;
+    margin-bottom: -275px;
+    margin-right: 35px;
+    // margin-top: 10px;
+    // margin-left: 5px;
+  }
+  .thirdDiv {
+    max-width: 398px;
+    margin-top: 10px;
+  }
+  .fourthDiv {
+    margin-top: 500px;
+    margin-bottom: 25px;
+  }
+  .imageDiv {
+    max-height: 200px;
+  }
+  .peace__Div {
+    margin-top: 700px;
+    margin-left: 130px;
+    text-align: center;
+  }
+  .headerDiv {
+    text-align: center;
+    min-width: 200px;
+    font-size: 20px;
+  }
+  .header2Div {
+    text-align: center;
+    min-width: 200px;
+    font-size: 20px;
+    margin-left: 130px;
+    margin-top: 10px;
+  }
+  .header3Div {
+    text-align: center;
+    min-width: 200px;
+    font-size: 20px;
+    margin-left: 130px;
+    margin-top: 10px;
+  }
+  .header4Div {
+    text-align: center;
+    min-width: 200px;
+    font-size: 20px;
+    margin-left: 130px;
+    margin-top: 10px;
+  }
+  .headerStyle {
+    text-align: center;
+    max-width: 380px;
+  }
+  .paragraphStyle {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+// @media screen and (max-width: 1023px) {
+//   .secondaryDiv {
+//     margin-bottom: 550px;
+//     margin-top: 30px;
+//     margin-left: 40px;
+//   }
+// }

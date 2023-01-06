@@ -1,43 +1,176 @@
-<div class="container">
-  <!-- <label>Filter City: &nbsp; </label>
-  <input (keyup)="(City)" />
-  <button
-    type="button"
-    (click)="onCityFilter()"
-    class="btn btn-primary"
-    style="margin-left: 15px"
-  >
-    Search <i class="fas fa-search" style="margin-left: 10px"></i>
-  </button>
-  <button
-    type="button"
-    (click)="onCityFilterClear()"
-    class="btn btn-outline-secondary"
-    style="margin-left: 20px"
-  >
-    Clear
-  </button> -->
+<div>
+  <div class="containerDiv">
+    <img
+      src="../../../assets/images/rent House.jpg"
+      alt="picture of a residence"
+      style="width: 100%; height: 500px"
+    />
 
-  <!-- <label style="margin-left: 15px">Sort by &nbsp;</label>
-  <select [(ngModel)]="SortbyParam">
-    <option value="City">City</option>
-    <option value="Price">Price</option>
-  </select>
-  <button
-    class="btn btn-success"
-    type="button"
-    (click)="onSortDirection()"
-    style="margin-left: 10px"
-  >
-    <i *ngIf="SortDirection === 'asc'" class="fas fa-sort-alpha-down"></i>
-    <i *ngIf="SortDirection === 'desc'" class="fas fa-sort-alpha-up"></i>
-  </button> -->
-  <h3>Properties up for RENT</h3>
-  <h5>
-    Find your ideal property to rent to fullfill your needs on your budget.
-  </h5>
+    <div class="centeredDiv">
+      <p
+        class="headerStyle"
+        style="
+          font-size: 25px;
+          width: 550px;
+          color: rgb(255, 255, 255);
+          background-color: rgba(0, 0, 0, 0.4);
+          border-color: transparent;
+          color: #fff;
+          text-align: center;
+        "
+      >
+        List your property on Re and open your door to rental income
+      </p>
+      <button class="butoni">List your property</button>
+    </div>
+  </div>
 
-  <form class="home__search">
+  <div class="container" style="margin-top: -70px; background-color: white">
+    <div
+      class="card container mainDiv"
+      style="
+        border: 0px;
+        width: 1300px;
+        float: left;
+        border-radius: 15px;
+        padding: 30px;
+      "
+    >
+      <h4 style="padding: 10px">Get inspired for a family trip</h4>
+      <p style="margin-left: 10px">
+        Book homes with space, convenience and amenities
+      </p>
+      <div
+        class="row secondaryDiv"
+        style="width: 100%; height: 500px; width: 550px"
+      >
+        <div
+          class="col-md-4 conDiv divi"
+          style="width: 550px; border-radius: 10px"
+        >
+          <img
+            src="../../../assets/images/friendss.jpg"
+            class="img-fluid rounded-start cardImg imageDiv"
+            style="
+              height: 500px;
+              width: 100%;
+              background-color: white;
+              border-radius: 10px;
+            "
+          />
+          <h5 class="bottom-left">On the beach</h5>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="row row-cols-1 row-cols-md-2 secondaryDiv"
+      style="width: 700px; float: right; margin-top: -520px"
+    >
+      <div class="col fourthDiv">
+        <div
+          class="card conDiv"
+          style="height: 220px; border-radius: 10px; width: 300px"
+        >
+          <img
+            src="../../../assets/images/pethappy.jpg"
+            class="card-img-top cardImg"
+            alt="Picture of a puppy :) "
+            style="height: 100%; border-radius: 10px; width: 300px"
+          />
+          <h5 class="bottom-left">Pets welcome</h5>
+        </div>
+      </div>
+      <div class="col">
+        <div
+          class="card conDiv"
+          style="height: 220px; border-radius: 10px; width: 30px"
+        >
+          <img
+            src="../../../assets/images/pool.jpg"
+            class="card-img-top cardImg"
+            alt="..."
+            style="height: 100%; border-radius: 10px; width: 300px"
+          />
+          <h5 class="bottom-left" style="width: 180px">Swimming pools</h5>
+        </div>
+      </div>
+      <div class="col">
+        <div
+          class="card conDiv"
+          style="
+            height: 220px;
+            margin-top: 30px;
+            border-radius: 10px;
+            width: 280px;
+          "
+        >
+          <img
+            src="../../../assets/images/houserental.jpg"
+            class="card-img-top cardImg"
+            alt="..."
+            style="height: 100%; border-radius: 10px; width: 300px"
+          />
+          <h5 class="bottom-left">Home cancellations</h5>
+        </div>
+      </div>
+      <div class="col">
+        <div
+          class="card conDiv"
+          style="
+            height: 220px;
+            margin-top: 30px;
+            border-radius: 10px;
+            width: 300px;
+          "
+        >
+          <img
+            src="../../../assets/images/modern-box-home-design.jpg"
+            class="card-img-top cardImg"
+            alt="..."
+            style="height: 100%; border-radius: 10px; width: 300px"
+          />
+          <h5 class="bottom-left">More than 2 bedrooms</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top: 700px">
+    <div class="row mt-4">
+      <div class="col-md-3 col-xs-3 peace__Div headerDiv">
+        <i class="bx bx-lock fa-2xl"></i>
+        <h6>Peace of mind</h6>
+        <p style="font-size: 13px" class="paragraphStyle">
+          Our Book with Confidence guarantee gives you 24/7 support.
+        </p>
+      </div>
+      <div class="col-md-3 col-xs-3 header2Div">
+        <i class="bx bx-coffee fa-2xl"></i>
+        <h6>All the privacy of home</h6>
+        <p style="font-size: 13px" class="paragraphStyle">
+          Enjoy full kitchens, laundry, pools, yards and more.
+        </p>
+      </div>
+      <div class="col-md-3 col-xs-3 header3Div">
+        <i class="bx bx-money-withdraw fa-2xl"></i>
+        <h6>More for less</h6>
+        <p style="font-size: 13px" class="paragraphStyle">
+          More space, more privacy, more amenities — more value.
+        </p>
+      </div>
+      <div class="col-md-3 col-xs-3 header4Div">
+        <i class="bx bx-heart fa-2xl"></i>
+        <h6>A place for everyone</h6>
+        <p style="font-size: 13px" class="paragraphStyle">
+          more value. A place for everyone We stand for diversity, inclusion and
+          families everywhere.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <form class="home__search">
     <i class="bx bxs-map"></i>
     <input
       type="search"
@@ -45,10 +178,11 @@
       class="home__search-input"
     />
     <button class="button">Search</button>
-  </form>
+  </form> -->
 
   <div class="container properties">
-    <div class="row">
+    <h4>Explore homes near you</h4>
+    <div class="row propUser">
       <!--klasa col-lg-2 col-md-6 mb-2 per 6 cards ne nje row ;)-->
       <div class="col-md-3 col-xs-3" *ngFor="let property of properties">
         <app-propertyUser [property]="property"></app-propertyUser>

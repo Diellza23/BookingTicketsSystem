@@ -267,13 +267,26 @@
             />
 
             <div class="popular__data">
-              <h2 class="popular__price">
-                <span class="span__style">$</span> {{ property.price }}
-              </h2>
-              <h3 class="popular__title">{{ property.name }}</h3>
-              <p class="popular__title" style="color: rgb(198, 158, 84)">
-                {{ property.city }}
+              <h6 class="" style="display: inline">
+                <i class="fa fa-map-marker"> </i> {{ property.city }},
+              </h6>
+              <h6 class="" style="display: inline">
+                {{ property.country }}
+              </h6>
+              <p
+                style="display: inline; float: right; color: rgb(198, 122, 75)"
+              >
+                {{ property.builtArea }} Sq Ft
               </p>
+              <h2 class="popular__price">
+                <span class="span__style"> $</span>{{ property.price }}
+              </h2>
+
+              <!-- <p style="font-size: 15px">{{ property.name }}</p> -->
+              <h6 class="" style="color: rgb(0, 0, 0)">
+                <p style="display: inline; color: rgb(126, 126, 126)">Type:</p>
+                {{ property.propertyType }}
+              </h6>
             </div>
           </article>
           <button class="butoni" routerLink="/propertyList">
