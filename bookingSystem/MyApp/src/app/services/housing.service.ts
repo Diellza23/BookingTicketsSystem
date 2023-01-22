@@ -108,8 +108,8 @@ export class HousingService {
   updateProperty(id: number, data: any) {
     console.log(data);
     data.id = +id;
-    return this.http.post(
-      `https://localhost:5001/api/propperty/AddUpdateProperty`,
+    return this.http.put(
+      `https://localhost:5001/api/propperty/UpdProperty/id=${id}`,
       data
     );
   }

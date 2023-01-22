@@ -91,6 +91,29 @@ namespace bookingSystem.Controllers
             }
         }
 
+
+        //functional
+        [HttpPut("UpdProperty/{id}")]
+        public async Task<object> UpdateProperty(int id, [FromBody] PropertyDto model)
+        {
+            model.Id = id;
+            var prop = await uow.PropertyRepository.FindProperty(model.Id);
+
+            try
+            {
+                var result = await uow.PropertyRepository.UpdatePropperty(model.Id, model.SellRent, model.Name, model.PropertyTypeId, model.FurnishingTypeId, model.Price, model.BHK, model.BuiltArea, model.CityId, model.ReadyToMove, model.CarpetArea, model.Address, model.Address2, model.FloorNo, model.TotalFloors, model.MainEntrance, model.Security, model.Gated, model.Maintenance, model.EstPossessionOn, model.Description, model.AppUserId);
+
+                return await Task.FromResult(new ResponseModel(ResponseCode.OK, (model.Id > 0 ? "Recorded Update" : "No updated fields, check again"), result));
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(new ResponseModel(ResponseCode.Error, ex.Message, null));
+            }
+        }
+
+
+
+
         [AllowAnonymous]
         [HttpGet("GetPropertyList")]
         public async Task<object> GetPropertyList([FromQuery] string AuthorId)

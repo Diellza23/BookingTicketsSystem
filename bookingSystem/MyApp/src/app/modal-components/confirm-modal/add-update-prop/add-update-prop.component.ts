@@ -49,6 +49,7 @@ export class AddUpdatePropComponent implements OnInit {
     this.modalResponse = new Subject();
 
     this.addUpdatePropForm = this.formBuilder.group({
+      id: [''],
       sellRent: [''],
       name: [''],
       propertyType: [''],

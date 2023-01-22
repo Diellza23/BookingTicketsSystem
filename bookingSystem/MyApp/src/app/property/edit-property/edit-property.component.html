@@ -41,9 +41,8 @@
                   <div class="heading">
                     <strong>Possession:</strong>
                     <input
-                      type="date"
                       class="form-control"
-                      formControlName="possession"
+                      formControlName="estPossessionOn"
                     />
                     <!-- <p>{{ property.estPossessionOn | date }}</p> -->
                   </div>
@@ -145,14 +144,20 @@
 
                     <hr />
                     <strong>City:</strong>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="city"
+                    />
                     <select
+                      type="text"
                       #City
                       (change)="
                         propertyView.city =
                           City.options[City.options.selectedIndex].text
                       "
                       class="form-control"
-                      formControlName="City"
+                      formControlName="city"
                     >
                       <option value="">--Select City--</option>
                       <option

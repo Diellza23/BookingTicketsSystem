@@ -44,7 +44,7 @@ export class PropertyModuleComponent implements OnInit {
   onEdit(tempProperty: Prop) {
     const initialState: ModalOptions = {
       initialState: {
-        headerTitle: 'Update Prop',
+        headerTitle: 'Update Property',
         propId: tempProperty.id,
         sellRent: tempProperty.sellRent,
         name: tempProperty.name,

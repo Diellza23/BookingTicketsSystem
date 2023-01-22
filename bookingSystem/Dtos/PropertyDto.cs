@@ -9,7 +9,6 @@ namespace bookingSystem.Dtos
         public int Id { get; set; }
         public int SellRent { get; set; }
         public string Name { get; set; }
-
         [ForeignKey("PropertyType")]
         public int PropertyTypeId { get; set; }
         [ForeignKey("FurnishingType")]

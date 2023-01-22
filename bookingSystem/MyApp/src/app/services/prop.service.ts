@@ -124,8 +124,9 @@ export class PropService {
       AppUserId: userId,
       Publish: publish,
     };
-    return this.httpClient.post<ResponseModel>(
-      Constants.BASE_URL + 'Propperty/AddUpdateProperty',
+    return this.httpClient.put<ResponseModel>(
+      `https://localhost:5001/api/propperty/UpdProperty?id=${propId}`,
+      //  `Propperty/UpdProperty?id=${propId}`,
       body,
       { headers: headers }
     );

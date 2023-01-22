@@ -33,7 +33,7 @@
       </div>
       <div class="form-group col-md-6">
         <input
-          type="text"
+          type="number"
           id="phoneNumber"
           formControlName="phoneNumber"
           class="form-control item"
@@ -79,6 +79,7 @@
           formControlName="email"
           class="form-control item"
           placeholder="Email"
+          required
         />
       </div>
 
@@ -89,6 +90,7 @@
           id="psw"
           class="form-control item"
           placeholder="Password"
+          required
         />
       </div>
 
@@ -108,6 +110,7 @@
               [checked]="role.isSelected"
               (change)="onRoleChange(role.role)"
               id="{{ index }}"
+              required
             />
             <label class="form-check-label" for="{{ index }}">
               {{ role.role }}

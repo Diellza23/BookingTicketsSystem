@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Constants } from '../Helper/constants';
 import { ResponseModel } from '../Models/responseModel';
 import { User } from '../Models/user';
+import { AlertifyService } from '../services/alertify.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private alertify: AlertifyService
   ) {}
 
   ngOnInit(): void {}
@@ -41,11 +43,13 @@ export class LoginComponent implements OnInit {
           else {
             this.router.navigate(['/profile']);
           }
+        } else if (data.responseCode == 2) {
+          this.alertify.error(data.responseMessage);
         }
-        console.log('response', data);
+        // console.log('response', data);
       },
       (error) => {
-        console.log('error', error);
+        this.alertify.error(error);
       }
     );
   }

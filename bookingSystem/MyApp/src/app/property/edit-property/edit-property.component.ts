@@ -27,6 +27,7 @@ export class EditPropertyComponent implements OnInit {
     furnishingType: null,
     bhk: null,
     builtArea: null,
+    estPossessionOn: '',
     city: '',
     readyToMove: null,
     country: null,
@@ -42,7 +43,7 @@ export class EditPropertyComponent implements OnInit {
     security: new FormControl(''),
     maintenance: new FormControl(''),
     description: new FormControl(''),
-    possession: new FormControl(''),
+    estPossessionOn: new FormControl(''),
     builtArea: new FormControl(''),
     carpetArea: new FormControl(''),
     furnishingType: new FormControl(''),
@@ -66,7 +67,7 @@ export class EditPropertyComponent implements OnInit {
           security: new FormControl(result['security']),
           maintenance: new FormControl(result['maintenance']),
           description: new FormControl(result['description']),
-          possession: new FormControl(result['possession']),
+          estPossessionOn: new FormControl(result['estPossessionOn']),
           builtArea: new FormControl(result['builtArea']),
           carpetArea: new FormControl(result['carpetArea']),
           furnishingType: new FormControl(result['furnishingType']),
@@ -90,8 +91,6 @@ export class EditPropertyComponent implements OnInit {
   updateProperty() {
     this.housingService
       .updateProperty(this.router.snapshot.params.id, this.editProperty.value)
-      .subscribe((result) => {
-        this.cityList = this.cityList;
-      });
+      .subscribe((result) => {});
   }
 }

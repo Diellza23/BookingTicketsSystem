@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using bookingSystem.Models.DTO;
 using Data.Entities;
@@ -53,6 +54,7 @@ namespace bookingSystem.Controllers
                 {
                     return await Task.FromResult(new ResponseModel(ResponseCode.Error, "Roles are missing", null));
                 }
+
                 foreach (var role in model.Roles)
                 {
 
@@ -71,9 +73,25 @@ namespace bookingSystem.Controllers
 
                         await _userManager.AddToRoleAsync(tempUser, role);
                     }
-                    return await Task.FromResult(new ResponseModel(ResponseCode.OK, "User has beem Registered", null));
+                    return await Task.FromResult(new ResponseModel(ResponseCode.OK, "User has been Registered", null));
                 }
-                return await Task.FromResult(new ResponseModel(ResponseCode.Error, "", result.Errors.Select(x => x.Description).ToArray()));
+                var existingUser = await _userManager.FindByEmailAsync(model.Email);
+
+                if (existingUser != null)
+                {
+                    return await Task.FromResult(new ResponseModel(ResponseCode.Error, $"Email {model.Email} is already taken!  ", result.Errors.Select(x => x.Description).ToArray()));
+                }
+
+                if (!Regex.IsMatch(model.Password, @"(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+-])"))
+                {
+                    // ModelState.AddModelError("Password", "Password must contain at least one uppercase letter and one number");
+                    return await Task.FromResult(new ResponseModel(ResponseCode.PasswordError, "Password must contain at least 1 uppercase letter, 1 number and 1 special character! ", result.Errors.Select(x => x.Description).ToArray()));
+                }
+
+
+
+                return NoContent();
+
             }
             catch (Exception ex)
             {
@@ -148,7 +166,7 @@ namespace bookingSystem.Controllers
                         return await Task.FromResult(new ResponseModel(ResponseCode.OK, "", user));
                     }
                 }
-                return await Task.FromResult(new ResponseModel(ResponseCode.Error, "Invalid Email or Password", null));
+                return await Task.FromResult(new ResponseModel(ResponseCode.Error, "Invalid Email or Password, please check again!", null));
             }
             catch (Exception ex)
             {
@@ -304,6 +322,7 @@ namespace bookingSystem.Controllers
             }
         }
 
+
         [HttpPost("changePassword/{id}")]
         public async Task<IActionResult> ChangePassword(ChangePassword model, string id)
         {
@@ -340,6 +359,7 @@ namespace bookingSystem.Controllers
             return new JsonResult(model);
         }
 
+
         [HttpPost("deleteThisUser/{id}")]
         public async Task<IActionResult> DeleteUserSpecific(string id)
         {
@@ -347,7 +367,7 @@ namespace bookingSystem.Controllers
 
             if (user == null)
             {
-                return new JsonResult("User with ID ={id} cannot be found");
+                return new JsonResult("User with ID ${id} cannot be found");
             }
             else
             {
@@ -355,11 +375,12 @@ namespace bookingSystem.Controllers
 
                 if (result.Succeeded)
                 {
-                    return new JsonResult("U fshi");
+                    return new JsonResult("User has been deleted");
                 }
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError("", error.Description);
+                    ModelState.AddModelError(string.Empty, error.Description);
+
                 }
                 return new JsonResult("Tried");
             }

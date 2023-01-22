@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ResponseCode } from '../enums/responseCode';
 import { ResponseModel } from '../Models/responseModel';
 import { Role } from '../Models/role';
+import { AlertifyService } from '../services/alertify.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class RegisterComponent implements OnInit {
   });
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private alertify: AlertifyService
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +45,6 @@ export class RegisterComponent implements OnInit {
         fullName,
         email,
         password,
-
         this.roles.filter((x) => x.isSelected).map((x) => x.role),
         phoneNumber,
         address,
@@ -61,8 +62,12 @@ export class RegisterComponent implements OnInit {
             this.registerForm.controls['country'].setValue('');
             this.registerForm.controls['state'].setValue('');
             this.roles.forEach((x) => (x.isSelected = false));
+          } else if (data.responseCode == ResponseCode.Error) {
+            this.alertify.error(data.responseMessage);
+            console.log(data.responseMessage);
+          } else if (data.responseCode == ResponseCode.PasswordError) {
+            this.alertify.error(data.responseMessage);
           }
-          console.log('response', data);
         },
         (error) => {
           console.log('error', error);

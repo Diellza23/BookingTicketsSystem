@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VCRFsS9d1iufOhodYGipYhzA7hovGvrIEspaDwxB6ddLzP2YOf/Zso068Sau2U+bGgKD9+YhRbwr950YyRyHOA==",
+  "dgSpecHash": "MkOuSyu6FXiozEXayRalfj8bJD6khPh2T3JzFl0RKMQEhI3ceZcLmA36xpl1N4zkieGf8MrTxQ3k9Rukxq78Pw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingsystem\\bookingSystem.csproj",
+  "projectFilePath": "C:\\Users\\DeZzeRt\\Desktop\\Diellza\\Lab2\\BookingTicketsSystem\\bookingSystem\\bookingSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DeZzeRt\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\DeZzeRt\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
