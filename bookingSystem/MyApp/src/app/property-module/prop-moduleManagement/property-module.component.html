@@ -15,28 +15,10 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Id</th>
-        <th scope="col">Sell or Rent</th>
         <th scope="col">Name</th>
-        <th scope="col">Prop Type</th>
-        <th scope="col">BHK</th>
-        <th scope="col">furnish</th>
-        <!-- <th scope="col">price</th>
-        <th scope="col">built area</th>
-        <th scope="col">carpetArea</th>
-        <th scope="col">address</th>
-        <th scope="col">address 2</th> -->
-        <th scope="col">city</th>
-        <!-- <th scope="col">floor</th>
-        <th scope="col">total</th>
-        <th scope="col">readyToMove</th>
-        <th scope="col">mainEntrance</th>
-        <th scope="col">security</th>
-        <th scope="col">gated</th>
-        <th scope="col">maintenance</th>
-
-        <th scope="col">Date</th>
-        <th scope="col">Desc</th>
-        <th scope="col">Posted on</th> -->
+        <th scope="col">Address</th>
+        <th scope="col">Built Area</th>
+        <th scope="col">Price</th>
         <th style="text-align: center">Actions</th>
       </tr>
     </thead>
@@ -44,27 +26,11 @@
       <tr *ngFor="let prop of propList">
         <td></td>
         <td>{{ prop.id }}</td>
-        <td>{{ prop.sellRent }}</td>
         <td>{{ prop.name }}</td>
-        <td>{{ prop.propertyType }}</td>
-        <td>{{ prop.bhk }}</td>
-        <td>{{ prop.furnishingType }}</td>
-        <!-- <td>{{ prop.price }}</td>
-        <td>{{ prop.builtArea }}</td>
-        <td>{{ prop.carpetArea }}</td>
         <td>{{ prop.address }}</td>
-        <td>{{ prop.address2 }}</td> -->
-        <td>{{ prop.city }}</td>
-        <!-- <td>{{ prop.floorNo }}</td>
-        <td>{{ prop.totalFloors }}</td>
-        <td>{{ prop.readyToMove }}</td>
-        <td>{{ prop.mainEntrance }}</td>
-        <td>{{ prop.security }}</td>
-        <td>{{ prop.gated }}</td>
-        <td>{{ prop.maintenance }}</td>
-        <td>{{ prop.estPossessionOn }}</td>
-        <td>{{ prop.description }}</td>
-        <td>{{ prop.postedOn | date : "M/d/y" }}</td> -->
+        <td>{{ prop.builtArea }}</td>
+        <td>{{ prop.price }}</td>
+
         <td style="text-align: center">
           <div class="btn-group">
             <button

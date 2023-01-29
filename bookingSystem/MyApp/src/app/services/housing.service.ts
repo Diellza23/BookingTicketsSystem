@@ -105,13 +105,26 @@ export class HousingService {
     );
   }
 
-  updateProperty(id: number, data: any) {
-    console.log(data);
-    data.id = +id;
-    return this.http.put(
-      `https://localhost:5001/api/propperty/UpdProperty/id=${id}`,
-      data
-    );
+  updateProperty(id: number, payload: any) {
+    let nextPayload = {
+      ...payload,
+      // cityId: +payload.city,
+      // propertyTypeId: 1,
+      // furnishingTypeId: 1,
+    };
+    console.log(JSON.stringify(nextPayload));
+    this.http
+      .put<any>(
+        `https://localhost:5001/api/propperty/UpdProperty/${id}`,
+        nextPayload
+      )
+      .subscribe((data) => {
+        alert('DATA:' + JSON.stringify(data));
+      });
+    // return this.http.put(
+    //   `https://localhost:5001/api/propperty/UpdProperty/${id}`,
+    //   data
+    // );
   }
 
   newPropID() {

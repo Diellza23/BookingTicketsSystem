@@ -77,11 +77,12 @@ export class AddPropertyComponent implements OnInit {
       this.furnishTypes = data;
     });
   }
+  //TO BE FIXED IN VALIDATIONS ADD ERROR MESSAGES
 
   CreateAddPropertyForm() {
     this.addPropertyForm = this.fb.group({
       BasicInfo: this.fb.group({
-        SellRent: ['1', Validators.required],
+        SellRent: [null, Validators.required],
         BHK: [null, Validators.required],
         PType: [null, Validators.required],
         FType: [null, Validators.required],

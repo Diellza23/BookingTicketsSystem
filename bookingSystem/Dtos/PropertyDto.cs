@@ -9,15 +9,15 @@ namespace bookingSystem.Dtos
         public int Id { get; set; }
         public int SellRent { get; set; }
         public string Name { get; set; }
-        [ForeignKey("PropertyType")]
         public int PropertyTypeId { get; set; }
-        [ForeignKey("FurnishingType")]
+        [ForeignKey("PropertyType")]
         public int FurnishingTypeId { get; set; }
+        [ForeignKey("FurnishingType")]
         public int Price { get; set; }
         public int BHK { get; set; }
         public int BuiltArea { get; set; }
-        [ForeignKey("City")]
         public int CityId { get; set; }
+        [ForeignKey("City")]
         public bool ReadyToMove { get; set; }
         public int CarpetArea { get; set; }
         public string Address { get; set; }

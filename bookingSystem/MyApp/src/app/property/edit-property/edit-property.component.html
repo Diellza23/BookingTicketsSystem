@@ -3,54 +3,57 @@
     <div class="col-sm-4 p-0">
       <div class="card">
         <div class="card-img-wrapper">
-          <img class="card-img-top" />
-          <img class="card-img-top" />
+          <img
+            *ngIf="mainPhotoUrl"
+            class="card-img-top"
+            src="{{ mainPhotoUrl }}"
+          />
+          <img
+            *ngIf="!mainPhotoUrl"
+            class="card-img-top"
+            src="assets/images/interior.jpg"
+          />
         </div>
       </div>
     </div>
+
     <div class="col-sm-8 p-0">
       <form [formGroup]="editProperty" (ngSubmit)="updateProperty()">
         <div class="form-group">
           <tabset class="membet-tabset">
             <tab heading="Overview">
-              <h2 style="margin-bottom: 20px">Property Overview</h2>
-              <div class="row">
+              <div class="row" style="padding: 20px">
                 <div class="col-sm-6">
-                  <div class="heading">
-                    <strong>Project Name:</strong>
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">Name of Project:</label>
                     <input
                       type="text"
                       class="form-control"
                       formControlName="name"
-                      class="form-control"
                     />
                   </div>
-                  <hr />
 
-                  <div class="heading">
-                    <strong>Floor Number:</strong>
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">Floor Number:</label>
                     <input
                       type="text"
                       class="form-control"
                       formControlName="floorNo"
                     />
                   </div>
-                  <hr />
-
-                  <hr />
-                  <div class="heading">
-                    <strong>Possession:</strong>
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">Total Floors:</label>
                     <input
+                      type="text"
                       class="form-control"
-                      formControlName="estPossessionOn"
+                      formControlName="totalFloors"
                     />
-                    <!-- <p>{{ property.estPossessionOn | date }}</p> -->
                   </div>
                 </div>
 
                 <div class="col-sm-6">
-                  <div class="heading">
-                    <strong>Main Entrance:</strong>
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">Main Entrance:</label>
                     <input
                       type="text"
                       class="form-control"
@@ -58,121 +61,134 @@
                     />
                     <!-- <p>{{ property.mainEntrance }}</p> -->
                   </div>
-                  <hr />
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">BHK:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="bhk"
+                    />
+                  </div>
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">Date of possession:</label>
+                    <input
+                      class="form-control"
+                      formControlName="estPossessionOn"
+                    />
+                  </div>
+                </div>
+                <div class="heading" style="margin-top: 10px">
+                  <label class="labels">About property:</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    formControlName="description"
+                    rows="2"
+                  ></textarea>
+                </div>
+              </div>
+            </tab>
 
-                  <div class="heading">
-                    <strong>Security Deposit:</strong>
+            <!-- priceee -->
+            <tab heading="Price/Area">
+              <div class="row" style="padding: 20px">
+                <div class="col-sm-6">
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">Price:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="price"
+                    />
+                  </div>
+
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">Maintenance:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="maintenance"
+                    />
+                  </div>
+
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">Security Deposit:</label>
                     <input
                       type="text"
                       formControlName="security"
                       class="form-control"
                     />
                   </div>
-                  <hr />
+                </div>
 
-                  <div class="heading">
-                    <strong>Maintenance:</strong>
-                    <input formControlName="maintenance" class="form-control" />
+                <div class="col-sm-6">
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">Built Area:</label>
+                    <input class="form-control" formControlName="builtArea" />
                   </div>
-                  <hr />
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">Carpet Area:</label>
+                    <input class="form-control" formControlName="carpetArea" />
+                  </div>
+                  <div class="heading" style="margin-top: 10px">
+                    <label class="labels">Ready to Move?</label>
 
-                  <div class="heading">
-                    <strong>About Property:</strong>
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="description"
-                      rows="2"
-                    />
+                    <input class="form-control" formControlName="readyToMove" />
                   </div>
+                </div>
+                <div class="heading" style="margin-top: 10px">
+                  <label class="labels">About property:</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    formControlName="description"
+                    rows="2"
+                  ></textarea>
                 </div>
               </div>
             </tab>
 
-            <tab heading="Address">
+            <tab heading="Address" style="padding: 20px">
               <div class="row">
                 <div class="col-sm-6">
-                  <h2 style="margin-bottom: 20px">Address</h2>
                   <div class="heading">
-                    <strong>Built area:</strong>
+                    <label class="labels" style="margin-top: 10px"
+                      >Available for:</label
+                    >
+
                     <input
                       type="text"
                       class="form-control"
-                      formControlName="builtArea"
-                      class="form-control"
+                      formControlName="sellRent"
                     />
-
-                    <hr />
-                    <strong>Carpet area:</strong>
-                    <input
-                      type="text"
-                      formControlName="carpetArea"
-                      class="form-control"
-                    />
-
-                    <hr />
-                    <strong>Furnishing type:</strong>
-                    <input
-                      type="text"
-                      formControlName="furnishingType"
-                      class="form-control"
-                    />
-
-                    <hr />
-                    <strong>Available for:</strong>
-                    <input class="form-control" />
                   </div>
                 </div>
 
                 <div class="col-sm-6">
-                  <h2 style="margin-bottom: 20px">Address</h2>
                   <div class="heading">
-                    <strong>Address 1:</strong>
+                    <label class="labels" style="margin-top: 10px"
+                      >Main Address:</label
+                    >
                     <input
                       type="text"
                       formControlName="address"
                       class="form-control"
                     />
 
-                    <hr />
-                    <strong>Address 2:</strong>
+                    <label class="labels" style="margin-top: 10px"
+                      >Additional Address 2:</label
+                    >
                     <input
                       type="text"
                       formControlName="address2"
                       class="form-control"
                     />
-
-                    <hr />
-                    <strong>City:</strong>
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="city"
-                    />
-                    <select
-                      type="text"
-                      #City
-                      (change)="
-                        propertyView.city =
-                          City.options[City.options.selectedIndex].text
-                      "
-                      class="form-control"
-                      formControlName="city"
-                    >
-                      <option value="">--Select City--</option>
-                      <option
-                        *ngFor="let city of cityList"
-                        value="{{ city.id }}"
-                      >
-                        {{ city.name }}
-                      </option>
-                    </select>
                   </div>
                 </div>
               </div>
             </tab>
 
-            <tab heading="Photos">
+            <tab heading="Photos" style="padding: 20px">
               <!-- <ngx-gallery
                 [options]="galleryOptions"
                 [images]="galleryImages"

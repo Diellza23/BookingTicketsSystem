@@ -73,17 +73,7 @@
               <span>About </span>
             </a>
           </li>
-          <li class="nav__item">
-            <a
-              class="nav__link"
-              [class.disabled]="isUser"
-              *ngIf="isUserlogin && !isUser"
-              routerLink="/contact"
-            >
-              <i class="bx bx-message"> </i>
-              <span>Contact messages </span>
-            </a>
-          </li>
+
           <li class="nav__item">
             <a
               href="#"
@@ -120,6 +110,16 @@
           </li> -->
           <li class="nav__item">
             <a
+              class="nav__link"
+              [class.disabled]="isUser"
+              *ngIf="isUserlogin && !isUser"
+              routerLink="/contact"
+            >
+              <i class="bx bx-message"> </i>
+              <span>Contact messages </span>
+            </a>
+
+            <a
               href="#"
               class="nav__link"
               [class.disabled]="isUser"
@@ -145,43 +145,6 @@
         </ul>
       </div>
 
-      <!-- <div
-        style="margin-bottom: 20px"
-        *ngIf="isUserlogin"
-        class="dropdown mr-5 position"
-        dropdown
-      >
-        <a
-          href="#"
-          class="dropdown-toggle text-black"
-          dropdownToggle
-          (click)="(false)"
-        >
-          Welcome {{ user.email }}
-        </a>
-        <div class="dropdown-menu" *dropdownMenu>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-tachometer-alt"></i> View Dashboard</a
-          >
-          <a href="#" class="dropdown-item">
-            <i class="far fa-user-circle"></i> My Profile</a
-          >
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-key"></i> Change Password</a
-          >
-          <a
-            class="dropdown-item"
-            routerLinkActive="active"
-            aria-current="page"
-            routerLink="/login"
-            *ngIf="isUserlogin"
-            (click)="onLogout()"
-          >
-            <i class="fas fa-sign-out-alt"></i> Logout</a
-          >
-        </div>
-      </div> -->
-
       <a
         *ngIf="!isUserlogin"
         routerLink="/login"
@@ -191,11 +154,11 @@
         Sign in
       </a>
 
-      <div class="dropdown" *ngIf="isUserlogin" dropdown>
+      <div class="dropdown button nav__button" *ngIf="isUserlogin" dropdown>
         <a class="dropdown-toggle text-black" dropdownToggle (click)="(false)">
           {{ user.fullName }}
         </a>
-        <div class="dropdown-menu" *dropdownMenu>
+        <div class="dropdown-menu" *dropdownMenu style="padding: 20px">
           <a href="#" class="dropdown-item" routerLink="/profile/">
             <i class="far fa-user-circle"></i> My Profile</a
           >
@@ -204,6 +167,7 @@
             class="dropdown-item"
             routerLink="/property-management"
             *ngIf="isUserlogin && !isAdmin"
+            style="margin-top: 10px"
           >
             <i class="bx bx-book-reader"> </i>
             <span>Properties I posted</span>
@@ -213,6 +177,7 @@
             href="#"
             class="dropdown-item"
             routerLink="/change-password/{{ user.id }}"
+            style="margin-top: 10px"
           >
             <i class="fas fa-key"></i> Change Password</a
           >
@@ -223,6 +188,7 @@
             routerLink="/login"
             *ngIf="isUserlogin"
             (click)="onLogout()"
+            style="margin-top: 10px"
           >
             <i class="fas fa-sign-out-alt"></i> Logout</a
           >

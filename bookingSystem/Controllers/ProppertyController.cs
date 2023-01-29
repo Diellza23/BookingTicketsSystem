@@ -101,7 +101,7 @@ namespace bookingSystem.Controllers
 
             try
             {
-                var result = await uow.PropertyRepository.UpdatePropperty(model.Id, model.SellRent, model.Name, model.PropertyTypeId, model.FurnishingTypeId, model.Price, model.BHK, model.BuiltArea, model.CityId, model.ReadyToMove, model.CarpetArea, model.Address, model.Address2, model.FloorNo, model.TotalFloors, model.MainEntrance, model.Security, model.Gated, model.Maintenance, model.EstPossessionOn, model.Description, model.AppUserId);
+                var result = await uow.PropertyRepository.UpdatePropperty(model.Id, model.SellRent, model.Name, model.Price, model.BHK, model.BuiltArea, model.ReadyToMove, model.CarpetArea, model.Address, model.Address2, model.FloorNo, model.TotalFloors, model.MainEntrance, model.Security, model.Gated, model.Maintenance, model.EstPossessionOn, model.Description, model.AppUserId);
 
                 return await Task.FromResult(new ResponseModel(ResponseCode.OK, (model.Id > 0 ? "Recorded Update" : "No updated fields, check again"), result));
             }

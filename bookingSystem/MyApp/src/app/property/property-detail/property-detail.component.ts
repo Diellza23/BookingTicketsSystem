@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import {
+  NgxGalleryImage,
+  NgxGalleryOptions,
+  NgxGalleryAnimation,
+} from '@kolkov/ngx-gallery';
 import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
-import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import { Constants } from 'src/app/Helper/constants';
 import { User } from 'src/app/Models/user';
 
@@ -57,6 +60,7 @@ export class PropertyDetailComponent implements OnInit {
 
     this.galleryImages = this.getPropertyPhotos();
   }
+
   get isUserlogin() {
     const user = localStorage.getItem(Constants.USER_KEY);
     return user && user.length > 0;
@@ -99,5 +103,4 @@ export class PropertyDetailComponent implements OnInit {
       window.location.reload();
     }
   }
-  
 }
