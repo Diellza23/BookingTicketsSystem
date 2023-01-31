@@ -97,12 +97,12 @@
                         >{{ ptype.name }}
                       </label>
                     </div>
-                    <!-- <div
+                    <div
                       class="error-block"
                       *ngIf="PType.invalid && nextClicked"
                     >
                       Please select property type
-                    </div> -->
+                    </div>
                   </div>
 
                   <div class="form-group col-12">
@@ -125,12 +125,12 @@
                         {{ ftype.name }}
                       </label>
                     </div>
-                    <!-- <div
+                    <div
                       class="error-block"
                       *ngIf="FType.invalid && nextClicked"
                     >
                       Please select furnishing type
-                    </div> -->
+                    </div>
                   </div>
 
                   <div class="form-group col-12">
@@ -505,6 +505,15 @@
                       formControlName="Description"
                       rows="6"
                     ></textarea>
+                    <div
+                      class="error-block"
+                      *ngIf="
+                        Description.invalid &&
+                        (nextClicked || Description.touched)
+                      "
+                    >
+                      Please add description
+                    </div>
                   </div>
 
                   <div class="form-group col-12">
@@ -525,26 +534,60 @@
                   </div>
                 </tab>
 
-                <tab heading="Photos">
+                <tab heading="Finalisation">
                   <div class="form-group col-12">
+                    <h3>Privacy policy:</h3>
                     <div class="photo-control">
-                      <button class="mt-5" type="button">Upload</button> <br />
-                      This is under construction
+                      <p style="text-align: left; padding: 20px">
+                        This agreement is made on Real Estate as of the absolute
+                        owner in possession is the first party(you). The agreed
+                        property is being sold or set for rent with all the
+                        rights and with consent of all heirs to the second party
+                        who has agreed for the property in name to be posted on
+                        these terms and conditions. This legal document is
+                        signed by both the parties(you, us) in the presence of
+                        marginal witnessess and hereso posting the property on
+                        this listing as a legal authority. Subject to mutual
+                        acceptance on these terms, Real Estate, DKRE (hereafter
+                        "RE"), grants to License, transferable license. Section
+                        1.0 0 - RESERVED RIGHTS AND GRANT OF LIMITED License.
+                        The Data will be made available to the User on a
+                        case-by-case basis during the term hereof for the
+                        prescribed fee as set forth in The Land Titles Fee
+                        Regulation, 171/89as may be amended or revised from time
+                        to time,subject to the terms and conditions of this
+                        Agreement. The user shall owen the documentation on
+                        which the Data is posted, but DKRE retains all ownership
+                        interests in the Data. Thereby by posting this property
+                        you legally agree on ammending these terms and
+                        conditions.
+                      </p>
+                      <p
+                        style="
+                          text-align: center;
+                          font-weight: 600;
+                          font-size: 13px;
+                        "
+                      >
+                        All Data is copyrighted © 2023.
+                      </p>
                     </div>
                   </div>
                   <div class="form-group col-12">
                     <button
+                      type="submit"
+                      class="btn btn-outline-success btn-block"
+                      style="float: right"
+                    >
+                      Save
+                    </button>
+                    <button
                       type="button"
                       class="btn btn-primary btn-block"
                       (click)="selectTab(3, true)"
+                      style="float: right"
                     >
                       Back
-                    </button>
-                    <button type="submit" class="btn btn-success btn-block">
-                      Save
-                    </button>
-                    <button type="reset" class="btn btn-primary btn-block">
-                      Cancel
                     </button>
                   </div>
                 </tab>

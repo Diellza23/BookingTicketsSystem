@@ -1,3 +1,5 @@
+import { Photo } from './photo';
+
 export interface IPropertyBase {
   id: number;
   sellRent: number;
@@ -11,6 +13,7 @@ export interface IPropertyBase {
   country: string;
   readyToMove: boolean;
   photo?: string;
+  photos?: Photo[];
   estPossessionOn?: string;
   description?: string;
   appUserId?: string;

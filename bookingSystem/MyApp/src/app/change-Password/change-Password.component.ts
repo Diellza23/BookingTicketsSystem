@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AlertifyService } from '../services/alertify.service';
 import { UserService } from '../services/user.service';
@@ -28,7 +28,10 @@ export class ChangePasswordComponent implements OnInit {
       .getCurrentData(this.router.snapshot.params.id)
       .subscribe((res) => {
         this.editPassword = new FormGroup({
-          currentPassword: new FormControl(res['currentPassword']),
+          currentPassword: new FormControl(
+            res['currentPassword'],
+            Validators.required
+          ),
           newPassword: new FormControl(res['newPassword']),
           confirmPassword: new FormControl(res['confirmPassword']),
         });

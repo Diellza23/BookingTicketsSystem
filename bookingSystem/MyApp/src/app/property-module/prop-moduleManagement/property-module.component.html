@@ -1,4 +1,13 @@
-<div class="container">
+<div class="container" style="height: 100vh">
+  <h5>Manage capabilities</h5>
+  <div
+    style="display: flex; flex-direction: row; justify-content: space-between"
+  >
+    <p>Modify, delete and see all the properties you have posted.</p>
+    <button routerLink="/add-property" class="btn btn-outline-primary">
+      <i class="bx bx-image-add"> </i>Post
+    </button>
+  </div>
   <div class="row">
     <div class="col-12">
       <!-- <button
@@ -13,36 +22,34 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th scope="col"></th>
         <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Address</th>
-        <th scope="col">Built Area</th>
         <th scope="col">Price</th>
         <th style="text-align: center">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let prop of propList">
-        <td></td>
+        <td><input type="checkbox" /></td>
         <td>{{ prop.id }}</td>
         <td>{{ prop.name }}</td>
         <td>{{ prop.address }}</td>
-        <td>{{ prop.builtArea }}</td>
         <td>{{ prop.price }}</td>
 
         <td style="text-align: center">
           <div class="btn-group">
             <button
               type="button"
-              style="width: 70px"
+              style="width: 40px"
               class="btn btn-outline-primary"
-              (click)="onEdit(prop)"
+              routerLink="/edit-property/{{ prop.id }}"
             >
               <i class="bx bx-edit"> </i>
             </button>
             <button
-              style="width: 70px; margin-left: 10px"
+              style="width: 40px; margin-left: 10px"
               type="button"
               class="btn btn-outline-danger"
               (click)="onDelete(prop.id)"
@@ -50,8 +57,8 @@
               <i class="bx bx-trash"> </i>
             </button>
             <button
-              style="width: 70px; margin-left: 10px"
-              class="btn btn-outline-secondary"
+              style="width: 40px; margin-left: 10px"
+              class="btn btn-outline-info"
               routerLink="/property-detail/{{ prop.id }}"
             >
               <i class="bx bx-message-square-detail"> </i>
@@ -62,3 +69,5 @@
     </tbody>
   </table>
 </div>
+
+<section><app-footer></app-footer></section>

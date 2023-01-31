@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   FormGroup,
@@ -15,6 +15,7 @@ import { Ikeyvaluepair } from 'src/app/model/ikeyvaluepair';
 import { DatePipe } from '@angular/common';
 import { Constants } from 'src/app/Helper/constants';
 import { User } from 'src/app/Models/user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-property',
@@ -27,6 +28,8 @@ export class AddPropertyComponent implements OnInit {
   addPropertyForm: FormGroup;
   nextClicked: boolean;
   property = new Property();
+  selectedFile: File;
+  @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
 
   // Will come from masters
   propertyTypes: Ikeyvaluepair[];
@@ -54,7 +57,8 @@ export class AddPropertyComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private housingService: HousingService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -239,14 +243,19 @@ export class AddPropertyComponent implements OnInit {
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapProperty();
+
       this.housingService
         .addProperty(this.property, this.user.id)
-        .subscribe(() => {
-          this.alertify.success(
-            'Congrats, your property listed successfully on our website'
-          );
-          console.log(this.addPropertyForm);
-          this.router.navigate(['/property-management']);
+        .subscribe((res) => {
+          if (res) {
+            this.alertify.success(
+              'Congrats, your property listed successfully on our website'
+            );
+            this.router.navigate(['/property-management']);
+          } else {
+            this.alertify.error('Something went wrong, try again later');
+          }
+          // console.log(this.addPropertyForm);
           // if (this.SellRent.value === '2') {
           //   this.router.navigate(['/rent-property']);
           // } else {
@@ -318,5 +327,20 @@ export class AddPropertyComponent implements OnInit {
     if (IsCurrentTabValid) {
       this.formTabs.tabs[NextTabId].active = true;
     }
+  }
+
+  uploadFile() {
+    this.fileInput.nativeElement.click();
+    const uploadData = new FormData();
+    uploadData.append('file', this.selectedFile, this.selectedFile.name);
+
+    this.http
+      .post(' https://localhost:5001/api/propperty/upload', uploadData)
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
+  onFileChanged(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 }

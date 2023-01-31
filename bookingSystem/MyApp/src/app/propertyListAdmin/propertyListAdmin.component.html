@@ -1,0 +1,51 @@
+<div class="container font">
+  <div
+    style="
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+      margin-top: 20px;
+      padding: 20px;
+    "
+  >
+    <h3>
+      <i class="bx bx-archive" style="color: green"></i> Residences Management
+    </h3>
+    <p style="font-weight: normal">
+      Keep in mind, all the properties that have been registered on this website
+      can be found on this page in which only the system administrators have
+      access!
+    </p>
+    <p>
+      Feel free to delete anything that may seem inapropriate, that you might
+      find suspicious or that possibly contain false information about a
+      property.
+      <br />
+    </p>
+    <p>
+      We value our client's privacy.<strong>Invasion of privacy</strong> is NOT
+      allowed/permitted, thus you can <strong>NOT</strong> edit property
+      information, only the user that has posted the property has access to make
+      changes.
+      <a href="#" class="float-end" style="text-decoration: none">
+        Read about our privacy policy
+      </a>
+    </p>
+  </div>
+  <div class="row" style="margin-top: 20px">
+    <div *ngFor="let property of properties" class="col-sm-4">
+      <div class="shadow-lg p-3 mb-4">
+        <app-property-card
+          [property]="property"
+          routerLink="/property-detail/{{ property.id }}"
+          style="cursor: pointer"
+        ></app-property-card>
+        <button
+          class="btn btn-outline-danger"
+          (click)="deleteProperty(property.id)"
+          style="width: 100%"
+        >
+          <i class="bx bx-trash"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

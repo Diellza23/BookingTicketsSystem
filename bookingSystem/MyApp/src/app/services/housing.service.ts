@@ -9,6 +9,8 @@ import { IPropertyBase } from '../model/ipropertybase';
 import { environment } from 'src/environments/environment';
 import { Ikeyvaluepair } from '../model/ikeyvaluepair';
 import { Constants } from '../Helper/constants';
+import { AlertifyService } from './alertify.service';
+import { ResponseModel } from '../Models/responseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +18,7 @@ import { Constants } from '../Helper/constants';
 export class HousingService {
   baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private alertify: AlertifyService) {}
 
   getAllCities(): Observable<string[]> {
     return this.http.get<string[]>('https://localhost:5001/api/city');
@@ -66,6 +68,20 @@ export class HousingService {
   //     'https://localhost:5001/api/User/DeleteUser/id?id=' + id
   //   );
   // }
+  public deleteThisProperty(propId: number) {
+    let userInfo = JSON.parse(localStorage.getItem(Constants.USER_KEY));
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${userInfo?.token}`,
+    });
+    const body = {
+      Id: propId,
+    };
+    return this.http.post<ResponseModel>(
+      Constants.BASE_URL + 'Propperty/DeleteProperty',
+      body,
+      { headers: headers }
+    );
+  }
 
   deleteProperty(id: number) {
     return this.http.delete(
@@ -108,18 +124,20 @@ export class HousingService {
   updateProperty(id: number, payload: any) {
     let nextPayload = {
       ...payload,
-      // cityId: +payload.city,
-      // propertyTypeId: 1,
-      // furnishingTypeId: 1,
     };
-    console.log(JSON.stringify(nextPayload));
+    // console.log(JSON.stringify(nextPayload));
     this.http
       .put<any>(
         `https://localhost:5001/api/propperty/UpdProperty/${id}`,
         nextPayload
       )
       .subscribe((data) => {
-        alert('DATA:' + JSON.stringify(data));
+        if (data) {
+          this.alertify.success('Data updated successfully');
+        } else {
+          this.alertify.error('Something went wrong, try again later');
+        }
+        // alert('DATA:' + JSON.stringify(data));
       });
     // return this.http.put(
     //   `https://localhost:5001/api/propperty/UpdProperty/${id}`,

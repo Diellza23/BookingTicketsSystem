@@ -4,7 +4,11 @@ import { HousingService } from 'src/app/services/housing.service';
 import { ActivatedRoute } from '@angular/router';
 import { Ikeyvaluepair } from 'src/app/model/ikeyvaluepair';
 import { IPropertyBase } from 'src/app/model/ipropertybase';
-import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import {
+  NgxGalleryAnimation,
+  NgxGalleryImage,
+  NgxGalleryOptions,
+} from '@kolkov/ngx-gallery';
 import { Property } from 'src/app/model/property';
 
 @Component({
@@ -15,7 +19,6 @@ import { Property } from 'src/app/model/property';
 export class EditPropertyComponent implements OnInit {
   alert: boolean = false;
   id: number;
-  public mainPhotoUrl: string = null;
   property = new Property();
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -105,42 +108,11 @@ export class EditPropertyComponent implements OnInit {
     this.housingService.getFurnishingTypes().subscribe((data) => {
       this.furnishTypes = data;
     });
-
-    this.galleryOptions = [
-      {
-        width: '100%',
-        height: '465px',
-        thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide,
-        preview: true,
-      },
-    ];
-
-    this.galleryImages = this.getPropertyPhotos();
-  }
-  changePrimaryPhoto(mainPhotoUrl: string) {
-    this.mainPhotoUrl = mainPhotoUrl;
-  }
-
-  getPropertyPhotos(): NgxGalleryImage[] {
-    const photoUrls: NgxGalleryImage[] = [];
-    for (const photo of this.property.photos) {
-      if (photo.isPrimary) {
-        this.mainPhotoUrl = photo.imageUrl;
-      } else {
-        photoUrls.push({
-          small: photo.imageUrl,
-          medium: photo.imageUrl,
-          big: photo.imageUrl,
-        });
-      }
-    }
-    return photoUrls;
   }
 
   updateProperty() {
     // alert(this.router.snapshot.params.id);
-    alert(JSON.stringify(this.editProperty.value));
+    // alert(JSON.stringify(this.editProperty.value));
     // return;
 
     this.housingService.updateProperty(

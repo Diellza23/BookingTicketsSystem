@@ -65,7 +65,7 @@
           <li class="nav__item">
             <a
               href="#"
-              *ngIf="!isUserlogin"
+              *ngIf="!isUserlogin || (isUserlogin && !isAdmin)"
               class="nav__link"
               routerLink="/about-us"
             >
@@ -83,6 +83,18 @@
             >
               <i class="bx bx-book-add"></i>
               <span> List Property</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a
+              href="#"
+              class="nav__link"
+              routerLink="/property-management"
+              *ngIf="isUserlogin && !isAdmin"
+              style="margin-top: 10px"
+            >
+              <i class="bx bx-book-reader"> </i>
+              <span>My Properties</span>
             </a>
           </li>
           <li class="nav__item">
@@ -110,15 +122,29 @@
           </li> -->
           <li class="nav__item">
             <a
+              style="margin-right: 10px"
+              class="nav__link"
+              [class.disabled]="isUser"
+              *ngIf="isUserlogin && isAdmin"
+              routerLink="/property-list-admin"
+            >
+              <i class="bx bx-message-alt-detail"> </i>
+              <span>All Residences</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a
+              style="margin-right: 10px"
               class="nav__link"
               [class.disabled]="isUser"
               *ngIf="isUserlogin && !isUser"
               routerLink="/contact"
             >
-              <i class="bx bx-message"> </i>
-              <span>Contact messages </span>
+              <i class="bx bx-message-alt-detail"> </i>
+              <span>Received</span>
             </a>
-
+          </li>
+          <li class="nav__item">
             <a
               href="#"
               class="nav__link"
@@ -162,7 +188,7 @@
           <a href="#" class="dropdown-item" routerLink="/profile/">
             <i class="far fa-user-circle"></i> My Profile</a
           >
-          <a
+          <!-- <a
             href="#"
             class="dropdown-item"
             routerLink="/property-management"
@@ -171,7 +197,7 @@
           >
             <i class="bx bx-book-reader"> </i>
             <span>Properties I posted</span>
-          </a>
+          </a> -->
 
           <a
             href="#"
@@ -241,6 +267,7 @@
       <!-- <a href="#" class="button nav__button"> Sign up </a> -->
     </nav>
   </header>
+
   <!-- <script src="../assets/main.js"></script> -->
 </body>
 <router-outlet></router-outlet>

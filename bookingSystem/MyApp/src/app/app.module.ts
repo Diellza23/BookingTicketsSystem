@@ -43,6 +43,9 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { PhotoEditorComponent } from './property/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { FooterComponent } from './footer/footer.component';
+import { AboutCardComponent } from './aboutCard/aboutCard.component';
+import { PropertyListAdminComponent } from './propertyListAdmin/propertyListAdmin.component';
 
 const appRoutes: Routes = [
   // {path: 'add-property', component: AddPropertyComponent},
@@ -56,6 +59,11 @@ const appRoutes: Routes = [
   {
     path: 'user-management',
     component: UserManagementComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'property-list-admin',
+    component: PropertyListAdminComponent,
     canActivate: [AuthGuardService],
   },
   {
@@ -141,6 +149,9 @@ const appRoutes: Routes = [
     ProfileEditComponent,
     ContactFormComponent,
     PhotoEditorComponent,
+    FooterComponent,
+    AboutCardComponent,
+    PropertyListAdminComponent,
   ],
   entryComponents: [ConfirmModalComponent],
   providers: [

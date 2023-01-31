@@ -49,13 +49,6 @@
             <!-- {{ property.sellRent }} -->
           </div>
         </div>
-        <button
-          class="btn btn-outline-info"
-          routerLink="/edit-property/{{ property.id }}"
-          *ngIf="isUserlogin"
-        >
-          Edit this property
-        </button>
       </div>
     </div>
     <div class="col-sm-8 p-0">
@@ -148,7 +141,7 @@
             ></ngx-gallery>
           </tab>
 
-          <tab heading="Upload/Edit Photos" *ngIf="isUserlogin">
+          <tab heading="Upload/Edit Photos" *ngIf="isUserlogin && !isAdmin">
             <app-photo-editor
               [property]="property"
               (mainPhotoChangedEvent)="changePrimaryPhoto($event)"

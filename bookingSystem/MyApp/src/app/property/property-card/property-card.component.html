@@ -37,9 +37,11 @@
     <!-- </li> -->
     <!-- </ul> -->
     <div class="card-body p-1">
-      <h1 class="mb-0">{{ property.bhk }} BHK {{ property.propertyType }}</h1>
+      <h1 class="mb-0">
+        {{ property.bhk }} BHK {{ property.propertyType }} {{ property.id }}
+      </h1>
 
-      in {{ property.name }} in {{ property.id }}
+      in {{ property.name }} in {{ property.country }}
       <span *ngIf="property.name">,</span>
       {{ property.city }}
 

@@ -11,16 +11,17 @@ import { Property } from 'src/app/model/property';
 export class PropertyCardComponent {
   public propertyList: Property[] = [];
   public mainPhotoUrl: string = null;
+  public prop: Property;
   constructor(private housingService: HousingService) {}
   @Input() property: IPropertyBase;
   @Input() hideIcons: boolean;
 
-  deleteProperty(id) {
-    if (confirm('Do you want to delete this property with this id?' + id)) {
-      this.housingService.deleteProperty(id).subscribe((result) => {
-        console.warn('deleted?', result);
-      });
-      window.location.reload();
-    }
-  }
+  // deleteProperty(id) {
+  //   if (confirm('Do you want to delete this property with this id?' + id)) {
+  //     this.housingService.deleteThisProperty(id).subscribe((result) => {
+  //       console.warn('deleted?', result);
+  //     });
+  //     // window.location.reload();
+  //   }
+  // }
 }

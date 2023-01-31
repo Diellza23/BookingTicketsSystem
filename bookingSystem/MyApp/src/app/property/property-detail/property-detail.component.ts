@@ -69,6 +69,9 @@ export class PropertyDetailComponent implements OnInit {
   get user(): User {
     return JSON.parse(localStorage.getItem(Constants.USER_KEY)) as User;
   }
+  get isAdmin(): boolean {
+    return this.user.roles.indexOf('Admin') > -1;
+  }
 
   changePrimaryPhoto(mainPhotoUrl: string) {
     this.mainPhotoUrl = mainPhotoUrl;

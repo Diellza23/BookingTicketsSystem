@@ -54,14 +54,12 @@ export class EditUserInformationComponent implements OnInit {
       .updateUser(this.router.snapshot.params.id, this.editUser.value)
       .subscribe((result) => {
         if (result) {
-          this.alertify.success(
-            'Account settings updated, please login again to see the changes!'
-          );
+          this.alertify.success('Account settings updated successfully!');
           console.log(result, 'data updated successfully');
           // localStorage.clear(); //per me u bo modification
           window.setTimeout(function () {
             location.reload();
-          }, 3000);
+          }, 2000);
         } else {
           this.alertify.error("Data modification didn't work!");
         }
