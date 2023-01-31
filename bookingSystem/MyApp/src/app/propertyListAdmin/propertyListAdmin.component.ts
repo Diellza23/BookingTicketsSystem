@@ -1,9 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { ResponseCode } from '../enums/responseCode';
 import { Constants } from '../Helper/constants';
+import { ConfirmModalComponent } from '../modal-components/confirm-modal/confirm-modal.component';
 import { IPropertyBase } from '../model/ipropertybase';
 import { Property } from '../model/property';
+import { AlertifyService } from '../services/alertify.service';
 import { HousingService } from '../services/housing.service';
 
 @Component({
@@ -24,7 +28,9 @@ export class PropertyListAdminComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private housingService: HousingService,
-    private http: HttpClient
+    private http: HttpClient,
+    private modalService: BsModalService,
+    private alertify: AlertifyService
   ) {}
 
   ngOnInit(): void {
@@ -72,11 +78,28 @@ export class PropertyListAdminComponent implements OnInit {
   // }
 
   deleteProperty(id) {
-    if (confirm('Do you want to delete this property with this id?' + id)) {
-      this.housingService.deleteThisProperty(id).subscribe((result) => {
-        console.warn('deleted?', result);
-      });
-      // window.location.reload();
-    }
+    const initialState: ModalOptions = {
+      initialState: {
+        message: 'Do you want to delete?',
+        confirmTitle: 'Yes',
+        declineTitle: 'No',
+      },
+    };
+    const bsModalRef = this.modalService.show(
+      ConfirmModalComponent,
+      initialState
+    );
+    bsModalRef.content.modalResponse.subscribe((result) => {
+      if (result) {
+        this.housingService.deleteThisProperty(id).subscribe((res) => {
+          if (res.responseCode == ResponseCode.OK) {
+            this.alertify.success('Property deleted successfully!');
+            window.location.reload();
+          } else {
+            this.alertify.error('Property could not be deleted');
+          }
+        });
+      }
+    });
   }
 }
