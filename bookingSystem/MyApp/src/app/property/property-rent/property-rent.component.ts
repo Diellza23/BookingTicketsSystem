@@ -16,6 +16,12 @@ export class PropertyRentComponent implements OnInit {
   SearchCity = '';
   SortbyParam = '';
   SortDirection = 'asc';
+  PriceFilter = '';
+  cityName: string;
+  filteredProperties: IPropertyBase[] = [];
+  price: number;
+  priceFilterType = 'All';
+  priceFilterValue = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,10 +35,9 @@ export class PropertyRentComponent implements OnInit {
     this.housingService.getAllPropertiesRent(this.SellRent).subscribe(
       (data) => {
         this.properties = data;
-        console.log(data);
+        this.filteredProperties = data;
       },
       (error) => {
-        console.log('httperror:');
         console.log(error);
       }
     );
@@ -52,6 +57,70 @@ export class PropertyRentComponent implements OnInit {
       this.SortDirection = 'asc';
     } else {
       this.SortDirection = 'desc';
+    }
+  }
+
+  filterByCity() {
+    if (this.cityName) {
+      this.filteredProperties = this.properties.filter((property) => {
+        return property.city
+          .toLowerCase()
+          .includes(this.cityName.toLowerCase());
+      });
+    } else {
+      this.filteredProperties = this.properties;
+    }
+  }
+  clearCityName() {
+    this.cityName = '';
+    this.filteredProperties = this.properties;
+  }
+
+  sortPropertiesByPrice(sortDirection: string) {
+    if (sortDirection === 'asc') {
+      this.properties.sort((a, b) => a.price - b.price);
+    } else if (sortDirection === 'desc') {
+      this.properties.sort((a, b) => b.price - a.price);
+    }
+  }
+
+  onPriceFilter() {
+    this.filterByPrice();
+  }
+
+  onPriceFilterClear() {
+    this.price = 0;
+    this.PriceFilter = '';
+    this.filteredProperties = this.properties;
+  }
+
+  filterByPrice() {
+    if (!this.priceFilterValue || isNaN(this.priceFilterValue)) {
+      this.filteredProperties = this.properties;
+      return;
+    }
+    if (this.priceFilterType === 'greaterThan') {
+      this.filteredProperties = this.properties.filter((property) => {
+        return property.price > this.priceFilterValue;
+      });
+    } else if (this.priceFilterType === 'lessThan') {
+      this.filteredProperties = this.properties.filter((property) => {
+        return property.price < this.priceFilterValue;
+      });
+    } else if (this.priceFilterType === 'equalTo') {
+      this.filteredProperties = this.properties.filter((property) => {
+        return property.price === this.priceFilterValue;
+      });
+    }
+  }
+
+  sortProperties() {
+    if (this.SortbyParam === 'price') {
+      if (this.SortDirection === 'desc') {
+        this.filteredProperties.sort((a, b) => b.price - a.price);
+      } else {
+        this.filteredProperties.sort((a, b) => a.price - b.price);
+      }
     }
   }
 }

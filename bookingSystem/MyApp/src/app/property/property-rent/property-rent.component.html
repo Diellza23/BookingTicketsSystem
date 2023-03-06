@@ -5,7 +5,6 @@
       alt="picture of a residence"
       style="width: 100%; height: 500px"
     />
-
     <div class="centeredDiv">
       <p
         class="headerStyle"
@@ -172,44 +171,120 @@
     </div>
   </div>
 
-  <!-- <form class="home__search">
-    <i class="bx bxs-map"></i>
+  <div class="container d-flex flex-row mt-3">
     <input
-      type="search"
-      placeholder="type something... "
-      class="home__search-input"
+      type="text"
+      class="form-control"
+      placeholder="Search by city name"
+      [(ngModel)]="cityName"
+      style="border: 1px solid grey; border-radius: 5px 0px 0px 5px"
     />
-    <button class="button">Search</button>
-  </form> -->
+
+    <button
+      class="btn"
+      style="
+        width: 140px;
+        border-radius: 0px 5px 5px 0px;
+        background-color: rgba(0, 222, 148, 0.594);
+        color: #fff;
+      "
+      (click)="filterByCity()"
+    >
+      Search
+    </button>
+    <button
+      class="btn"
+      (click)="clearCityName()"
+      style="border: 1px solid black"
+    >
+      Clear
+    </button>
+  </div>
+
+  <!-- <i *ngIf="SortDirection === 'asc'" class="fas fa-sort-alpha-down"></i>
+  <i *ngIf="SortDirection === 'desc'" class="fas fa-sort-alpha-up"></i> -->
+
+  <div
+    class="container mt-3"
+    style="display: flex; align-items: center; margin-bottom: 20px"
+  >
+    <label style="font-weight: bold">Filter by Price:</label>
+    <select
+      class="form-control"
+      id="price-filter"
+      [(ngModel)]="priceFilterType"
+      (change)="filterByPrice()"
+      style="margin-right: 10px"
+    >
+      <option value="greaterThan">Greater Than</option>
+      <option value="lessThan">Less Than</option>
+      <option value="equalTo">Equal To</option>
+    </select>
+    <input
+      class="form-control"
+      type="number"
+      placeholder="Price"
+      [(ngModel)]="priceFilterValue"
+      style="
+        width: 100px;
+        border: 1px solid grey;
+        border-radius: 5px 0px 0px 5px;
+      "
+    />
+    <button
+      (click)="filterByPrice()"
+      class="btn"
+      style="
+        border-radius: 0px 5px 5px 0px;
+        background-color: rgba(0, 222, 148, 0.594);
+        color: #fff;
+      "
+    >
+      Filter
+    </button>
+    <button
+      class="btn"
+      (click)="onPriceFilterClear()"
+      style="border: 1px solid black"
+    >
+      Clear
+    </button>
+  </div>
+
+  <div
+    class="container"
+    style="display: flex; gap: 10px; justify-content: flex-start"
+  >
+    <h4>Sort by price:</h4>
+    <button
+      (click)="sortPropertiesByPrice('asc')"
+      class="btn"
+      style="background-color: rgb(124, 124, 124); color: #fff"
+    >
+      <i class="fas fa-sort-alpha-up"></i>
+    </button>
+
+    <button
+      (click)="sortPropertiesByPrice('desc')"
+      class="btn btn-primary"
+      style="background-color: rgb(124, 124, 124); color: #fff"
+    >
+      <i class="fas fa-sort-alpha-down"></i>
+    </button>
+  </div>
 
   <div class="container properties">
-    <h4>Explore homes near you</h4>
+    <h4>Explore homes near you able for rent.</h4>
     <div class="row propUser">
       <!--klasa col-lg-2 col-md-6 mb-2 per 6 cards ne nje row ;)-->
-      <div class="col-md-3 col-xs-3" *ngFor="let property of properties">
+      <div
+        class="col-md-3 col-xs-3"
+        *ngFor="let property of filteredProperties; let i = index"
+      >
         <app-propertyUser [property]="property"></app-propertyUser>
       </div>
     </div>
   </div>
-
-  <!--
-  <div class="container">
-    <div class="row">
-      <div
-        *ngFor="
-          let property of properties
-            | filter: SearchCity:'City'
-            | sort: [SortbyParam, SortDirection]
-        "
-        class="col-sm-4"
-      >
-        <div class="shadow-lg p-3 mb-4">
-          <app-property-card [property]="property"></app-property-card>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 </div>
 <section>
   <app-footer></app-footer>

@@ -13,6 +13,8 @@ import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 })
 export class AllUserManagementComponent implements OnInit {
   public userList: User[] = [];
+  public filteredUserList: User[] = [];
+  public userName: string;
 
   constructor(
     private userService: UserService,
@@ -22,34 +24,21 @@ export class AllUserManagementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllUser();
+    this.userService.getAllUser().subscribe(
+      (data: User[]) => {
+        this.userList = data;
+        this.filteredUserList = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
   getAllUser() {
     this.userService.getAllUser().subscribe((data: User[]) => {
       this.userList = data;
     });
   }
-
-  // deleteUser(id) {
-  //   if (confirm('Do you want to delete this user with this id?' + id)) {
-  //     // return this.http
-  //     //   .delete(`https://localhost:5001/api/user/deleteUser/` + id)
-  //     //   .subscribe();
-  //     // }
-
-  //     this.userService.deleteUser(id).subscribe((result) => {
-  //       console.warn('deleted?', result);
-  //       this.getAllUser();
-  //     });
-
-  //     // this.userService.deleteUser(id).subscribe((user) => {
-  //     //   this.getAllUser();
-  //     // });
-
-  //     // if (window.confirm('Are you sure you want to delete user with id: ' + id)) {
-  //     //   this.userService.deleteUser(id);
-  //   }
-  // }
 
   deleteUser(id) {
     const initialState: ModalOptions = {
@@ -67,8 +56,10 @@ export class AllUserManagementComponent implements OnInit {
       if (result) {
         this.userService.deleteUser(id).subscribe(
           (res) => {
-            this.alertify.success('User account deleted successfully!');
-            this.getAllUser();
+            if (res) {
+              this.alertify.success('User account deleted successfully!');
+              this.getAllUser();
+            }
           },
           (err) => {
             this.alertify.error('User account could not be deleted!');
@@ -79,5 +70,16 @@ export class AllUserManagementComponent implements OnInit {
         );
       }
     });
+  }
+  filterByFullname() {
+    if (this.userName) {
+      const searchTerm = this.userName.toLowerCase();
+      this.filteredUserList = this.userList.filter((user) => {
+        const fullName = `${user.fullName} ${user.fullName}`.toLowerCase();
+        return fullName.includes(searchTerm);
+      });
+    } else {
+      this.filteredUserList = this.userList;
+    }
   }
 }

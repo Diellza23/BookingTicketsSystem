@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Property } from 'src/app/model/property';
 import { Constants } from 'src/app/Helper/constants';
+import { Ikeyvaluepair } from 'src/app/model/ikeyvaluepair';
 
 @Component({
   selector: 'app-property-list',
@@ -21,23 +22,25 @@ export class PropertyListComponent implements OnInit {
   SearchCity = '';
   SortbyParam = '';
   SortDirection = 'asc';
+  PriceFilter = '';
+  cityName: string;
+  filteredProperties: IPropertyBase[] = [];
+  price: number;
+  priceFilterType = 'All';
+  priceFilterValue = null;
+  propertyTypes: Ikeyvaluepair[];
 
   public propertyList: Property[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private housingService: HousingService,
-    private http: HttpClient
-  ) {}
+  constructor(private housingService: HousingService) {}
 
   ngOnInit(): void {
     this.housingService.getAllProperties().subscribe(
       (data) => {
         this.properties = data;
-        console.log(data);
+        this.filteredProperties = data;
       },
       (error) => {
-        console.log('httperror:');
         console.log(error);
       }
     );
@@ -63,34 +66,72 @@ export class PropertyListComponent implements OnInit {
     }
   }
 
-  // deleteProperty(id: number) {
-  //   if (confirm('Do you want to delete this property?')) {
-  //     this.housingService.deleteProperty(id).subscribe((res) => {
-  //       alert('deleted');
-  //     });
-  //   }
-  //   return this.http.delete<Property[]>(
-  //     `https://localhost:5001/api/propperty/deleteProperty/` + id
-  //   );
-  // }
-
   deleteProperty(id) {
     if (confirm('Do you want to delete this property with this id?' + id)) {
-      // return this.http
-      //   .delete(`https://localhost:5001/api/user/deleteUser/` + id)
-      //   .subscribe();
-      // }
-
       this.housingService.deleteProperty(id).subscribe((result) => {
         console.warn('deleted?', result);
       });
       window.location.reload();
     }
-    // this.userService.deleteUser(id).subscribe((user) => {
-    //   this.getAllUser();
-    // });
+  }
 
-    // if (window.confirm('Are you sure you want to delete user with id: ' + id)) {
-    //   this.userService.deleteUser(id);
+  clearCityName() {
+    this.cityName = '';
+    this.filteredProperties = this.properties;
+  }
+
+  sortPropertiesByPrice(sortDirection: string) {
+    if (sortDirection === 'asc') {
+      this.properties.sort((a, b) => a.price - b.price);
+    } else if (sortDirection === 'desc') {
+      this.properties.sort((a, b) => b.price - a.price);
+    }
+  }
+
+  filterByCityAndPropertyTypeAndPrice() {
+    let filteredByCityAndPropertyType = this.properties;
+    if (this.cityName) {
+      filteredByCityAndPropertyType = filteredByCityAndPropertyType.filter(
+        (property) => {
+          return property.city
+            .toLowerCase()
+            .includes(this.cityName.toLowerCase());
+        }
+      );
+    }
+    if (this.propertyTypes) {
+      filteredByCityAndPropertyType = filteredByCityAndPropertyType.filter(
+        (property) => {
+          return property.propertyType
+            .toLowerCase()
+            .includes(this.propertyTypes.toString());
+        }
+      );
+    }
+    if (!this.priceFilterValue || isNaN(this.priceFilterValue)) {
+      this.filteredProperties = filteredByCityAndPropertyType;
+      return;
+    }
+    if (this.priceFilterType === 'greaterThan') {
+      this.filteredProperties = filteredByCityAndPropertyType.filter(
+        (property) => {
+          return property.price > this.priceFilterValue;
+        }
+      );
+    } else if (this.priceFilterType === 'lessThan') {
+      this.filteredProperties = filteredByCityAndPropertyType.filter(
+        (property) => {
+          return property.price < this.priceFilterValue;
+        }
+      );
+    } else if (this.priceFilterType === 'equalTo') {
+      this.filteredProperties = filteredByCityAndPropertyType.filter(
+        (property) => {
+          return property.price === this.priceFilterValue;
+        }
+      );
+    } else {
+      this.filteredProperties = filteredByCityAndPropertyType;
+    }
   }
 }

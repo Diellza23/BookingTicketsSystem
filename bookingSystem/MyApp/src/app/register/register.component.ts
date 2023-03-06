@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
         fullName,
         email,
         password,
-        this.roles.filter((x) => x.isSelected).map((x) => x.role),
+        ['Admin'],
         phoneNumber,
         address,
         country,
@@ -61,7 +61,6 @@ export class RegisterComponent implements OnInit {
             this.registerForm.controls['address'].setValue('');
             this.registerForm.controls['country'].setValue('');
             this.registerForm.controls['state'].setValue('');
-            this.roles.forEach((x) => (x.isSelected = false));
           } else if (data.responseCode == ResponseCode.Error) {
             this.alertify.error(data.responseMessage);
             console.log(data.responseMessage);

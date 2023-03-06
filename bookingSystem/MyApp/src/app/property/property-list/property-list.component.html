@@ -1,13 +1,65 @@
 <div class="container-md font">
-  <form class="home__search">
+  <div class="home__search">
     <i class="bx bxs-map"></i>
     <input
-      type="search"
-      placeholder="type something... "
+      type="text"
+      placeholder="Search by city name"
       class="home__search-input"
+      [(ngModel)]="cityName"
     />
-    <button class="button">Search</button>
-  </form>
+    <button class="button" (click)="filterByCityAndPropertyTypeAndPrice()">
+      Search
+    </button>
+  </div>
+  <div
+    class="d-flex container justify-content-between align-items-center"
+    style="gap: 10px"
+  >
+    <input
+      class="form-control"
+      type="number"
+      placeholder="Price"
+      [(ngModel)]="priceFilterValue"
+      style="
+        width: 100px;
+        border: 1px solid grey;
+        border-radius: 5px 0px 0px 5px;
+      "
+    />
+    <select
+      class="form-control"
+      id="price-filter"
+      [(ngModel)]="priceFilterType"
+      (change)="filterByCityAndPropertyTypeAndPrice()"
+      style="margin-right: 10px"
+    >
+      <option value="greaterThan">Greater Than</option>
+      <option value="lessThan">Less Than</option>
+      <option value="equalTo">Equal To</option>
+    </select>
+    <div class="d-flex">
+      <button (click)="sortPropertiesByPrice('asc')" class="button">
+        <!-- Low to High -->
+        <i class="fas fa-sort-alpha-up"></i>
+      </button>
+      <button (click)="sortPropertiesByPrice('desc')" class="button">
+        <!-- High to Low -->
+        <i class="fas fa-sort-alpha-down"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="search" style="max-width: 350px">
+    <input
+      type="text"
+      class="home__search-input"
+      placeholder="Search by property type"
+      [(ngModel)]="propertyTypes"
+    />
+    <button class="button" (click)="filterByCityAndPropertyTypeAndPrice()">
+      Search
+    </button>
+  </div>
 
   <div class="container mt-5" style="display: inline">
     <div>
@@ -53,7 +105,10 @@
     </button> -->
     <div class="row cards">
       <!--klasa col-lg-2 col-md-6 mb-2 per 6 cards ne nje row ;)-->
-      <div class="col-md-3 col-xs-3" *ngFor="let property of properties">
+      <div
+        class="col-md-3 col-xs-3"
+        *ngFor="let property of filteredProperties"
+      >
         <app-propertyUser [property]="property"></app-propertyUser>
       </div>
     </div>
