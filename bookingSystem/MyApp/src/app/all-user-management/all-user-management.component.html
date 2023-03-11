@@ -43,7 +43,7 @@
           ><input
             class="form-control form-control-sm"
             type="text"
-            [(ngModel)]="userName"
+            (ngModel)="userName"
             placeholder="Search by name..."
           />
         </div>
@@ -213,6 +213,7 @@
           </tbody>
           <tfoot>
             <tr>
+              <th rowspan="1" colspan="1">/</th>
               <th rowspan="1" colspan="1">Name</th>
               <th rowspan="1" colspan="1">Email</th>
               <th rowspan="1" colspan="1">Username</th>

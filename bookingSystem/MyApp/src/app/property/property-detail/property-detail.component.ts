@@ -9,6 +9,7 @@ import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { Constants } from 'src/app/Helper/constants';
 import { User } from 'src/app/Models/user';
+import { CheckoutService } from 'src/app/checkout.service';
 
 @Component({
   selector: 'app-property-detail',
@@ -22,10 +23,17 @@ export class PropertyDetailComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 
+  success: boolean = false;
+
+  amount: Property['price'];
+  failure: boolean = false;
+  paymentHandler: any = null;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private housingService: HousingService
+    private housingService: HousingService,
+    private checkout: CheckoutService
   ) {}
 
   ngOnInit() {
@@ -33,6 +41,7 @@ export class PropertyDetailComponent implements OnInit {
     this.route.data.subscribe((data: Property) => {
       this.property = data['prp'];
       console.log(this.property.photos);
+      this.invokeStripe();
     });
 
     this.property.age = this.housingService.getPropertyAge(
@@ -104,6 +113,54 @@ export class PropertyDetailComponent implements OnInit {
         console.warn('deleted?', result);
       });
       window.location.reload();
+    }
+  }
+
+  makePayment(amount) {
+    console.log(amount);
+    const paymentHandler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51KT96rDvrPmUXctBJDCqbVugABZ4qrvQfME0eL84GYtx5StvLIM5ocVM4IQDaZXO1gOSgY0cIElzmPktAdIwEtNY00ihZjIULP',
+      locale: 'auto',
+      token: function (stripeToken: any) {
+        console.log(stripeToken);
+        paymentstripe(stripeToken);
+      },
+    });
+
+    const paymentstripe = (stripeToken: any) => {
+      this.checkout.makePayment(stripeToken).subscribe((data: any) => {
+        console.log(data);
+        if (data.data === 'success') {
+          this.success = true;
+        } else {
+          this.failure = true;
+        }
+      });
+    };
+
+    paymentHandler.open({
+      name: 'Pay through this form',
+      description: 'Make this your property, rent or sell!',
+      amount: amount * 100,
+    });
+  }
+
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement('script');
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = 'https://checkout.stripe.com/checkout.js';
+      script.onload = () => {
+        this.paymentHandler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51KT96rDvrPmUXctBJDCqbVugABZ4qrvQfME0eL84GYtx5StvLIM5ocVM4IQDaZXO1gOSgY0cIElzmPktAdIwEtNY00ihZjIULP',
+          locale: 'auto',
+          token: function (stripeToken: any) {
+            console.log(stripeToken);
+          },
+        });
+      };
+      window.document.body.appendChild(script);
     }
   }
 }
