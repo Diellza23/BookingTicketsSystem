@@ -10,6 +10,7 @@ import { HousingService } from 'src/app/services/housing.service';
 import { Constants } from 'src/app/Helper/constants';
 import { User } from 'src/app/Models/user';
 import { CheckoutService } from 'src/app/checkout.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-property-detail',
@@ -33,7 +34,8 @@ export class PropertyDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private housingService: HousingService,
-    private checkout: CheckoutService
+    private checkout: CheckoutService,
+    private alertify: AlertifyService
   ) {}
 
   ngOnInit() {
@@ -132,7 +134,14 @@ export class PropertyDetailComponent implements OnInit {
         console.log(data);
         if (data.data === 'success') {
           this.success = true;
+          this.alertify.success(
+            'Payment completed successfully, you will be redirected to the homepage!'
+          );
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 3500);
         } else {
+          this.alertify.error("Payment couldn't be completed, try again later");
           this.failure = true;
         }
       });
@@ -141,7 +150,7 @@ export class PropertyDetailComponent implements OnInit {
     paymentHandler.open({
       name: 'Pay through this form',
       description: 'Make this your property, rent or sell!',
-      amount: amount * 100,
+      amount: amount,
     });
   }
 

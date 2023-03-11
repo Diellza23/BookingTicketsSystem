@@ -152,7 +152,6 @@ const appRoutes: Routes = [
     FooterComponent,
     AboutCardComponent,
     PropertyListAdminComponent,
-    
   ],
   entryComponents: [ConfirmModalComponent],
   providers: [

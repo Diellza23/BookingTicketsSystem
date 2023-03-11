@@ -159,37 +159,6 @@ namespace bookingSystem.Controllers
             }
         }
 
-
-
-
-
-
-
-
-        // propperty/add
-        // [HttpPost("add")]
-        // [AllowAnonymous]
-        // public async Task<IActionResult> AddProperty(PropertyDto propertyDto)
-        // {
-
-        //     var property = mapper.Map<Propperty>(propertyDto);
-        //     property.PostedBy = 1;
-        //     // property.LastUpdatedBy = 1;
-        //     // property.Name = "diellza";
-        //     uow.PropertyRepository.AddProperty(property);
-        //     await uow.SaveAsync();
-        //     // return new JsonResult("Added");
-        //     return new JsonResult("IT DOESNT WORK");
-        // }
-
-        // [HttpDelete("deleteProperty/id")]
-        // public async Task<IActionResult> DeleteProperty(int id)
-        // {
-        //     uow.PropertyRepository.DeleteProperty(id);
-        //     await uow.SaveAsync();
-        //     return new JsonResult("Deleted", id);
-        // }
-
         [HttpGet("allProperties")]
         public async Task<IActionResult> GetProperties()
         {
